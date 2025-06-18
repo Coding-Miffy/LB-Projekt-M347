@@ -2,6 +2,8 @@
 > Gemäss erhaltener Aufgabenstellung
 - *Titelblatt*
 - *Inhaltsverzeichnis*
+- *Verwendete Technologien*
+- *Anwendungsbeispiel*
 
 ## Infrastruktur
 - Diagramm
