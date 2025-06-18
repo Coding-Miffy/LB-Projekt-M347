@@ -13,6 +13,9 @@
 ## Infrastruktur
 - Diagramm
 - Auseinandersetzung und Entscheidungsfindung: Warum hat man sich wofür entschieden
+  - Anzahl PVC
+  - Welche Services und warum
+  - Ingress Controller (z. B. nginx)
 
 ## Konfiguration
 - Wordpress
