@@ -12,6 +12,7 @@
 
 ## Infrastruktur
 - Diagramm
+- Auseinandersetzung und Entscheidungsfindung: Warum hat man sich wofür entschieden
 
 ## Konfiguration
 - Wordpress
