@@ -1,3 +1,8 @@
+>[!IMPORTANT]
+>Hoi zäme!
+>In diesem Markdown habe ich mal die Eckpfeiler für Doku und Präsi erfasst, dass uns nichts untergeht :)  
+>Im Ordner `Projekt` habe ich mal eine ungefähre Ordner-/Datei-Struktur aufgesetzt, mit Dummy-Files. Natürlich alles noch nicht fix, einfach mal für den Überblick.
+
 # Struktur der Projektdokumentation
 > Gemäss erhaltener Aufgabenstellung
 - *Titelblatt*
@@ -41,3 +46,10 @@
 
 ## Hilfestellungen
 - Quellen 
+
+# Struktur der Präsentation
+> Gemäss erhaltener Aufgabenstellung
+- Infrastruktur (schematisch)
+- Verwendete Softwarekomponenten einzeln vorstellen
+- Einzelne Schritte des Deployments und involvierte Infrastrukturen
+- Jedes Gruppenmitglied muss vortragen
