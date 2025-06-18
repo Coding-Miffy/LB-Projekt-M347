@@ -49,7 +49,8 @@
 - SR
 
 ## Hilfestellungen
-- Quellen 
+Notizen:
+- Unterstützung von Yves zur Infrastruktur
 
 # Struktur der Präsentation
 > Gemäss erhaltener Aufgabenstellung
