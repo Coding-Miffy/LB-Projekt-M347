@@ -16,6 +16,8 @@
   - Anzahl PVC
   - Welche Services und warum
   - Ingress Controller (z. B. nginx)
+  - Replicas
+    - Beispiel: Wir setzen in diesem Projekt `replicas: 1`, da die Hochverfügbarkeit auf einem Single-Node-Cluster keinen praktischen Nutzen bringt. In einer produktiven Umgebung würden wir z. B. WordPress mit `replicas: 2` oder mehr betreiben.
 
 ## Konfiguration
 - Wordpress
