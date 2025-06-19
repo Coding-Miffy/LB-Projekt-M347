@@ -11,7 +11,7 @@
 - *Anwendungsbeispiel*
 
 ## Infrastruktur
-- Diagramm
+![](/docs/images/infrastructure.png)
 - Auseinandersetzung und Entscheidungsfindung: Warum hat man sich wofür entschieden
   - Anzahl PVC
   - Welche Services und warum
