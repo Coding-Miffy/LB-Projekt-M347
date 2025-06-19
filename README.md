@@ -2,6 +2,8 @@
 >Hoi zäme!
 >In diesem Markdown habe ich mal die Eckpfeiler für Doku und Präsi erfasst, dass uns nichts untergeht :)  
 >Im Ordner `Projekt` habe ich mal eine ungefähre Ordner-/Datei-Struktur aufgesetzt, mit Dummy-Files. Natürlich alles noch nicht fix, einfach mal für den Überblick.
+>
+>Unter `/docs/worklog` habe ich für jeden von uns ein md-File fürs Arbeitsjournal / Fazit vorbereitet
 
 # Struktur der Projektdokumentation
 > Gemäss erhaltener Aufgabenstellung
@@ -40,15 +42,10 @@
 ## Installationsanleitung
 - Für den Dozenten
 
-## Arbeitsjournal
-- NB
-- ME
-- SR
-
-## Persönliches Fazit
-- NB
-- ME
-- SR
+## Arbeitsjournal und persönliches Fazit
+- [NB](/docs/worklog/worklog-nb.md)
+- [ME](/docs/worklog/worklog-me.md)
+- [SR](/docs/worklog/worklog-sr.md)
 
 ## Hilfestellungen
 Notizen:
