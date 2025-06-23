@@ -29,7 +29,8 @@ Für unser Projekt haben wir eine vollständig containerisierte Infrastruktur in
 - **Pod 5**: MediaWiki
 - **Pod 7**: Grafana
 
-Alle Anwendungspods sind über einen **ClusterIP-Service** verfügbar und werden durch den Ingress Controller angesprochen. Jeder Pod läuft in einem eigenen Deployment mit `replicas: 1` und nutzt jeweils eine eigene **ConfigMap** und ein eigenes **Secret**.
+Alle Anwendungspods sind über einen **ClusterIP-Service** verfügbar und werden durch den Ingress Controller angesprochen. Jeder Pod läuft in einem eigenen Deployment mit `replicas: 1` und nutzt jeweils eine **eigene ConfigMap** und ein **eigenes Secret**, um eine modulare und sichere Konfiguration zu ermöglichen.  
+Zusätzlich verwendet jeder dieser Pods einen **eigenen PVC**, um Daten wie Uploads (z. B. Bilder bei WordPress), Medieninhalte oder Dashboard-Einstellungen (z. B. bei Grafana) persistent zu speichern.
 
 #### Datenbankpods
 - **Pod 2**: PostgreSQL (für Jira)
@@ -41,12 +42,11 @@ Jede Datenbank wird über einen eigenen **ClusterIP-Service** angesprochen und n
 
 #### Infrastrukturpods
 - **Pod 9: Ingress Controller (nginx)**  
-  Der Ingress Controller übernimmt die zentrale Exponierung aller Anwendungen nach aussen. Die Weiterleitung erfolgt anhand definierter Hostnamen.
+  Der Ingress Controller übernimmt die zentrale Exponierung aller Anwendungen nach aussen. Die Weiterleitung erfolgt anhand definierter Hostnamen wie `jira.local` oder `mediawiki.local`.
 
 ### Konfiguration: ConfigMaps & Secrets
-Für Konfigurationswerte und sensible Daten (z. B. Passwörter, Zugangsdaten, Umgebungsvariablen) haben wir **pro Anwendungspod**, der solche Informationen benötigt, eine eigene **ConfigMap** und ein eigenes **Secret** definiert.  
-Dieses Vorgehen ermöglicht eine **modulare, wiederverwendbare und sichere Konfiguration** einzelner Komponenten. So greifen beispielsweise Jira, WordPress, MediaWiki und Prometheus jeweils nur auf ihre spezifischen Konfigurationswerte zu – etwa Datenbankverbindungsdaten oder Metriken-Konfiguration.  
-Die Trennung erhöht die Übersichtlichkeit, reduziert potentielle Fehlerquellen bei Änderungen und vereinfacht zukünftige Erweiterungen oder Wartungsarbeiten.
+Für Konfigurationswerte und sensible Daten (z. B. Zugangsdaten oder Umgebungsvariablen) haben wir **pro Anwendungspod** eine **eigene ConfigMap** und ein **eigenes Secret** definiert.  
+Dieses Vorgehen unterstützt eine **wiederverwendbare, modulare und sichere Konfiguration** einzelner Komponenten – z. B. Datenbank-URLs, Passwörter oder Metriken-Konfigurationen.  
 
 ### Erreichbarkeit
 Alle Applikationen sind **nicht** über Pfade wie `http://localhost/mediawiki`, sondern über **eigene Hostnamen** erreichbar:
@@ -56,8 +56,9 @@ Alle Applikationen sind **nicht** über Pfade wie `http://localhost/mediawiki`, 
 - `http://grafana.local`
 
 #### Warum Hostnames statt Pfade?
-Viele Webapplikationen – darunter WordPress, MediaWiki und Jira – sind **nicht dafür ausgelegt, in Unterverzeichnissen zu laufen**. Andernfalls kann es zu fehlerhaften Asset-Referenzen (z. B. fehlende CSS-Dateien), Problemen mit Plugins oder fehlerhaften Weiterleitungen kommen.  
-**Lösung**: Jede Applikation erhält ihren eigenen Hostnamen im Ingress. Damit funktioniert die Auslieferung zuverlässig und erwartungskonform.
+Viele Webapplikationen – darunter WordPress, MediaWiki und Jira – sind **nicht dafür ausgelegt, in Unterverzeichnissen zu laufen**. Ohne dedizierte Hostnamen können z. B. Stylesheets (CSS), Weiterleitungen oder Plugins fehlerhaft geladen werden.
+Dank dedizierten Hostnamen funktionieren alle Anwendungen zuverlässig und erwartungskonform.
+
 >[!NOTE]
 >Damit diese Hostnamen lokal funktionieren, muss die Datei `C:\Windows\System32\drivers\etc\hosts` um entsprechende Einträge ergänzt werden (z. B. `127.0.0.1 wordpress.local`).
 
@@ -83,21 +84,25 @@ Für Datenbankpods setzen wir bewusst auf **ein einzelnes Replikat**, da echte D
 ### Kommunikation & Zugriff
 Die Kommunikation erfolgt gemäss folgendem Muster:
 ```text
-ConfigMap/Secret → von App-Pods und Prometheus referenziert
 User/Browser → Ingress Controller
 Ingress Controller → ClusterIP-Service (App)
 App-Pod → ClusterIP-Service (DB)
 DB-Pod → PVC → PV
+ConfigMap/Secret → von Pods referenziert
 ```
 
 ### Übersicht der Persistent Volumes & Claims
-Wir haben uns bewusst für **vier separate PVCs** entschieden, einen für jede datenhaltende Komponente:
+Wir haben uns bewusst für **acht separate PVCs** entschieden, einen für jede datenhaltende Komponente:
 | PVC | Zugehöriger Pod | Zweck |
 | :--- | :--- | :--- |
+| App-Daten Jira | **Pod 1** - Jira | Speichert Anhänge und Konfigurationen |
 | Claim für PostgreSQL | **Pod 2** – PostgreSQL | Speichert Jira-Daten |
+| App-Daten WordPress | **Pod 3** - WordPress | Speichert Uploads, Plugins, Themes |
 | Claim für MySQL | **Pod 4** – MySQL | Speichert WordPress-Daten |
+| App-Daten MediaWiki | **Pod 5** - MediaWiki | Speichert Bilder, Erweiterungen |
 | Claim für MariaDB | **Pod 6** – MariaDB | Speichert MediaWiki-Daten |
-| Claim für Prometheus | **Pod 8** – Prometheus | Speichert Monitoringdaten-Daten |
+| App-Daten Grafana | **Pod 7** - Grafana | Speichert Dashboards und Einstellungen |
+| Claim für Prometheus | **Pod 8** – Prometheus | Speichert Zeitreihenmetriken |
 
 **Vorteile dieses Ansatzes**:
 - **Datenisolierung**: Jede Anwendung speichert ihre Daten unabhängig.
