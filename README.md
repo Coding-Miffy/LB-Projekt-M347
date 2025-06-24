@@ -12,8 +12,8 @@
 
 **Modul**: 347 - Dienst mit Container anwenden  
 **Projektname**:  
-**Datum**:  
 **Autor:innen**: Blumer, Natascha; Ebbinghaus, Max; Ritter, Sascha;  
+**Datum**:  
 **Version**:  
 
 ## Einleitung
@@ -34,18 +34,6 @@ Eine ausführliche Beschreibung mit Diagramm findet sich hier:
 - Jira
 - Monitoring
 
-## Testplan 
-- Wordpress
-- MediaWiki
-- Jira
-- Monitoring
-
-## Testergebnisse
-- Wordpress
-- MediaWiki
-- Jira
-- Monitoring
-
 ## Installationsanleitung
 [Hier kommt die Installationsanleitung für die Basis-Infrastruktur hin]
 
@@ -56,6 +44,21 @@ Eine ausführliche Beschreibung mit Diagramm findet sich hier:
 - [Prometheus - Zur Installationsanleitung](/Projekt/monitoring/prometheus/installation.md)
 - [Grafana - Zur Installationsanleitung](/Projekt/monitoring/grafana/installation.md)
 - [Ingress - Zur Installationsanleitung](/Projekt/ingress/installation.md)
+
+## Testplan & Testergebnisse
+Zur Qualitätssicherung und Funktionsüberprüfung unserer Kubernetes-Infrastruktur wurden gezielte Tests für jede zentrale Systemkomponente durchgeführt. Dabei lag der Fokus auf folgenden Aspekten:
+- **Korrekte Netzwerkverbindungen** (z. B. über ClusterIP oder Ingress),
+- **Erwartungsgemässe Funktionalität** der Anwendungen,
+- **Sicherstellung der Datenpersistenz** mittels PVCs.
+
+Die Tests wurden **komponentenweise geplant und ausgeführt**.  
+Für jede Anwendung bzw. Infrastrukturkomponente wurde ein separates Testdokument erstellt, das sowohl die Testplanung als auch die zugehörigen Testergebnisse enthält:
+- [Jira - Zum Testing](/Projekt/jira/testing.md)
+- [MediaWiki - Zum Testing](/Projekt/mediawiki/testing.md)
+- [WordPress - Zum Testing](/Projekt/wordpress/testing.md)
+- [Prometheus - Zum Testing](/Projekt/monitoring/prometheus/testing.md)
+- [Grafana - Zum Testing](/Projekt/monitoring/grafana/testing.md)
+- [Ingress - Zum Testing](/Projekt/ingress/testing.md)
 
 ## Arbeitsjournal und persönliches Fazit
 Im Rahmen dieses Projekts hat jedes Gruppenmitglied ein individuelles **Arbeitsjournal** geführt. Darin wurden die persönlichen Arbeitsschritte, Herausforderungen sowie technische Erkenntnisse dokumentiert. Ergänzend dazu hat jede Person ein **persönliches Fazit** verfasst, in dem die individuellen Lernerfolge, Erfahrungen mit Kubernetes sowie das Zusammenspiel im Team reflektiert werden.
