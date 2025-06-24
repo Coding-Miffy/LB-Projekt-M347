@@ -20,7 +20,7 @@ Im Folgenden sind alle YAML-Dateien aufgeführt, die zur Bereitstellung und Konf
 
 ## Files
 ### Deployment
->Definiert das Deployment für die Anwendung: Container-Image, Umgebungsvariablen, Volumes und Replikation.
+>Startet den Grafana-Pod mit allen nötigen Konfigurationen, Volumes und Umgebungsvariablen. Verlinkt u. a. PVC, ConfigMap und Secret.
 
 [Hier kommen die Konfigurationsdetails]
 ```yaml
