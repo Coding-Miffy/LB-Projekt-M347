@@ -3,7 +3,7 @@ In diesem Abschnitt werden die geplanten Testfälle für **Grafana** dokumentier
 
 ## Testfälle
 | Nr. | Komponente | Testfall | Testziel |
-| :-: | --- | --- | --- |
+| :-: | :-- | :-- | :-- |
 | G-01 | Grafana | Name | Ziel des Tests |
 | G-02 |  |  |  |
 |  |  |  |  |
@@ -13,7 +13,7 @@ In diesem Abschnitt werden die geplanten Testfälle für **Grafana** dokumentier
 Im Testprotokoll werden die ausgeführten Testfälle mit Beschreibung, Ergebnis und Bewertung festgehalten.
 
 | Nr. | Testfall | Beschreibung | Erwartetes Ergebnis | Status |
-| :-: | --- | --- | --- | --- |
+| :-: | :-- | :-- | :-- | :-: |
 | G-01 | Name | Beschreibung | Erwartetes Ergebnis | Symbol oder leer |
 | G-02 |  |  |  |  |
 |  |  |  |  |  |
