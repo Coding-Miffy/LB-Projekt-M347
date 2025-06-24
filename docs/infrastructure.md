@@ -1,7 +1,7 @@
 # Infrastruktur
 ![Diagramm der Infrastruktur](/docs/images/infrastructure.png)
 
-Für unser Projekt haben wir eine vollständig containerisierte Infrastruktur in Kubernetes umgesetzt. Die gesamte Umgebung läuft lokal auf einem einzigen Node. Sie umfasst insgesamt **9 Pods** inklusive einem zentralen **Ingress Controller**, **8 Services**, **8 PVCs** sowie dedizierten Komponenten für Konfiguration und Secrets.
+Für unser Projekt haben wir eine vollständig containerisierte Infrastruktur in Kubernetes umgesetzt. Die gesamte Umgebung läuft lokal auf einem einzigen Node. Sie umfasst insgesamt **9 Pods** inklusive einem zentralen **Ingress Controller**, **8 Services**, **8 PVCs** sowie dedizierte Komponenten für Konfiguration und Secrets.
 
 ## Bestandteile der Infrastruktur
 ### Anwendungspods
