@@ -29,10 +29,17 @@ Eine ausführliche Beschreibung mit Diagramm findet sich hier:
 ## Eingesetzte Technologien
 
 ## Konfiguration
-- Wordpress
-- MediaWiki
-- Jira
-- Monitoring
+In diesem Abschnitt sind die technischen Details zur Umsetzung jeder einzelnen Komponente dokumentiert.
+Für jede Applikation bzw. Infrastrukturkomponente wurde ein separates Konfigurationsdokument erstellt. Diese enthalten Informationen zu Deployments, Services, Volumes, Secrets, Ingress-Routen und weiteren relevanten Ressourcen.  
+Ziel ist es, die Kubernetes-Konfiguration pro Pod **übersichtlich, modular und nachvollziehbar** darzustellen, inklusive eingesetzter YAML-Dateien, Besonderheiten und Herausforderungen.
+
+### Konfiguration der einzelnen Komponenten
+- [Jira - Zur Konfiguration](/docs/pods/jira/config.md)
+- [MediaWiki - Zur Konfiguration](/docs/pods/mediawiki/config.md)
+- [WordPress - Zur Konfiguration](/docs/pods/wordpress/config.md)
+- [Prometheus - Zur Konfiguration](/docs/pods/prometheus/config.md)
+- [Grafana - Zur Konfiguration](/docs/pods/grafana/config.md)
+- [Ingress - Zur Konfiguration](/docs/pods/ingress/config.md)
 
 ## Installationsanleitung
 [Hier kommt die Installationsanleitung für die Basis-Infrastruktur hin]
