@@ -3,7 +3,7 @@ In diesem Abschnitt werden die geplanten Testfälle für **MediaWiki** dokumenti
 
 ## Testfälle
 | Nr. | Komponente | Testfall | Testziel |
-| :-: | --- | --- | --- |
+| :-: | :-- | :-- | :-- |
 | M-01 | MediaWiki | Name | Ziel des Tests |
 | M-02 |  |  |  |
 |  |  |  |  |
@@ -13,7 +13,7 @@ In diesem Abschnitt werden die geplanten Testfälle für **MediaWiki** dokumenti
 Im Testprotokoll werden die ausgeführten Testfälle mit Beschreibung, Ergebnis und Bewertung festgehalten.
 
 | Nr. | Testfall | Beschreibung | Erwartetes Ergebnis | Status |
-| :-: | --- | --- | --- | --- |
+| :-: | :-- | :-- | :-- | :-: |
 | M-01 | Name | Beschreibung | Erwartetes Ergebnis | Symbol oder leer |
 | M-02 |  |  |  |  |
 |  |  |  |  |  |
