@@ -3,7 +3,7 @@ In diesem Abschnitt werden die geplanten Testfälle für den **Ingress Controlle
 
 ## Testfälle
 | Nr. | Komponente | Testfall | Testziel |
-| :-: | --- | --- | --- |
+| :-: | :-- | :-- | :-- |
 | I-01 | Ingress | Name | Ziel des Tests |
 | I-02 |  |  |  |
 |  |  |  |  |
@@ -13,7 +13,7 @@ In diesem Abschnitt werden die geplanten Testfälle für den **Ingress Controlle
 Im Testprotokoll werden die ausgeführten Testfälle mit Beschreibung, Ergebnis und Bewertung festgehalten.
 
 | Nr. | Testfall | Beschreibung | Erwartetes Ergebnis | Status |
-| :-: | --- | --- | --- | --- |
+| :-: | :-- | :-- | :-- | :-: |
 | I-01 | Name | Beschreibung | Erwartetes Ergebnis | Symbol oder leer |
 | I-02 |  |  |  |  |
 |  |  |  |  |  |
