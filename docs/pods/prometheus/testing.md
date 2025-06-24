@@ -3,7 +3,7 @@ In diesem Abschnitt werden die geplanten Testfälle für **Prometheus** dokument
 
 ## Testfälle
 | Nr. | Komponente | Testfall | Testziel |
-| :-: | --- | --- | --- |
+| :-: | :-- | :-- | :-- |
 | P-01 | Prometheus | Name | Ziel des Tests |
 | P-02 |  |  |  |
 |  |  |  |  |
@@ -13,7 +13,7 @@ In diesem Abschnitt werden die geplanten Testfälle für **Prometheus** dokument
 Im Testprotokoll werden die ausgeführten Testfälle mit Beschreibung, Ergebnis und Bewertung festgehalten.
 
 | Nr. | Testfall | Beschreibung | Erwartetes Ergebnis | Status |
-| :-: | --- | --- | --- | --- |
+| :-: | :-- | :-- | :-- | :-: |
 | P-01 | Name | Beschreibung | Erwartetes Ergebnis | Symbol oder leer |
 | P-02 |  |  |  |  |
 |  |  |  |  |  |
