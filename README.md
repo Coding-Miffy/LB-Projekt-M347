@@ -1,14 +1,13 @@
 >[!IMPORTANT]
 >Hoi zäme!
->In diesem Markdown habe ich mal die Eckpfeiler für Doku und Präsi erfasst, dass uns nichts untergeht :)  
->Im Ordner `Projekt` habe ich mal eine ungefähre Ordner-/Datei-Struktur aufgesetzt, mit Dummy-Files. Natürlich alles noch nicht fix, einfach mal für den Überblick.
+>### Überblick
+>1. Unter `/Projekt` habe ich für jeden geplanten Pod einen Ordner erstellt. Darin befinden sich alle benötigten Yaml-Files (aktuell noch leer). Ausnahme: Beim Ingress-Controller sind die Files noch nicht vollständig.
 >
->Unter `/docs/worklog` habe ich für jeden von uns ein md-File fürs Arbeitsjournal / Fazit vorbereitet
+>2. Unter `/docs/pods` habe ich für jeden geplanten Pod einen Ordner erstellt. Darin befinden sich alle benötigten md-Files für die Doku: `config.md`, `installation.md` und `testing.md`. Für das Testing habe ich bereits ein Template erstellt. Für die Konfiguration und Installation versuche ich auch noch Templates anzufertigen.
+>
+>3. Unter `/docs/worklogs` habe ich für jeden von uns ein md-File fürs Arbeitsjournal / Fazit mit Template vorbereitet.
 
-# Struktur der Projektdokumentation
-> Gemäss erhaltener Aufgabenstellung
-- *Titelblatt*
-- *Inhaltsverzeichnis*
+# Projektdokumentation
 
 **Modul**: 347 - Dienst mit Container anwenden  
 **Projektname**:  
@@ -17,6 +16,7 @@
 **Version**:  
 
 ## Einleitung
+[Hier kommt die Einleitung hin]
 
 ## Ausgangslage
 [Hier kommt ein fiktiver Anwendungsfall]
