@@ -9,7 +9,6 @@
 > Gemäss erhaltener Aufgabenstellung
 - *Titelblatt*
 - *Inhaltsverzeichnis*
-- *Verwendete Technologien*
 - *Anwendungsbeispiel*
 
 **Modul**: 347 - Dienst mit Container anwenden  
@@ -17,6 +16,11 @@
 **Datum**:  
 **Autor:innen**: Blumer, Natascha; Ebbinghaus, Max; Ritter, Sascha;  
 **Version**:  
+
+## Einleitung
+
+## Ausgangslage
+[Hier kommt ein fiktiver Anwendungsfall]
 
 ## Infrastruktur
 ![Diagramm der Infrastruktur](/docs/images/infrastructure.png)
@@ -119,6 +123,8 @@ Unsere Infrastruktur ist klar strukturiert, modular aufgebaut und folgt den Best
 
 Das beigefügte Architekturdiagramm veranschaulicht die Infrastruktur übersichtlich und dient als technische Grundlage für Deployment, Betrieb und Wartung.
 
+## Eingesetzte Technologien
+
 ## Konfiguration
 - Wordpress
 - MediaWiki
@@ -138,7 +144,15 @@ Das beigefügte Architekturdiagramm veranschaulicht die Infrastruktur übersicht
 - Monitoring
 
 ## Installationsanleitung
-- Für den Dozenten
+[Hier kommt die Installationsanleitung für die Basis-Infrastruktur hin]
+
+### Installation der einzelnen Komponenten
+- [Jira - Zur Installationsanleitung](/Projekt/jira/installation.md)
+- [MediaWiki - Zur Installationsanleitung](/Projekt/mediawiki/installation.md)
+- [WordPress - Zur Installationsanleitung](/Projekt/wordpress/installation.md)
+- [Prometheus - Zur Installationsanleitung](/Projekt/monitoring/prometheus/installation.md)
+- [Grafana - Zur Installationsanleitung](/Projekt/monitoring/grafana/installation.md)
+- [Ingress - Zur Installationsanleitung](/Projekt/ingress/installation.md)
 
 ## Arbeitsjournal und persönliches Fazit
 - [NB](/docs/worklog/worklog-nb.md)
