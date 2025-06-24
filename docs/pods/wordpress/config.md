@@ -94,10 +94,9 @@ Die folgenden YAML-Dateien definieren den Betrieb der zugehörigen Datenbank. Di
 ### Ingress / Externer Zugriff
 >Regelt den externen Zugriff auf die Anwendung über Hostnamen mithilfe eines Ingress Controllers.
 
-[Hier kommen die Konfigurationsdetails]
-```yaml
-# wordpress-ingress.yaml
-```
+Die Datei `wordpress-ingress.yaml` definiert, unter welchem Hostnamen (`wordpress.local`) die WordPress-Applikation von ausserhalb des Clusters erreichbar ist.  
+Sie verweist auf den zentralen Ingress Controller und sorgt für die Weiterleitung eingehender Anfragen an den zugehörigen Service der WordPress-Anwendung.  
+Da das zugrundeliegende Ingress-System für alle Anwendungen identisch ist, wird die übergeordnete Konfiguration des Ingress Controllers inklusive Routingprinzipien und Klassendefinition zentral in der [Konfigurationsdatei des Ingress Controllers](../ingress/config.md) dokumentiert.
 
 ## Besonderheiten & Herausforderungen
 [Hier kommt ein Fazit zur Konfiguration und ggf. Herausforderungen]
