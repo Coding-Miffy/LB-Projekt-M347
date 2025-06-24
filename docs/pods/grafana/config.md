@@ -58,14 +58,6 @@ Im Folgenden sind alle YAML-Dateien aufgeführt, die zur Bereitstellung und Konf
 # secret.yaml
 ```
 
-### Ingress / Externer Zugriff
->Regelt den externen Zugriff auf Grafama über den Hostnamen mithilfe eines Ingress Controllers.
-
-[Hier kommen die Konfigurationsdetails]
-```yaml
-# grafana-ingress.yaml
-```
-
 ### Data Provisioning
 >Definiert in YAML die automatische Anbindung von Prometheus als Datenquelle. Wird beim Start von Grafana erkannt und geladen.
 
@@ -73,6 +65,13 @@ Im Folgenden sind alle YAML-Dateien aufgeführt, die zur Bereitstellung und Konf
 ```yaml
 # data-provisioning.yaml
 ```
+
+### Ingress / Externer Zugriff
+>Regelt den externen Zugriff auf Grafama über den Hostnamen mithilfe eines Ingress Controllers.
+
+Die Datei `grafana-ingress.yaml` definiert, unter welchem Hostnamen (`grafana.local`) Grafana von ausserhalb des Clusters erreichbar ist.  
+Sie verweist auf den zentralen Ingress Controller und sorgt für die Weiterleitung eingehender Anfragen an den zugehörigen Service von Grafana.  
+Da das zugrundeliegende Ingress-System für alle Anwendungen identisch ist, wird die übergeordnete Konfiguration des Ingress Controllers inklusive Routingprinzipien und Klassendefinition zentral in der [Konfigurationsdatei des Ingress Controllers](../ingress/config.md) dokumentiert.
 
 ## Besonderheiten & Herausforderungen
 [Hier kommt ein Fazit zur Konfiguration und ggf. Herausforderungen]
