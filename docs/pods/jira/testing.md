@@ -3,7 +3,7 @@ In diesem Abschnitt werden die geplanten Testfälle für **Jira** dokumentiert. 
 
 ## Testfälle
 | Nr. | Komponente | Testfall | Testziel |
-| :-: | --- | --- | --- |
+| :-: | :-- | :-- | :-- |
 | J-01 | Jira | Name | Ziel des Tests |
 | J-02 |  |  |  |
 |  |  |  |  |
@@ -13,7 +13,7 @@ In diesem Abschnitt werden die geplanten Testfälle für **Jira** dokumentiert. 
 Im Testprotokoll werden die ausgeführten Testfälle mit Beschreibung, Ergebnis und Bewertung festgehalten.
 
 | Nr. | Testfall | Beschreibung | Erwartetes Ergebnis | Status |
-| :-: | --- | --- | --- | --- |
+| :-: | :-- | :-- | :-- | :-: |
 | J-01 | Name | Beschreibung | Erwartetes Ergebnis | Symbol oder leer |
 | J-02 |  |  |  |  |
 |  |  |  |  |  |
