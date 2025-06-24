@@ -3,7 +3,7 @@
 >### Überblick
 >1. Unter `/Projekt` habe ich für jeden geplanten Pod einen Ordner erstellt. Darin befinden sich alle benötigten Yaml-Files (aktuell noch leer). Ausnahme: Beim Ingress-Controller sind die Files noch nicht vollständig.
 >
->2. Unter `/docs/pods` habe ich für jeden geplanten Pod einen Ordner erstellt. Darin befinden sich alle benötigten md-Files für die Doku: `config.md`, `installation.md` und `testing.md`. Für das Testing habe ich bereits ein Template erstellt. Für die Konfiguration und Installation versuche ich auch noch Templates anzufertigen.
+>2. Unter `/docs/pods` habe ich für jeden geplanten Pod einen Ordner erstellt. Darin befinden sich alle benötigten md-Files für die Doku: `config.md`, `installation.md` und `testing.md`. Für das Testing und die Konfiguration habe ich bereits je ein Template erstellt. Für die Installation versuche ich auch noch ein Template anzufertigen.
 >
 >3. Unter `/docs/worklogs` habe ich für jeden von uns ein md-File fürs Arbeitsjournal / Fazit mit Template vorbereitet.
 
