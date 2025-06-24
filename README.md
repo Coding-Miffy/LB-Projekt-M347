@@ -155,9 +155,12 @@ Das beigefügte Architekturdiagramm veranschaulicht die Infrastruktur übersicht
 - [Ingress - Zur Installationsanleitung](/Projekt/ingress/installation.md)
 
 ## Arbeitsjournal und persönliches Fazit
-- [NB](/docs/worklog/worklog-nb.md)
-- [ME](/docs/worklog/worklog-me.md)
-- [SR](/docs/worklog/worklog-sr.md)
+Im Rahmen dieses Projekts hat jedes Gruppenmitglied ein individuelles **Arbeitsjournal** geführt. Darin wurden die persönlichen Arbeitsschritte, Herausforderungen sowie technische Erkenntnisse dokumentiert. Ergänzend dazu hat jede Person ein **persönliches Fazit** verfasst, in dem die individuellen Lernerfolge, Erfahrungen mit Kubernetes sowie das Zusammenspiel im Team reflektiert werden.
+
+Die folgenden Links führen direkt zu den jeweiligen Arbeitsjournalen:
+- [NB - Zum Arbeitsjournal](/docs/worklog/worklog-nb.md)
+- [ME - Zum Arbeitsjournal](/docs/worklog/worklog-me.md)
+- [SR - Zum Arbeitsjournal](/docs/worklog/worklog-sr.md)
 
 ## Hilfestellungen
 Notizen:
