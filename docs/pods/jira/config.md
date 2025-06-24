@@ -94,10 +94,9 @@ Die folgenden YAML-Dateien definieren den Betrieb der zugehörigen Datenbank. Di
 ### Ingress / Externer Zugriff
 >Regelt den externen Zugriff auf die Anwendung über Hostnamen mithilfe eines Ingress Controllers.
 
-[Hier kommen die Konfigurationsdetails]
-```yaml
-# jira-ingress.yaml
-```
+Die Datei `jira-ingress.yaml` definiert, unter welchem Hostnamen (`jira.local`) die Jira-Applikation von ausserhalb des Clusters erreichbar ist.  
+Sie verweist auf den zentralen Ingress Controller und sorgt für die Weiterleitung eingehender Anfragen an den zugehörigen Service der Jira-Anwendung.  
+Da das zugrundeliegende Ingress-System für alle Anwendungen identisch ist, wird die übergeordnete Konfiguration des Ingress Controllers inklusive Routingprinzipien und Klassendefinition zentral in der [Konfigurationsdatei des Ingress Controllers](../ingress/config.md) dokumentiert.
 
 ## Besonderheiten & Herausforderungen
 [Hier kommt ein Fazit zur Konfiguration und ggf. Herausforderungen]
