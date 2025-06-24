@@ -38,12 +38,12 @@ Eine ausführliche Beschreibung mit Diagramm findet sich hier:
 [Hier kommt die Installationsanleitung für die Basis-Infrastruktur hin]
 
 ### Installation der einzelnen Komponenten
-- [Jira - Zur Installationsanleitung](/Projekt/jira/installation.md)
-- [MediaWiki - Zur Installationsanleitung](/Projekt/mediawiki/installation.md)
-- [WordPress - Zur Installationsanleitung](/Projekt/wordpress/installation.md)
-- [Prometheus - Zur Installationsanleitung](/Projekt/monitoring/prometheus/installation.md)
-- [Grafana - Zur Installationsanleitung](/Projekt/monitoring/grafana/installation.md)
-- [Ingress - Zur Installationsanleitung](/Projekt/ingress/installation.md)
+- [Jira - Zur Installationsanleitung](/docs/pods/jira/installation.md)
+- [MediaWiki - Zur Installationsanleitung](/docs/pods/mediawiki/installation.md)
+- [WordPress - Zur Installationsanleitung](/docs/pods/wordpress/installation.md)
+- [Prometheus - Zur Installationsanleitung](/docs/pods/prometheus/installation.md)
+- [Grafana - Zur Installationsanleitung](/docs/pods/grafana/installation.md)
+- [Ingress - Zur Installationsanleitung](/docs/pods/ingress/installation.md)
 
 ## Testplan & Testergebnisse
 Zur Qualitätssicherung und Funktionsüberprüfung unserer Kubernetes-Infrastruktur wurden gezielte Tests für jede zentrale Systemkomponente durchgeführt. Dabei lag der Fokus auf folgenden Aspekten:
@@ -53,12 +53,12 @@ Zur Qualitätssicherung und Funktionsüberprüfung unserer Kubernetes-Infrastruk
 
 Die Tests wurden **komponentenweise geplant und ausgeführt**.  
 Für jede Anwendung bzw. Infrastrukturkomponente wurde ein separates Testdokument erstellt, das sowohl die Testplanung als auch die zugehörigen Testergebnisse enthält:
-- [Jira - Zum Testing](/Projekt/jira/testing.md)
-- [MediaWiki - Zum Testing](/Projekt/mediawiki/testing.md)
-- [WordPress - Zum Testing](/Projekt/wordpress/testing.md)
-- [Prometheus - Zum Testing](/Projekt/monitoring/prometheus/testing.md)
-- [Grafana - Zum Testing](/Projekt/monitoring/grafana/testing.md)
-- [Ingress - Zum Testing](/Projekt/ingress/testing.md)
+- [Jira - Zum Testing](/docs/pods/jira/testing.md)
+- [MediaWiki - Zum Testing](/docs/pods/mediawiki/testing.md)
+- [WordPress - Zum Testing](/docs/pods/wordpress/testing.md)
+- [Prometheus - Zum Testing](/docs/pods/prometheus/testing.md)
+- [Grafana - Zum Testing](/docs/pods/grafana/testing.md)
+- [Ingress - Zum Testing](/docs/pods/ingress/testing.md)
 
 ## Arbeitsjournal und persönliches Fazit
 Im Rahmen dieses Projekts hat jedes Gruppenmitglied ein individuelles **Arbeitsjournal** geführt. Darin wurden die persönlichen Arbeitsschritte, Herausforderungen sowie technische Erkenntnisse dokumentiert. Ergänzend dazu hat jede Person ein **persönliches Fazit** verfasst, in dem die individuellen Lernerfolge, Erfahrungen mit Kubernetes sowie das Zusammenspiel im Team reflektiert werden.
