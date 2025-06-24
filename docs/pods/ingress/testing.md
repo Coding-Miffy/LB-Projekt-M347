@@ -1,4 +1,4 @@
-# Testplan - Ingress
+# Testplan - Ingress Controller
 In diesem Abschnitt werden die geplanten Testfälle für den **Ingress Controller** dokumentiert. Ziel ist es, die Funktionalität der Komponente sicherzustellen.
 
 ## Testfälle
