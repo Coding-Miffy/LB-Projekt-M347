@@ -33,7 +33,7 @@ Die folgenden YAML-Dateien definieren den Betrieb der zugehörigen Datenbank. Di
 
 [Hier kommen die Konfigurationsdetails]
 ```yaml
-Deployment
+# deployment.yaml
 ```
 
 ### Service
@@ -41,7 +41,7 @@ Deployment
 
 [Hier kommen die Konfigurationsdetails]
 ```yaml
-Service
+# service.yaml
 ```
 
 ### Persistente Daten (PVC)
@@ -49,7 +49,7 @@ Service
 
 [Hier kommen die Konfigurationsdetails]
 ```yaml
-PVC
+# pvc.yaml
 ```
 
 ### Datenbank - Deployment
@@ -57,7 +57,7 @@ PVC
 
 [Hier kommen die Konfigurationsdetails]
 ```yaml
-DB-Deployment
+# db-deployment.yaml
 ```
 
 ### Datenbank - Service
@@ -65,7 +65,7 @@ DB-Deployment
 
 [Hier kommen die Konfigurationsdetails]
 ```yaml
-DB-Service
+# db-service.yaml
 ```
 
 ### Datenbank - Persistente Daten (PVC)
@@ -73,7 +73,7 @@ DB-Service
 
 [Hier kommen die Konfigurationsdetails]
 ```yaml
-DB-PVC
+# db-pvc.yaml
 ```
 
 ### ConfigMap & Secret
@@ -82,13 +82,13 @@ DB-PVC
 #### ConfigMap
 [Hier kommen die Konfigurationsdetails]
 ```yaml
-ConfigMap
+# configmap.yaml
 ```
 
 #### Secret
 [Hier kommen die Konfigurationsdetails]
 ```yaml
-Secret
+# secret.yaml
 ```
 
 ### Ingress / Externer Zugriff
@@ -96,9 +96,8 @@ Secret
 
 [Hier kommen die Konfigurationsdetails]
 ```yaml
-Ingress
+# wordpress-ingress.yaml
 ```
 
 ## Besonderheiten & Herausforderungen
 [Hier kommt ein Fazit zur Konfiguration und ggf. Herausforderungen]
-
