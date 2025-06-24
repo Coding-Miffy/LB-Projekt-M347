@@ -1,3 +1,6 @@
+>[!IMPORTANT]
+>In diesem File muss noch die Konfiguration der `[name]-ingress.yaml`-Files erklärt werden.
+
 # Konfiguration - Ingress Controller
 [Einleitung]
 
