@@ -3,7 +3,7 @@ In diesem Abschnitt werden die geplanten Testfälle für **WordPress** dokumenti
 
 ## Testfälle
 | Nr. | Komponente | Testfall | Testziel |
-| :-: | --- | --- | --- |
+| :-: | :-- | :-- | :-- |
 | W-01 | WordPress | Name | Ziel des Tests |
 | W-02 |  |  |  |
 |  |  |  |  |
@@ -13,7 +13,7 @@ In diesem Abschnitt werden die geplanten Testfälle für **WordPress** dokumenti
 Im Testprotokoll werden die ausgeführten Testfälle mit Beschreibung, Ergebnis und Bewertung festgehalten.
 
 | Nr. | Testfall | Beschreibung | Erwartetes Ergebnis | Status |
-| :-: | --- | --- | --- | --- |
+| :-: | :-- | :-- | :-- | :-: |
 | W-01 | Name | Beschreibung | Erwartetes Ergebnis | Symbol oder leer |
 | W-02 |  |  |  |  |
 |  |  |  |  |  |
