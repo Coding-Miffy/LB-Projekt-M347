@@ -66,8 +66,19 @@ Die folgenden Links führen direkt zu den jeweiligen Arbeitsjournalen:
 - [SR - Zum Arbeitsjournal](/docs/worklog/worklog-sr.md)
 
 ## Hilfestellungen
-Notizen:
-- Unterstützung von Yves zur Infrastruktur
+Während der Bearbeitung des Projekts haben wir verschiedene Formen der Unterstützung in Anspruch genommen – fachlich, methodisch und sprachlich. Der folgende Abschnitt dokumentiert, welche **externen Hilfestellungen** zum Einsatz kamen und in welcher Form sie das Projekt beeinflusst haben.
+
+### Yves Kaufmann (Dozent M347)
+- Laufende Unterstützung bei der Konstruktion des Infrastrukturdiagramms
+
+### Thomas Kägi (Ausbildner, NB)
+- [Ustü]
+
+### ChatGPT
+- Rechtschreibekorrektur und Formulierungshilfe beim Verfassen der Dokumentation
+
+### Weitere Quellen
+- [Hier kommen Online-Quellen oder ggf. Bücher hin]
 
 # Struktur der Präsentation
 > Gemäss erhaltener Aufgabenstellung
