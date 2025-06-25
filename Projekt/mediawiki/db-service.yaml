@@ -1,1 +1,12 @@
-
+apiVersion: v1                    # Verwendete API-Version für Service
+kind: Service                     # Objekttyp: Service (erzeugt interne Netzwerkschnittstelle)
+metadata:
+  name: mediawiki-db-service      # Interner Name des Service, über den er im Deployment referenziert wird
+  namespace: m347-mediawiki       # Namespace, in dem der Service gespeichert ist
+spec:
+  type: ClusterIP                 # Interner Servie (kein externer Zugriff) - Default
+  selector:
+    app: mariadb 
+  ports:
+    - port: 3306                  # Service-Port im Cluster
+      targetPort: 3306            # Weiterleitung an Container-Port (von der Applikation vorgegeben)
