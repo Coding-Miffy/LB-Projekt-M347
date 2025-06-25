@@ -45,6 +45,7 @@ Ziel ist es, die Kubernetes-Konfiguration pro Pod **übersichtlich, modular und 
 [Hier kommt die Installationsanleitung für die Basis-Infrastruktur hin]
 
 ### Installation der einzelnen Komponenten
+[Hier kommt noch: Namespace, Aufbau, Reihenfolge etc.]
 - [Redmine - Zur Installationsanleitung](/docs/pods/redmine/installation.md)
 - [MediaWiki - Zur Installationsanleitung](/docs/pods/mediawiki/installation.md)
 - [WordPress - Zur Installationsanleitung](/docs/pods/wordpress/installation.md)
