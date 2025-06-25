@@ -39,10 +39,36 @@ Die folgenden YAML-Dateien definieren den Betrieb der zugehörigen Datenbank. Di
 ### Service
 >Stellt einen internen Kubernetes-Service zur Verfügung, über den die App im Cluster erreichbar ist.
 
-[Hier kommen die Konfigurationsdetails]
+#### [service.yaml](../../../Projekt/mediawiki/service.yaml)
 ```yaml
-# service.yaml
+apiVersion: v1                      # Verwendete API-Version für Service
+kind: Service                       # Objekttyp: Service (erzeugt interne Netzwerkschnittstelle)
+metadata: 
+  name: mediawiki-service           # Interner Name des Service, über den er im Deployment referenziert wird
+  namespace: m347-mediawiki         # Namespace, in dem der Service gespeichert ist
+spec:
+  type: ClusterIP                   # Interner Servie (kein externer Zugriff) - Default
+  selector:
+    app: mediawiki
+  ports:
+    - port: 80                      # Service-Port im Cluster
+      targetPort: 80                # Weiterleitung an Container-Port (von der Applikation vorgegeben)
 ```
+
+#### Erklärung der Konfiguration
+- `type: ClusterIP`  
+Dieser Typ ist Standard in Kubernetes und sorgt dafür, dass der Service **nur innerhalb des Clusters erreichbar** ist. Externer Zugriff erfolgt über den **Ingress Controller**.  
+→ Vorteil: mehr Sicherheit und klare Trennung zwischen internem und externem Verkehr.
+
+- `selector.app: mediawiki`  
+  Verbindet den Service mit dem **entsprechenden Pod**. Der Selector greift auf das Label `app: mediawiki` im Deployment zurück und stellt so sicher, dass die Netzwerkanfragen an den richtigen Pod weitergeleitet werden.
+
+- `ports.port: 80`  
+  Der Port, auf dem der Service **innerhalb des Clusters** erreichbar ist.
+
+- `ports.targetPort: 80`  
+  Der Port, an den der Traffic **im Container selbst** weitergeleitet wird.  
+In diesem Fall verwendet der MediaWiki-Container Port 80, da dieser bei Webservern typischerweise als Standard konfiguriert ist.
 
 ### Persistente Daten (PVC)
 >Fordert persistenten Speicher im Cluster an, z. B. für Medien-Uploads oder Logs der Anwendung.
