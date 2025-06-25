@@ -1,1 +1,50 @@
-
+apiVersion: apps/v1                                 # API-Version für Deployments
+kind: Deployment                                    # Objekttyp: Deployment
+metadata:
+  name: mediawiki-db                                # Name des Deployments
+  namespace: m347-mediawiki                         # Namespace, in dem das Deployment ausgeführt wird
+  labels:
+    app: mariadb                                    # Label zur Gruppierung und Service-Verknüpfung
+spec:
+  replicas: 1                                       # Anzahl der gewünschten Pods (Replikate)
+  selector:
+    matchLabels:
+      app: mariadb                                  # Verknüpft Selector mit Template-Label
+  template:
+    metadata:
+      labels:
+        app: mariadb
+    spec:
+      containers:
+        - name: mediawiki-db                        # Containername
+          image: bitnami/mariadb:latest             # Docker-Image (verwaltet durch Bitnami)
+          ports:
+            - containerPort: 3306                   # Standardport für MariaDB
+          env:                                      # Umgebungsvariablen für Konfiguration
+            - name: MARIADB_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mediawiki-secret
+                  key: MARIADB_ROOT_PASSWORD
+            - name: MARIADB_DATABASE
+              valueFrom:
+                configMapKeyRef:
+                  name: mediawiki-config
+                  key: MEDIAWIKI_DB_NAME
+            - name: MARIADB_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: mediawiki-config
+                  key: MEDIAWIKI_DB_USER
+            - name: MARIADB_PASSWORD 
+              valueFrom:
+                secretKeyRef:
+                  name: mediawiki-secret
+                  key: MEDIAWIKI_DB_PASSWORD
+          volumeMounts:
+            - name: mediawiki-db-storage
+              mountPath: /bitnami/mariadb           # Mount-Pfad für persistente Daten
+      volumes:
+        - name: mediawiki-db-storage
+          persistentVolumeClaim:
+            claimName: mediawiki-db-pvc             # Bindung an PVC
