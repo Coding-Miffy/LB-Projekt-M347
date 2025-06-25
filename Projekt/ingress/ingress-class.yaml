@@ -1,1 +1,6 @@
-
+apiVersion: networking.k8s.io/v1        # API-Version für IngressClass
+kind: IngressClass                      # Objekttyp: Ingress-Klasse
+metadata:
+  name: nginx                           # Name der Klasse
+spec:
+  controller: k8s.io/ingress-nginx      # Controller, der diese Klasse verwalten soll
