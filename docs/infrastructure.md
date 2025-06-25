@@ -5,7 +5,7 @@ Für unser Projekt haben wir eine vollständig containerisierte Infrastruktur in
 
 ## Bestandteile der Infrastruktur
 ### Anwendungspods
-- **Pod 1**: Jira
+- **Pod 1**: Redmine
 - **Pod 3**: WordPress
 - **Pod 5**: MediaWiki
 - **Pod 7**: Grafana
@@ -14,7 +14,7 @@ Alle Anwendungspods sind über einen **ClusterIP-Service** verfügbar und werden
 Zusätzlich verwendet jeder dieser Pods einen **eigenen PVC**, um Daten wie Uploads (z. B. Bilder bei WordPress), Medieninhalte oder Dashboard-Einstellungen (z. B. bei Grafana) persistent zu speichern.
 
 ### Datenbankpods
-- **Pod 2**: PostgreSQL (für Jira)
+- **Pod 2**: MariaDB (für Redmine)
 - **Pod 4**: MySQL (für WordPress)
 - **Pod 6**: MariaDB (für MediaWiki)
 - **Pod 8**: Prometheus (zur Speicherung von Metriken)
@@ -23,7 +23,7 @@ Jede Datenbank wird über einen eigenen **ClusterIP-Service** angesprochen und n
 
 ### Infrastrukturpods
 - **Pod 9: Ingress Controller (nginx)**  
-  Der Ingress Controller übernimmt die zentrale Exponierung aller Anwendungen nach aussen. Die Weiterleitung erfolgt anhand definierter Hostnamen wie `jira.local` oder `mediawiki.local`.
+  Der Ingress Controller übernimmt die zentrale Exponierung aller Anwendungen nach aussen. Die Weiterleitung erfolgt anhand definierter Hostnamen wie `redmine.local` oder `mediawiki.local`.
 
 ## Konfiguration: ConfigMaps & Secrets
 Für Konfigurationswerte und sensible Daten (z. B. Zugangsdaten oder Umgebungsvariablen) haben wir **pro Anwendungspod** eine **eigene ConfigMap** und ein **eigenes Secret** definiert.  
@@ -31,13 +31,13 @@ Dieses Vorgehen unterstützt eine **wiederverwendbare, modulare und sichere Konf
 
 ## Erreichbarkeit
 Alle Applikationen sind **nicht** über Pfade wie `http://localhost/mediawiki`, sondern über **eigene Hostnamen** erreichbar:
-- `http://jira.local`
+- `http://redmine.local`
 - `http://wordpress.local`
 - `http://mediawiki.local`
 - `http://grafana.local`
 
 ### Warum Hostnames statt Pfade?
-Viele Webapplikationen – darunter WordPress, MediaWiki und Jira – sind **nicht dafür ausgelegt, in Unterverzeichnissen zu laufen**. Ohne dedizierte Hostnamen können z. B. Stylesheets (CSS), Weiterleitungen oder Plugins fehlerhaft geladen werden.
+Viele Webapplikationen – darunter WordPress und MediaWiki – sind **nicht dafür ausgelegt, in Unterverzeichnissen zu laufen**. Ohne dedizierte Hostnamen können z. B. Stylesheets (CSS), Weiterleitungen oder Plugins fehlerhaft geladen werden.
 Dank dedizierten Hostnamen funktionieren alle Anwendungen zuverlässig und erwartungskonform.
 
 >[!NOTE]
@@ -49,7 +49,7 @@ Alle Services wurden auf den Typ `ClusterIP` gesetzt. Das bedeutet, sie sind nur
 **Vorteile dieses Ansatzes**:
 - **Zentrale Steuerung der Exponierung**: Nur der Ingress Controller ist von aussen erreichbar, was die Sicherheit erhöht.
 - **Klarer Aufbau**: App-Pods sprechen Datenbank-Pods über interne ClusterIP-Services an.
-- **Standardisierte Adressierung**: Dank dedizierter Hostnamen erfolgt der Zugriff über Klartext-URLs wie `http://jira.local`.
+- **Standardisierte Adressierung**: Dank dedizierter Hostnamen erfolgt der Zugriff über Klartext-URLs wie `http://redmine.local`.
 
 ## Umgang mit Replikation
 Alle Deployments in unserem Projekt verwenden aktuell:
@@ -76,12 +76,12 @@ ConfigMap/Secret → von Pods referenziert
 Wir haben uns bewusst für **acht separate PVCs** entschieden, einen für jede datenhaltende Komponente:
 | PVC | Zugehöriger Pod | Zweck |
 | :--- | :--- | :--- |
-| App-Daten Jira | **Pod 1** - Jira | Speichert Anhänge und Konfigurationen |
-| Claim für PostgreSQL | **Pod 2** – PostgreSQL | Speichert Jira-Daten |
+| App-Daten Redmine | **Pod 1** - Redmine | Speichert Anhänge und Konfigurationen |
+| Claim für Redmine-DB | **Pod 2** – MariaDB | Speichert Redmine-Daten |
 | App-Daten WordPress | **Pod 3** - WordPress | Speichert Uploads, Plugins, Themes |
-| Claim für MySQL | **Pod 4** – MySQL | Speichert WordPress-Daten |
+| Claim für Wordpress-DB | **Pod 4** – MySQL | Speichert WordPress-Daten |
 | App-Daten MediaWiki | **Pod 5** - MediaWiki | Speichert Bilder, Erweiterungen |
-| Claim für MariaDB | **Pod 6** – MariaDB | Speichert MediaWiki-Daten |
+| Claim für MediaWiki-DB | **Pod 6** – MariaDB | Speichert MediaWiki-Daten |
 | App-Daten Grafana | **Pod 7** - Grafana | Speichert Dashboards und Einstellungen |
 | Claim für Prometheus | **Pod 8** – Prometheus | Speichert Zeitreihenmetriken |
 
