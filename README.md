@@ -34,7 +34,7 @@ Für jede Applikation bzw. Infrastrukturkomponente wurde ein separates Konfigura
 Ziel ist es, die Kubernetes-Konfiguration pro Pod **übersichtlich, modular und nachvollziehbar** darzustellen, inklusive eingesetzter YAML-Dateien, Besonderheiten und Herausforderungen.
 
 ### Konfiguration der einzelnen Komponenten
-- [Jira - Zur Konfiguration](/docs/pods/jira/config.md)
+- [Redmine - Zur Konfiguration](/docs/pods/redmine/config.md)
 - [MediaWiki - Zur Konfiguration](/docs/pods/mediawiki/config.md)
 - [WordPress - Zur Konfiguration](/docs/pods/wordpress/config.md)
 - [Prometheus - Zur Konfiguration](/docs/pods/prometheus/config.md)
@@ -45,7 +45,7 @@ Ziel ist es, die Kubernetes-Konfiguration pro Pod **übersichtlich, modular und 
 [Hier kommt die Installationsanleitung für die Basis-Infrastruktur hin]
 
 ### Installation der einzelnen Komponenten
-- [Jira - Zur Installationsanleitung](/docs/pods/jira/installation.md)
+- [Redmine - Zur Installationsanleitung](/docs/pods/redmine/installation.md)
 - [MediaWiki - Zur Installationsanleitung](/docs/pods/mediawiki/installation.md)
 - [WordPress - Zur Installationsanleitung](/docs/pods/wordpress/installation.md)
 - [Prometheus - Zur Installationsanleitung](/docs/pods/prometheus/installation.md)
@@ -60,7 +60,7 @@ Zur Qualitätssicherung und Funktionsüberprüfung unserer Kubernetes-Infrastruk
 
 Die Tests wurden **komponentenweise geplant und ausgeführt**.  
 Für jede Anwendung bzw. Infrastrukturkomponente wurde ein separates Testdokument erstellt, das sowohl die Testplanung als auch die zugehörigen Testergebnisse enthält:
-- [Jira - Zum Testing](/docs/pods/jira/testing.md)
+- [Redmine - Zum Testing](/docs/pods/redmine/testing.md)
 - [MediaWiki - Zum Testing](/docs/pods/mediawiki/testing.md)
 - [WordPress - Zum Testing](/docs/pods/wordpress/testing.md)
 - [Prometheus - Zum Testing](/docs/pods/prometheus/testing.md)
