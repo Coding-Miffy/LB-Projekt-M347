@@ -1,1 +1,11 @@
-
+apiVersion: v1
+kind: ConfigMap                             # Objekttyp: Konfigurationsdaten
+metadata:
+  name: mediawiki-config                    # Interner Name der ConfigMap, über den sie im Deployment referenziert wird
+  namespace: m347-mediawiki
+data:                                       # Ab hier: Schlüssel-Wert-Paare
+  MEDIAWIKI_SITE_NAME: "Intranet"
+  MEDIAWIKI_SITE_LANG: "de"
+  MEDIAWIKI_DB_NAME: "mediawiki"
+  MEDIAWIKI_DB_USER: "mwuser"
+  MEDIAWIKI_DB_HOST: "mariadb-service"
