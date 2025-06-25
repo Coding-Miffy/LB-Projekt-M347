@@ -56,7 +56,7 @@ $wgEnotifWatchlist = false; # UPO
 $wgEmailAuthentication = true;
 
 ## Database settings
-$wgDBtype = "mariadb";
+$wgDBtype = "mysql";
 $wgDBserver = "mediawiki-db-service";
 $wgDBname = "mediawiki";
 $wgDBuser = "mwuser";
