@@ -1,8 +1,8 @@
-apiVersion: v1
+apiVersion: v1                              # Verwendete API-Version für ConfigMap
 kind: ConfigMap                             # Objekttyp: Konfigurationsdaten
 metadata:
   name: mediawiki-config                    # Interner Name der ConfigMap, über den sie im Deployment referenziert wird
-  namespace: m347-mediawiki
+  namespace: m347-mediawiki                 # Namespace, in dem die ConfigMap gespeichert ist
 data:                                       # Ab hier: Schlüssel-Wert-Paare
   MEDIAWIKI_SITE_NAME: "Intranet"
   MEDIAWIKI_SITE_LANG: "de"
