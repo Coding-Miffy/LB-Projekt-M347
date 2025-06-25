@@ -1,11 +1,11 @@
-# Testplan - Jira
-In diesem Abschnitt werden die geplanten Testfälle für **Jira** dokumentiert. Ziel ist es, die Funktionalität der Komponente sicherzustellen.
+# Testplan - Redmine
+In diesem Abschnitt werden die geplanten Testfälle für **Redmine** dokumentiert. Ziel ist es, die Funktionalität der Komponente sicherzustellen.
 
 ## Testfälle
 | Nr. | Komponente | Testfall | Testziel |
 | :-: | :-- | :-- | :-- |
-| J-01 | Jira | Name | Ziel des Tests |
-| J-02 |  |  |  |
+| R-01 | Redmine | Name | Ziel des Tests |
+| R-02 |  |  |  |
 |  |  |  |  |
 |  |  |  |  |
 
@@ -14,12 +14,12 @@ Im Testprotokoll werden die ausgeführten Testfälle mit Beschreibung, Ergebnis 
 
 | Nr. | Testfall | Beschreibung | Erwartetes Ergebnis | Status |
 | :-: | :-- | :-- | :-- | :-: |
-| J-01 | Name | Beschreibung | Erwartetes Ergebnis | Symbol oder leer |
-| J-02 |  |  |  |  |
+| R-01 | Name | Beschreibung | Erwartetes Ergebnis | Symbol oder leer |
+| R-02 |  |  |  |  |
 |  |  |  |  |  |
 |  |  |  |  |  |
 
-## J-01: Name
+## R-01: Name
 **Testdatum**:  
 **Tester:in**:  
 **Beschreibung**:  
@@ -28,7 +28,7 @@ Im Testprotokoll werden die ausgeführten Testfälle mit Beschreibung, Ergebnis 
 **Status**: Symbol oder leer  
 **Bemerkung**:  
 
-## J-02: Name
+## R-02: Name
 **Testdatum**:  
 **Tester:in**:  
 **Beschreibung**:  
