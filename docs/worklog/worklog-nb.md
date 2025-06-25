@@ -17,6 +17,8 @@
 | 24.06.2025 | Erstellung des Templates für die Konfiguration |  |
 | 24.06.2025 | Austasuch oder so (tbd) |  |
 | 25.06.2025 | Überarbeitung des Infrastrukturdiagramms und Doku | aus jira werde redmine |
+| 25.06.2025 | Konfiguration und Installation von MediaWiki | Alle Files |
+| 25.06.2025 | Konfiguration und Installation von Ingress | Ingress-Klasse + erstes Ingress-File |
 
 ## Herausforderungen
 
