@@ -56,11 +56,11 @@ $wgEnotifWatchlist = false; # UPO
 $wgEmailAuthentication = true;
 
 ## Database settings
-$wgDBtype = "mysql";
+$wgDBtype = "mariadb";
 $wgDBserver = "mediawiki-db-service";
 $wgDBname = "mediawiki";
-$wgDBuser = "root";
-$wgDBpassword = "supergeheim";
+$wgDBuser = "mwuser";
+$wgDBpassword = "mwpass123";
 
 # MySQL specific settings
 $wgDBprefix = "";
