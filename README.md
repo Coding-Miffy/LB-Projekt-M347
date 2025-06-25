@@ -87,6 +87,7 @@ Während der Bearbeitung des Projekts haben wir verschiedene Formen der Unterst�
 
 ### ChatGPT
 - Rechtschreibekorrektur und Formulierungshilfe beim Verfassen der Dokumentation
+- Unterstützung bei der Installation von Helm
 
 ### Weitere Quellen
 - [Hier kommen Online-Quellen oder ggf. Bücher hin]
