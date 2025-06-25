@@ -27,8 +27,7 @@ Die folgenden YAML-Dateien definieren den Betrieb der zugehörigen Datenbank. Di
 | Persistent Volume Claim | `db-pvc.yaml` | Persistenz für Datenbankinhalte |
 | Konfiguration | - | Verwendet dieselbe ConfigMap & Secret wie die Anwendung |
 
-## Files
-### Deployment
+## Deployment
 >Definiert das Deployment für die Anwendung: Container-Image, Umgebungsvariablen, Volumes und Replikation.
 
 [Hier kommen die Konfigurationsdetails]
@@ -36,10 +35,10 @@ Die folgenden YAML-Dateien definieren den Betrieb der zugehörigen Datenbank. Di
 # deployment.yaml
 ```
 
-### Service
+## Service
 >Stellt einen internen Kubernetes-Service zur Verfügung, über den die App im Cluster erreichbar ist.
 
-#### [service.yaml](../../../Projekt/mediawiki/service.yaml)
+### [`service.yaml`](../../../Projekt/mediawiki/service.yaml)
 ```yaml
 apiVersion: v1                      # Verwendete API-Version für Service
 kind: Service                       # Objekttyp: Service (erzeugt interne Netzwerkschnittstelle)
@@ -55,7 +54,7 @@ spec:
       targetPort: 80                # Weiterleitung an Container-Port (von der Applikation vorgegeben)
 ```
 
-#### Erklärung der Konfiguration
+### Erklärung der Konfiguration
 - `type: ClusterIP`  
 Dieser Typ ist Standard in Kubernetes und sorgt dafür, dass der Service **nur innerhalb des Clusters erreichbar** ist. Externer Zugriff erfolgt über den **Ingress Controller**.  
 → Vorteil: mehr Sicherheit und klare Trennung zwischen internem und externem Verkehr.
@@ -70,7 +69,7 @@ Dieser Typ ist Standard in Kubernetes und sorgt dafür, dass der Service **nur i
   Der Port, an den der Traffic **im Container selbst** weitergeleitet wird.  
 In diesem Fall verwendet der MediaWiki-Container Port 80, da dieser bei Webservern typischerweise als Standard konfiguriert ist.
 
-### Persistente Daten (PVC)
+## Persistente Daten (PVC)
 >Fordert persistenten Speicher im Cluster an, z. B. für Medien-Uploads oder Logs der Anwendung.
 
 [Hier kommen die Konfigurationsdetails]
@@ -78,7 +77,7 @@ In diesem Fall verwendet der MediaWiki-Container Port 80, da dieser bei Webserve
 # pvc.yaml
 ```
 
-### Datenbank - Deployment
+## Datenbank - Deployment
 >Startet die zugehörige Datenbankinstanz inkl. Volume, Ports und Konfiguration.
 
 [Hier kommen die Konfigurationsdetails]
@@ -86,7 +85,7 @@ In diesem Fall verwendet der MediaWiki-Container Port 80, da dieser bei Webserve
 # db-deployment.yaml
 ```
 
-### Datenbank - Service
+## Datenbank - Service
 >Stellt einen internen Kubernetes-Service für die Datenbank bereit, der durch die App genutzt wird.
 
 [Hier kommen die Konfigurationsdetails]
@@ -94,7 +93,7 @@ In diesem Fall verwendet der MediaWiki-Container Port 80, da dieser bei Webserve
 # db-service.yaml
 ```
 
-### Datenbank - Persistente Daten (PVC)
+## Datenbank - Persistente Daten (PVC)
 >Bindet ein Volume für die dauerhafte Speicherung von Datenbankdaten ein.
 
 [Hier kommen die Konfigurationsdetails]
@@ -102,22 +101,22 @@ In diesem Fall verwendet der MediaWiki-Container Port 80, da dieser bei Webserve
 # db-pvc.yaml
 ```
 
-### ConfigMap & Secret
+## ConfigMap & Secret
 >Definiert zentrale Konfigurationswerte (ConfigMap) und vertrauliche Daten (Secret), die in App und DB referenziert werden.
 
-#### ConfigMap
+### ConfigMap
 [Hier kommen die Konfigurationsdetails]
 ```yaml
 # configmap.yaml
 ```
 
-#### Secret
+### Secret
 [Hier kommen die Konfigurationsdetails]
 ```yaml
 # secret.yaml
 ```
 
-### Ingress / Externer Zugriff
+## Ingress / Externer Zugriff
 >Regelt den externen Zugriff auf die Anwendung über Hostnamen mithilfe eines Ingress Controllers.
 
 Die Datei `mediawiki-ingress.yaml` definiert, unter welchem Hostnamen (`mediawiki.local`) die MediaWiki-Applikation von ausserhalb des Clusters erreichbar ist.  
