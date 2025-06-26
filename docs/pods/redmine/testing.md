@@ -41,7 +41,7 @@ Im Testprotokoll werden die ausgeführten Testfälle mit Beschreibung, Ergebnis 
 Die folgende Legende dient zur Bewertung und schnellen Einschätzung der Testergebnisse:
 
 | Symbol | Bedeutung |
-| :-: | --- |
+| :-: | :-- |
 | ✅ | Test erfolgreich bestanden |
 | ⚠️ | Mit Einschränkungen bestanden |
 | ❌ | Test fehlgeschlagen |
