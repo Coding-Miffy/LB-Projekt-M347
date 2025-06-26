@@ -1,1 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: grafana-ingress                     # Name des Ingress-Objekts
+  namespace: m347-wordpress                   # Namespace, in dem der dieser Ingress gespeichert ist
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: grafana.m347.ch                 # Hostname (für den lokalen Zugriff)
+      http:
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: grafana-service       # Name des Ziel-Services
+                port:
+                  number: 80
+            
+
 
