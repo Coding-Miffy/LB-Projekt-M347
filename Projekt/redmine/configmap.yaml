@@ -1,1 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: redmine-config
+  namespace: m347-redmine
+data:
+  REDMINE_DB_POSTGRES: "postgres"
+  REDMINE_DB_DATABASE: "redmine_db"
+  REDMINE_DB_USERNAME: "redmineuser"
 
