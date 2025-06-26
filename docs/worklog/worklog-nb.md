@@ -21,6 +21,7 @@
 | 25.06.2025 | Konfiguration und Installation von Ingress | Ingress-Klasse + erstes Ingress-File |
 | 26.06.2025 | Konfiguration und Installation von `LocalSettings.php` (MediaWiki) |  |
 | 26.06.2025 | Verfassen der Installationsanleitung für MediaWiki |  |
+| 26.06.2025 | Konfiguration und Installation von Ingress | Restliche Files |
 
 ## Herausforderungen
 
