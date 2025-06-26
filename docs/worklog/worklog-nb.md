@@ -7,7 +7,7 @@
 | Datum | Tätigkeit | Bemerkung |
 | :-- | :-- | :-- |
 | 18.06.2025 | Aufsetzen der Dokumentation |  |
-| 18.06.2025 - 19.06.2025 | Entwerfen des Infrastrukturdiagramms | Ich habe wiederholt Feedback von Yves eingeholt |
+| 18.06.2025 | Entwerfen des Infrastrukturdiagramms | Ich habe wiederholt Feedback von Yves eingeholt |
 | 19.06.2025 | Dokumentation zur Infrastruktur verfasst |  |
 | 19.06.2025 | Ordnerstruktur und Files erstellt |  |
 | 23.06.2025 | Überarbeitung des Infrastrukturdiagramms |  |
@@ -22,6 +22,8 @@
 | 26.06.2025 | Konfiguration und Installation von `LocalSettings.php` (MediaWiki) |  |
 | 26.06.2025 | Verfassen der Installationsanleitung für MediaWiki |  |
 | 26.06.2025 | Konfiguration und Installation von Ingress | Restliche Files |
+| 26.06.2025 | Verfassen des Testkonzepts für MediaWiki |  |
+| 26.06.2025 | Durchführen der Test für MediaWiki |  |
 
 ## Herausforderungen
 
