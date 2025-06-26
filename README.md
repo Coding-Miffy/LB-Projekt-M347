@@ -19,7 +19,15 @@
 [Hier kommt die Einleitung hin]
 
 ## Ausgangslage
-[Hier kommt ein fiktiver Anwendungsfall]
+Die **M347 GmbH** plant den Aufbau einer internen IT-Umgebung, die mehrere zentrale Anforderungen zuverlässig und modular abdeckt:
+- **WordPress** dient als Firmenblog, um aktuelle Themen, Mitteilungen und Veranstaltungen zu kommunizieren.
+- **MediaWiki** wird als internes Intranet und Wissensdatenbank genutzt. Mitarbeitende können darin Prozesse, Anleitungen und Projektdokumentationen erfassen und pflegen.
+- **Redmine** kommt als Projektmanagement- und Ticketsystem zum Einsatz, um Aufgaben, Zeitaufwände und Teamkommunikation effizient zu steuern.
+- **Prometheus** übernimmt das systemweite Monitoring. Es sammelt Metriken der eingesetzten Komponenten und Dienste.
+- **Grafana** stellt diese Metriken in Form von übersichtlichen Dashboards grafisch dar. Es wird direkt mit Prometheus als Datenquelle verbunden.
+
+Die gesamte Umgebung wird vollständig **containerisiert** betrieben und mit **Kubernetes** orchestriert.
+Ein **zentraler Ingress-Controller** ermöglicht den Zugriff auf alle Komponenten über dedizierte Hostnamen. Durch die Aufteilung in separate Namespaces, den gezielten Einsatz von **Persistent Volumes**, individuellen **ConfigMaps** und **Secrets** sowie die klare Strukturierung der Deployments wird eine skalierbare, wartbare und sichere Infrastruktur gewährleistet.
 
 ## Infrastruktur
 Für den Betrieb unserer containerisierten Anwendung haben wir eine klar strukturierte Infrastruktur in Kubernetes aufgebaut.  
@@ -27,11 +35,11 @@ Eine ausführliche Beschreibung mit Diagramm findet sich hier:
 - [Zur Infrastruktur](/docs/infrastructure.md)
 
 ## Eingesetzte Technologien
+[Docker, Kubernetes, Minikube, Helm, Kubectl]
 
 ## Konfiguration
-In diesem Abschnitt sind die technischen Details zur Umsetzung jeder einzelnen Komponente dokumentiert.
-Für jede Applikation bzw. Infrastrukturkomponente wurde ein separates Konfigurationsdokument erstellt. Diese enthalten Informationen zu Deployments, Services, Volumes, Secrets, Ingress-Routen und weiteren relevanten Ressourcen.  
-Ziel ist es, die Kubernetes-Konfiguration pro Pod **übersichtlich, modular und nachvollziehbar** darzustellen, inklusive eingesetzter YAML-Dateien, Besonderheiten und Herausforderungen.
+In diesem Abschnitt sind die technischen Details jeder Komponente dokumentiert. Für jede Applikation oder Infrastrukturkomponente existiert ein eigenes Konfigurationsdokument mit Informationen zu Deployments, Services, Volumes, Secrets, Ingress-Routen und weiteren Ressourcen.  
+Ziel ist eine übersichtliche, modulare und nachvollziehbare Darstellung der jeweiligen Kubernetes-Konfiguration inklusive YAML-Files und Besonderheiten.
 
 ### Konfiguration der einzelnen Komponenten
 - [Redmine - Zur Konfiguration](/docs/pods/redmine/config.md)
@@ -42,10 +50,75 @@ Ziel ist es, die Kubernetes-Konfiguration pro Pod **übersichtlich, modular und 
 - [Ingress - Zur Konfiguration](/docs/pods/ingress/config.md)
 
 ## Installationsanleitung
-[Hier kommt die Installationsanleitung für die Basis-Infrastruktur hin]
+> [!NOTE]
+> Für den Betrieb der Umgebung müssen Docker Desktop, Minikube und Helm bereits installiert sein.
 
-### Installation der einzelnen Komponenten
-[Hier kommt noch: Namespace, Aufbau, Reihenfolge etc.]
+Bevor Anwendungen im Kubernetes-Cluster bereitgestellt werden können, muss die lokale Infrastruktur gestartet und überprüft werden. Dieser Abschnitt beschreibt die nötigen Schritte zur Initialisierung des Minikube-Clusters.
+
+### 1. Minikube starten
+Mit folgendem Befehl wird ein lokaler Kubernetes-Cluster erstellt:
+```powershell
+minikube start
+```
+Minikube lädt dabei die benötigten Komponenten und Images herunter. Beim **ersten Start** kann dieser Vorgang **mehrere Minuten (5–10 min)** in Anspruch nehmen.
+
+> [!WARNING]
+> Sollte eine Fehlermeldung erscheinen, liegt dies häufig daran, dass **Docker Desktop nicht aktiv** ist.  
+> In diesem Fall: Docker starten und den Befehl erneut ausführen.
+
+### 2. Clusterstatus überprüfen
+Nach erfolgreichem Start lässt sich der Status des Clusters wie folgt prüfen:
+```powershell
+kubectl get nodes
+```
+Wenn ein Node mit dem Status `Ready` erscheint, ist der Cluster betriebsbereit.
+
+### 3. Netzwerkzugriffe ermöglichen
+Damit Dienste über Ingress korrekt erreichbar sind, muss zusätzlich ein Tunnel geöffnet werden:
+```powershell
+minikube tunnel
+```
+Dieser Befehl leitet Netzwerkzugriffe vom lokalen System in den Cluster weiter. Das Terminalfenster bleibt dabei offen und aktiv.
+
+> [!TIP]
+> Am besten wird `minikube tunnel` **in einem separaten Terminal-Fenster** ausgeführt, damit der Tunnel während der gesamten Laufzeit bestehen bleibt.
+
+## Installation der einzelnen Komponenten
+Für den Betrieb der Umgebung werden alle Anwendungen und Dienste in **eigenständigen Namespaces** betrieben. Dies ermöglicht eine strukturierte Trennung, eine gezielte Ressourcenzuweisung und erleichtert die Verwaltung der Konfiguration pro Komponente.
+
+Der Ingress-Controller selbst wird **namespace-unabhängig** bereitgestellt und verwendet denselben zentralen Zugriffspunkt für alle Anwendungen.
+
+### Reihenfolge der Komponenteninstallation
+Die Komponenten werden in logischer Abfolge installiert, wobei Anwendungen mit Datenbank zuerst kommen. 
+
+Die empfohlene Installationsreihenfolge lautet:
+1. **Redmine**
+2. **MediaWiki**
+3. **WordPress**
+4. **Prometheus**
+5. **Grafana**
+6. **Ingress**
+
+Diese Reihenfolge stellt sicher, dass notwendige Abhängigkeiten (z. B. Datenbanken) vor der Anwendung bereitstehen und Referenzen (z. B. Service-Namen) korrekt aufgelöst werden können.
+
+### Reihenfolge beim Deployment der YAML-Dateien
+Für jede Komponente werden die zugehörigen Ressourcen in einer festgelegten Reihenfolge installiert. Dabei wird jeweils **zuerst die Datenbank**, **danach die Anwendung** bereitgestellt.
+
+Die empfohlene Installationsreihenfolge lautet:
+1. **Konfiguration** (`ConfigMap` & `Secret`)  
+   Enthält Umgebungsvariablen und Zugangsdaten für App und Datenbank.
+   
+2. **Speicher** (`PersistentVolumeClaim`)  
+   Fordert persistenten Speicher für Datenbank und Anwendung an.
+   
+3. **Deployments**  
+   Startet die Container für Datenbank und Anwendung mit zugehöriger Konfiguration und Speicher.
+   
+4. **Services**  
+   Stellt interne Netzwerkzugänge zur Verfügung, über die App und Datenbank kommunizieren können.
+
+### Installationsanleitungen
+Die folgenden Seiten beschreiben die Installation jeder Komponente im Detail:
 - [Redmine - Zur Installationsanleitung](/docs/pods/redmine/installation.md)
 - [MediaWiki - Zur Installationsanleitung](/docs/pods/mediawiki/installation.md)
 - [WordPress - Zur Installationsanleitung](/docs/pods/wordpress/installation.md)
@@ -88,9 +161,14 @@ Während der Bearbeitung des Projekts haben wir verschiedene Formen der Unterst�
 ### ChatGPT
 - Rechtschreibekorrektur und Formulierungshilfe beim Verfassen der Dokumentation
 - Unterstützung bei der Installation von Helm
+- Fehlersuche
+- Inspirationsgebend bei den Testfällen
 
 ### Weitere Quellen
-- [Hier kommen Online-Quellen oder ggf. Bücher hin]
+- [https://kubernetes.io/docs/concepts/services-networking/service/](https://kubernetes.io/docs/concepts/services-networking/service/)
+- [https://hub.docker.com/r/bitnami/wordpress](https://hub.docker.com/r/bitnami/wordpress)
+- [https://hub.docker.com/r/prom/prometheus](https://hub.docker.com/r/prom/prometheus)
+- [https://hub.docker.com/r/grafana/grafana](https://hub.docker.com/r/grafana/grafana)
 
 # Struktur der Präsentation
 > Gemäss erhaltener Aufgabenstellung
