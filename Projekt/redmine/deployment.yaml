@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redmine
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redmine
+  template:
+    metadata:
+      labels:
+        app: redmine
+    spec:
+      containers:
+      - name: redmine
+        image: redmine:latest
+        ports:
+        - containerPort: 8080
+        envFrom:
+        - configMapRef:
+            name: redmine-config
+        - secretRef:
+            name: redmine-secret
+        volumeMounts:
+        - name: redmine-data
+          mountPath: /usr/src/redmine/files
+      volumes:
+      - name: redmine-data
+        persistentVolumeClaim:
+          claimName: redmine-pvc
