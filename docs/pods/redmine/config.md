@@ -22,7 +22,7 @@ Die folgenden YAML-Dateien definieren den Betrieb der zugehörigen Datenbank. Di
 
 | Ressource | Dateiname | Zweck |
 | :-- | :-- | :-- |
-| Deployment | `db-deployment.yaml` | Startet die Datenbank (`MariaDB`) |
+| Deployment | `db-deployment.yaml` | Startet die Datenbank (`PostgreSQL`) |
 | Service | `db-service.yaml` | Intern erreichbar durch App |
 | Persistent Volume Claim | `db-pvc.yaml` | Persistenz für Datenbankinhalte |
 | Konfiguration | - | Verwendet dieselbe ConfigMap & Secret wie die Anwendung |
