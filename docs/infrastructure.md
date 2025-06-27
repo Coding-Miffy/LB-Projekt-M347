@@ -1,3 +1,7 @@
+> [!IMPORTANT]
+> Infrastruktur Anpassungen TBD (Natascha):
+> - Redmine: PostgreSQL anstatt MariaDB
+
 # Infrastruktur
 ![Diagramm der Infrastruktur](/docs/images/infrastructure.png)
 
