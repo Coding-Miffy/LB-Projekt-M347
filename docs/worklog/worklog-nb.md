@@ -24,6 +24,9 @@
 | 26.06.2025 | Konfiguration und Installation von Ingress | Restliche Files |
 | 26.06.2025 | Verfassen des Testkonzepts für MediaWiki |  |
 | 26.06.2025 | Durchführen der Test für MediaWiki |  |
+| 27.06.2025 | Verfassen der Konfigurationsdetails für MediaWiki |  |
+| 27.06.2025 | Verfassen der Installationsanleitung für Ingress |  |
+| 27.06.2025 | Verfassen der Konfigurationsdetails für Ingress |  |
 
 ## Herausforderungen
 
