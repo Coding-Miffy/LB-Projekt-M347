@@ -2,20 +2,21 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: wordpress-deployment
+  namespace: m347-wordpress
   labels:
-    app: wordpress
+    app: wordpress-app
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: wordpress
+      app: wordpress-app
   template:
     metadata:
       labels:
-        app: wordpress
+        app: wordpress-app
     spec:
       containers:
-      - name: wordpress
+      - name: wordpress-container
         image: wordpress:latest
         ports:
         - containerPort: 80
@@ -38,9 +39,9 @@ spec:
               name: configmap
               key: database_name
         volumeMounts:
-        - name: wordpress-storage
+        - name: wordpress-storage-volume
           mountPath: /var/www/html
       volumes:
-      - name: wordpress-storage
+      - name: wordpress-storage-volume
         persistentVolumeClaim:
-          claimName: pvc
+          claimName: wordpress-storage-pvc
