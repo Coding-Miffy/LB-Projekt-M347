@@ -4,19 +4,19 @@ metadata:
   name: mariadb-deployment
   namespace: m347-wordpress
   labels:
-    app: mariadb-app
+    app: mariadb
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: mariadb-app
+      app: mariadb
   template:
     metadata:
       labels:
-        app: mariadb-app
+        app: mariadb
     spec:
       containers:
-      - name: mariadb-container
+      - name: mariadb
         image: mariadb:latest
         ports:
         - containerPort: 3306
@@ -42,9 +42,9 @@ spec:
               name: secret
               key: password
         volumeMounts:
-        - name: mariadb-storage-volume
-          mountPath: /var/lib/mysql
+        - mountPath: "/var/lib/mysql"
+          name: mariadb-persistent-storage
       volumes:
-      - name: mariadb-storage-volume
+      - name: mariadb-persistent-storage
         persistentVolumeClaim:
-          claimName: mariadb-storage-pvc
+          claimName: mariadb-pvc
