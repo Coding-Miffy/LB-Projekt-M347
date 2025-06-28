@@ -174,7 +174,17 @@ spec:
 #### ConfigMap
 [Hier kommen die Konfigurationsdetails]
 ```yaml
-# configmap.yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: redmine-postgres-pvc
+  namespace: m347-redmine
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
 ```
 
 #### Secret
