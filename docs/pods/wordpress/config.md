@@ -229,7 +229,16 @@ data:
 #### Secret
 [Hier kommen die Konfigurationsdetails]
 ```yaml
-# secret.yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: secret
+  namespace: m347-wordpress
+type: Opaque
+data:
+  username: d29yZHByZXNz # wordpress
+  password: cGFzc3dvcmQ= # password
+  root_password: cm9vdF9wYXNzd29yZA== # root_password
 ```
 
 ### Ingress / Externer Zugriff
