@@ -17,17 +17,17 @@ Im Testprotokoll werden die ausgeführten Testfälle mit Beschreibung, Ergebnis 
 
 | Nr. | Testfall | Beschreibung | Erwartetes Ergebnis | Status |
 | :-: | :-- | :-- | :-- | :-: |
-| I﻿-01 | Zugriff auf MediaWiki | `http://mediawiki.m347.ch` im Browser aufrufen | Startseite von MediaWiki wird angezeigt |  |
-| I﻿-02 | Zugriff auf WordPress | `http://wordpress.m347.ch` im Browser aufrufen | Startseite von WordPress wird angezeigt |  |
-| I﻿-03 | Zugriff auf Redmine | `http://redmine.m347.ch` im Browser aufrufen | Startseite von Redmine wird angezeigt |  |
+| I﻿-01 | Zugriff auf MediaWiki | `http://mediawiki.m347.ch` im Browser aufrufen | Startseite von MediaWiki wird angezeigt | ✅ |
+| I﻿-02 | Zugriff auf WordPress | `http://wordpress.m347.ch` im Browser aufrufen | Startseite von WordPress wird angezeigt | ✅ |
+| I﻿-03 | Zugriff auf Redmine | `http://redmine.m347.ch` im Browser aufrufen | Startseite von Redmine wird angezeigt | ✅ |
 | I﻿-04 | Zugriff auf Prometheus | `http://prometheus.m347.ch` im Browser aufrufen | Startseite von Prometheus wird angezeigt |  |
 | I﻿-05 | Zugriff auf Grafana | `http://grafana.m347.ch` im Browser aufrufen | Startseite von Grafana wird angezeigt |  |
 | I﻿-06 | `minikube tunnel` erforderlich | `minikube tunnel` stoppen und Browser aktualisieren | Alle Services sind nicht mehr erreichbar |  |
-| I﻿-07 | Falscher Hostname | `http://foobar.m347.ch` im Browser aufrufen | Fehlerseite oder leere Antwort (kein Routing erfolgt) |  |
+| I﻿-07 | Falscher Hostname | `http://foobar.m347.ch` im Browser aufrufen | Fehlerseite oder leere Antwort (kein Routing erfolgt) | ✅ |
 
 ## I-01: Zugriff auf MediaWiki
-**Testdatum**:  
-**Tester:in**:  
+**Testdatum**: 28.06.2025  
+**Tester:in**: Natascha Blumer  
 **Beschreibung**:  
 1. Sicherstellen, dass `minikube tunnel` aktiv ist
 2. Im Browser `http://mediawiki.m347.ch` aufrufen
@@ -36,12 +36,14 @@ Im Testprotokoll werden die ausgeführten Testfälle mit Beschreibung, Ergebnis 
 - Die MediaWiki-Startseite erscheint ohne Fehlermeldung.
 
 **Tatsächliches Verhalten**:  
-**Status**:  
-**Bemerkung**:  
+- Die MediaWiki-Startseite erscheint ohne Fehlermeldung.
+
+**Status**: ✅  
+**Bemerkung**: *Keine*  
 
 ## I-02: Zugriff auf WordPress
-**Testdatum**:  
-**Tester:in**:  
+**Testdatum**: 28.06.2025  
+**Tester:in**: Natascha Blumer  
 **Beschreibung**:  
 1. Sicherstellen, dass `minikube tunnel` aktiv ist
 2. Im Browser `http://wordpress.m347.ch` aufrufen
@@ -50,12 +52,14 @@ Im Testprotokoll werden die ausgeführten Testfälle mit Beschreibung, Ergebnis 
 - Die WordPress-Startseite erscheint ohne Fehlermeldung.
 
 **Tatsächliches Verhalten**:  
-**Status**:   
-**Bemerkung**:  
+- Die WordPress-Startseite erscheint ohne Fehlermeldung.
+
+**Status**: ✅  
+**Bemerkung**: *Keine*  
 
 ## I-03: Zugriff auf Redmine
-**Testdatum**:  
-**Tester:in**:  
+**Testdatum**: 28.06.2025  
+**Tester:in**: Natascha Blumer  
 **Beschreibung**:  
 1. Sicherstellen, dass `minikube tunnel` aktiv ist
 2. Im Browser `http://redmine.m347.ch` aufrufen
@@ -64,8 +68,10 @@ Im Testprotokoll werden die ausgeführten Testfälle mit Beschreibung, Ergebnis 
 - Die Redmine-Startseite erscheint ohne Fehlermeldung.
 
 **Tatsächliches Verhalten**:  
-**Status**:   
-**Bemerkung**:  
+- Die Redmine-Startseite erscheint ohne Fehlermeldung.
+
+**Status**: ✅  
+**Bemerkung**: *Keine*  
 
 ## I-04: Zugriff auf Prometheus
 **Testdatum**:  
@@ -110,8 +116,8 @@ Im Testprotokoll werden die ausgeführten Testfälle mit Beschreibung, Ergebnis 
 **Bemerkung**:  
 
 ## I-07: Falscher Hostname
-**Testdatum**:  
-**Tester:in**:  
+**Testdatum**: 28.06.2025  
+**Tester:in**: Natascha Blumer  
 **Beschreibung**:  
 1. Sicherstellen, dass `minikube tunnel` aktiv ist
 2. Im Browser `http://foobar.m347.ch` aufrufen
@@ -121,8 +127,11 @@ Im Testprotokoll werden die ausgeführten Testfälle mit Beschreibung, Ergebnis 
 - Es erscheint eine Fehlerseite oder eine leere Antwort.
 
 **Tatsächliches Verhalten**:  
-**Status**:   
-**Bemerkung**:  
+- Kein Routing erfolgt.
+- Es erscheint eine Fehlerseite.
+
+**Status**: ✅  
+**Bemerkung**: *Keine*  
 
 ## Legende - Statuswerte
 Die folgende Legende dient zur Bewertung und schnellen Einschätzung der Testergebnisse:
