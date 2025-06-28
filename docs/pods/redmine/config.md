@@ -90,9 +90,18 @@ spec:
 ### Persistente Daten (PVC)
 >Fordert persistenten Speicher im Cluster an, z. B. für Medien-Uploads oder Logs der Anwendung.
 
-[Hier kommen die Konfigurationsdetails]
 ```yaml
-# pvc.yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: redmine-pvc
+  namespace: m347-redmine
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
 ```
 
 ### Datenbank - Deployment
