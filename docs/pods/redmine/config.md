@@ -361,20 +361,32 @@ data:
     Base64-kodiertes Passwort für den Redmine-Datenbankbenutzer.  
     (Kodierung erforderlich, da Kubernetes Passwörter ausschließlich verschlüsselt speichert.)
 
+## Datenbank - Secret
+Definiert vertrauliche Daten für die PostgreSQL-Datenbankinstanz.
 
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: redmine-postgres-secret
+  namespace: m347-redmine
+type: Opaque
+data:
+  POSTGRES_PASSWORD: cmVkbWluZXBhc3M=  # redminepass (base64 codiert da Kubernetes verlangt dass Passwörter und Sensible Daten codiert abgelegt werden)
+```
 
+## Erklärung der Konfiguration (Redmine PostgreSQL Secret)
 
+- **kind: Secret**  
+  Enthält vertrauliche Daten, wie Passwörter, in verschlüsselter Form.
 
+- **type: Opaque**  
+  Ein generisches Kubernetes Secret, das beliebige vertrauliche Daten speichern kann.
 
-
-
-
-
-
-
-
-
-
+- **data**
+  - **POSTGRES_PASSWORD**  
+    Base64-kodiertes Passwort (`redminepass`) für den PostgreSQL-Datenbankbenutzer.  
+    (Kodierung erforderlich, da Kubernetes Passwörter ausschließlich verschlüsselt speichert.)
 
 ### Ingress / Externer Zugriff
 >Regelt den externen Zugriff auf die Anwendung über Hostnamen mithilfe eines Ingress Controllers.
