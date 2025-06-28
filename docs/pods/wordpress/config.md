@@ -32,7 +32,6 @@ Die folgenden YAML-Dateien definieren den Betrieb der zugehörigen Datenbank. Di
 ## Files
 ### Deployment
 
-[Hier kommen die Konfigurationsdetails]
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
