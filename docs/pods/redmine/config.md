@@ -107,9 +107,39 @@ spec:
 ### Datenbank - Deployment
 >Startet die zugehörige Datenbankinstanz inkl. Volume, Ports und Konfiguration.
 
-[Hier kommen die Konfigurationsdetails]
 ```yaml
-# db-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redmine-postgres
+  namespace: m347-redmine
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redmine-postgres
+  template:
+    metadata:
+      labels:
+        app: redmine-postgres
+    spec:
+      containers:
+      - name: postgres
+        image: postgres:15
+        ports:
+        - containerPort: 5432
+        envFrom:
+        - configMapRef:
+            name: redmine-postgres-config
+        - secretRef:
+            name: redmine-postgres-secret
+        volumeMounts:
+        - name: postgres-data
+          mountPath: /var/lib/postgresql/data
+      volumes:
+      - name: postgres-data
+        persistentVolumeClaim:
+          claimName: redmine-postgres-pvc
 ```
 
 ### Datenbank - Service
