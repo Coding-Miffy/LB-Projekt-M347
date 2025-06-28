@@ -219,5 +219,6 @@ Sie verweist auf den zentralen Ingress Controller und sorgt für die Weiterleitu
 Da das zugrundeliegende Ingress-System für alle Anwendungen identisch ist, wird die übergeordnete Konfiguration des Ingress Controllers inklusive Routingprinzipien und Klassendefinition zentral in der [Konfigurationsdatei des Ingress Controllers](../ingress/config.md) dokumentiert.
 
 ## Besonderheiten & Herausforderungen
-[Hier kommt ein Fazit zur Konfiguration und ggf. Herausforderungen]
+Die Nutzung von Redmine innerhalb eines Kubernetes-Clusters hat besonders die Bedeutung von korrekter Netzwerkkommunikation und Datenpersistenz hervorgehoben. Eine wesentliche Herausforderung lag darin, die Interaktion zwischen Redmine und der MariaDB-Datenbank korrekt und sicher zu gestalten. Dies erforderte eine präzise Konfiguration der Zugriffsrechte, sorgfältiges Management der persistenten Speicherlösungen und eine exakte Abstimmung zwischen Applikation und Datenbankdiensten. Besonders die Verwaltung sensibler Informationen über Secrets und deren sichere Einbindung in den Deployment-Prozess stellte eine wichtige Aufgabe dar, die sorgfältiges Vorgehen und umfassendes Verständnis der Sicherheitsmechanismen von Kubernetes verlangte.
+
 
