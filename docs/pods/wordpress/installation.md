@@ -8,7 +8,9 @@ Nach der abgeschlossenen Konfiguration der YAML-Files kann WordPress gemeinsam m
 - Minikube läuft, und der Cluster ist gestartet.
 
 > [!NOTE]  
-> Die Konfiguration (`wp-config.php`) ist bereits vollständig über Umgebungsvariablen in den YAML-Dateien definiert. Ein manueller Setup-Prozess im Browser ist **nicht erforderlich**.
+> Die WordPress-Konfiguration (`wp-config.php`) wird beim ersten Zugriff im Browser automatisch erstellt.  
+> Alle nötigen Werte zur Datenbankverbindung werden dabei aus den Umgebungsvariablen übernommen, die über die YAML-Dateien gesetzt wurden.  
+> Ein kurzer manueller Setup-Schritt im Browser ist daher **erforderlich**.
 
 ## 1. Namespace erstellen
 
