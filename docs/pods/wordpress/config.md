@@ -178,9 +178,19 @@ spec:
 ### Datenbank - Service
 >Stellt einen internen Kubernetes-Service für die Datenbank bereit, der durch die App genutzt wird.
 
-[Hier kommen die Konfigurationsdetails]
 ```yaml
-# db-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: mariadb-service
+  namespace: m347-wordpress
+spec:
+  selector:
+    app: mariadb
+  ports:
+  - protocol: TCP
+    port: 3306
+    targetPort: 3306
 ```
 
 ### Datenbank - Persistente Daten (PVC)
