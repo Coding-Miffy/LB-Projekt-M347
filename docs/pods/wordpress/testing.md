@@ -2,22 +2,27 @@
 In diesem Abschnitt werden die geplanten Testfälle für **WordPress** dokumentiert. Ziel ist es, die Funktionalität der Komponente sicherzustellen.
 
 ## Testfälle
-| Nr. | Komponente | Testfall | Testziel |
-| :-: | :-- | :-- | :-- |
-| W-01 | WordPress | Name | Ziel des Tests |
-| W-02 |  |  |  |
-|  |  |  |  |
-|  |  |  |  |
+| Nr. | Komponente | Testfall                   | Testziel                                 |
+|:---:|:-----------|:---------------------------|:-----------------------------------------|
+| W-01| WordPress  | Zugriff via Ingress        | WP über Ingress-URL erreichbar           |
+| W-02| WordPress  | Login mit Admin-Account    | Authentifizierung funktioniert korrekt   |
+| W-03| WordPress  | Beitrag erstellen, Pod neu starten | Inhalte bleiben nach Neustart erhalten   |
+| W-04| WordPress  | Verbindung zur Datenbank   | WP verbindet sich erfolgreich zur DB     |
+| W-05| WordPress  | Startseite bearbeiten      | Änderungen an Inhalten werden gespeichert|
+
 
 # Testprotokoll
 Im Testprotokoll werden die ausgeführten Testfälle mit Beschreibung, Ergebnis und Bewertung festgehalten.
 
-| Nr. | Testfall | Beschreibung | Erwartetes Ergebnis | Status |
-| :-: | :-- | :-- | :-- | :-: |
-| W-01 | Name | Beschreibung | Erwartetes Ergebnis | Symbol oder leer |
-| W-02 |  |  |  |  |
-|  |  |  |  |  |
-|  |  |  |  |  |
+| Nr. | Testfall                   | Beschreibung                                | Erwartetes Ergebnis          | Status |
+|:---:|:---------------------------|:--------------------------------------------|:-----------------------------|:------:|
+| W-01| Zugriff via Ingress        | WP über `wordpress.m347.ch` aufrufen        | Startseite lädt erfolgreich  |   ✅   |
+| W-02| Login mit Admin-Account    | Einloggen mit bekannten Zugangsdaten        | Dashboard erscheint korrekt  |   ✅   |
+| W-03| Beitrag erstellen, Pod neu starten | Beitrag erstellen, Pod löschen, neu abrufen | Beitrag bleibt erhalten |   ⚠️   |
+| W-04| Verbindung zur Datenbank   | WP starten, Logs auf Fehler prüfen          | Keine DB-Fehler beim Start   |   ✅   |
+| W-05| Startseite bearbeiten      | Text ergänzen und speichern                 | Änderungen sichtbar          |   ✅   |
+
+
 
 ## W-01: Name
 **Testdatum**:  
