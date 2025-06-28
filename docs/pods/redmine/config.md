@@ -1,11 +1,13 @@
 # Konfiguration - Redmine
-[Einleitung]
 
-- **Verwendung**:Redmine wird als Container-Applikation innerhalb eines Kubernetes-Clusters betrieben. Die Konfiguration erfolgt über eigenständige YAML-Dateien, die das Deployment der Applikation, den Netzwerkzugriff, persistente Speicherung und sichere Verwaltung sensibler Daten definieren.
+- **Verwendung**:  
+  Redmine wird als Container-Applikation innerhalb eines Kubernetes-Clusters betrieben. Die Konfiguration erfolgt über eigenständige YAML-Dateien, die das Deployment der Applikation, den Netzwerkzugriff, persistente Speicherung und sichere Verwaltung sensibler Daten definieren.
   
-- **Einsatzgrund**:Redmine ist eine etablierte Open-Source-Projektmanagement-Plattform, die besonders für Issue-Tracking, Projektverwaltung und Wissensmanagement genutzt wird. Der Betrieb als Container ermöglicht flexible Skalierung, einfache Portabilität und schnelle Wiederherstellbarkeit der Anwendung.
+- **Einsatzgrund**:  
+  Redmine ist eine etablierte Open-Source-Projektmanagement-Plattform, die besonders für Issue-Tracking, Projektverwaltung und Wissensmanagement genutzt wird. Der Betrieb als Container ermöglicht flexible Skalierung, einfache Portabilität und schnelle Wiederherstellbarkeit der Anwendung.
   
-- **Rolle im System**:Redmine dient als zentrale Plattform zur Verwaltung von Projekten, Tickets, Dokumentationen und zur internen Kommunikation. Die Anwendung ist extern über Ingress erreichbar und verwendet eine persistente PostgreSQL-Datenbank.
+- **Rolle im System**:  
+  Redmine dient als zentrale Plattform zur Verwaltung von Projekten, Tickets, Dokumentationen und zur internen Kommunikation. Die Anwendung ist extern über Ingress erreichbar und verwendet eine persistente PostgreSQL-Datenbank.
 
 ## Ressourcen - Anwendung
 Im Folgenden sind alle YAML-Dateien aufgeführt, die zur Bereitstellung und Konfiguration der Anwendung benötigt werden. Sie decken u. a. Container-Deployment, Netzwerkzugriff, Speicheranbindung sowie Konfigurations- und Zugriffsdaten ab.
