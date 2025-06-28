@@ -1,7 +1,7 @@
 # Konfiguration - WordPress
 [Einleitung]
 
-- **Verwendung**:
+- **Verwendung**:WordPress wird als Container-Applikation im Kubernetes-Cluster betrieben. Die Konfiguration erfolgt über separate YAML-Dateien für Deployment, Netzwerk, Persistenz und Sicherheit.
 - **Einsatzgrund**:
 - **Rolle im System**:
 
