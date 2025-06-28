@@ -35,7 +35,21 @@ Eine ausführliche Beschreibung mit Diagramm findet sich hier:
 - [Zur Infrastruktur](/docs/infrastructure.md)
 
 ## Eingesetzte Technologien
-[Docker, Kubernetes, Minikube, Helm, Kubectl]
+Für den Aufbau und Betrieb der Infrastruktur wurden folgende Kerntechnologien eingesetzt:
+- **Docker**  
+  Dient als Container-Engine, um die einzelnen Applikationen in isolierten Containern auszuführen. In unserem Setup wird Docker nicht direkt verwendet, um Container manuell zu starten, sondern als Runtime-Backend für Kubernetes (via Minikube). Dadurch profitieren wir von der Portabilität und den bekannten Tools aus dem Docker-Ökosystem, während die Steuerung vollständig über Kubernetes erfolgt.
+
+- **Kubernetes**  
+  Orchestriert die verschiedenen Container, übernimmt die Verwaltung von Deployments, Services, Volumes und Skalierung. Kubernetes stellt sicher, dass alle Komponenten zuverlässig und im gewünschten Zustand laufen.
+
+- **Minikube**  
+  Dient als lokale Laufzeitumgebung für Kubernetes. Mit Minikube kann ein vollständiger Kubernetes-Cluster auf einem lokalen Rechner simuliert werden, ideal für Entwicklungs- und Testzwecke.
+
+- **Helm**  
+  Wird als Paketmanager für Kubernetes genutzt, um den Ingress Controller schnell und standardisiert bereitzustellen. Helm vereinfacht das Verwalten, Updaten und Rollbacken von Kubernetes-Ressourcen erheblich.
+
+- **`kubectl`**  
+  Das zentrale Kommandozeilenwerkzeug zur Steuerung des Kubernetes-Clusters. Mit `kubectl` werden Deployments durchgeführt, Pods überwacht, Logs gelesen und die gesamte Clusterverwaltung gesteuert.
 
 ## Konfiguration
 In diesem Abschnitt sind die technischen Details jeder Komponente dokumentiert. Für jede Applikation oder Infrastrukturkomponente existiert ein eigenes Konfigurationsdokument mit Informationen zu Deployments, Services, Volumes, Secrets, Ingress-Routen und weiteren Ressourcen.  
