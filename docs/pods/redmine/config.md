@@ -185,17 +185,13 @@ spec:
 [Hier kommen die Konfigurationsdetails]
 ```yaml
 apiVersion: v1
-kind: Service
+kind: ConfigMap
 metadata:
-  name: postgres
+  name: redmine-postgres-config
   namespace: m347-redmine
-spec:
-  selector:
-    app: redmine-postgres
-  ports:
-  - protocol: TCP
-    port: 5432
-    targetPort: 5432
+data:
+  POSTGRES_DB: redmine_db
+  POSTGRES_USER: redmineuser
 ```
 
 #### Secret
