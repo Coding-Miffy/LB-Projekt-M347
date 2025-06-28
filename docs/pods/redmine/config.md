@@ -33,9 +33,39 @@ Die folgenden YAML-Dateien definieren den Betrieb der zugehörigen Datenbank. Di
 ### Deployment
 >Definiert das Deployment für die Anwendung: Container-Image, Umgebungsvariablen, Volumes und Replikation.
 
-[Hier kommen die Konfigurationsdetails]
 ```yaml
-# deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redmine
+  namespace: m347-redmine
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redmine
+  template:
+    metadata:
+      labels:
+        app: redmine
+    spec:
+      containers:
+      - name: redmine
+        image: redmine:latest
+        ports:
+        - containerPort: 3000
+        envFrom:
+        - configMapRef:
+            name: redmine-config
+        - secretRef:
+            name: redmine-secret
+        volumeMounts:
+        - name: redmine-data
+          mountPath: /usr/src/redmine/files
+      volumes:
+      - name: redmine-data
+        persistentVolumeClaim:
+          claimName: redmine-pvc
 ```
 
 ### Service
