@@ -14,12 +14,13 @@ In diesem Abschnitt werden die geplanten Testfälle für **Redmine** dokumentier
 # Testprotokoll
 Im Testprotokoll werden die ausgeführten Testfälle mit Beschreibung, Ergebnis und Bewertung festgehalten.
 
-| Nr. | Testfall | Beschreibung | Erwartetes Ergebnis | Status |
-| :-: | :-- | :-- | :-- | :-: |
-| R-01 | Name | Beschreibung | Erwartetes Ergebnis | Symbol oder leer |
-| R-02 |  |  |  |  |
-|  |  |  |  |  |
-|  |  |  |  |  |
+| Nr. | Testfall                   | Beschreibung                                 | Erwartetes Ergebnis              | Status |
+|:---:|:---------------------------|:---------------------------------------------|:---------------------------------|:------:|
+| R-01| Zugriff via Ingress        | Redmine über `redmine.m347.ch` aufrufen      | Startseite lädt korrekt          |   ✅   |
+| R-02| Admin-Login                | Login: User `admin`, PW `admin123`           | Login erfolgreich                |   ✅   |
+| R-03| Ticket & Pod Neustart      | Ticket erstellen, Pod löschen, neu abrufen   | Ticket bleibt erhalten           |   ✅   |
+| R-04| DB-Verbindung              | Redmine-Start, Log-Check auf DB-Fehler       | Start ohne DB-Fehler             |   ✅   |
+| R-05| Startseite bearbeiten      | Startseite ändern und speichern              | Änderung sichtbar                |   ✅   |
 
 ## R-01: Name
 **Testdatum**:  
