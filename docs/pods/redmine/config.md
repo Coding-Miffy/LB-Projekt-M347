@@ -198,17 +198,13 @@ data:
 [Hier kommen die Konfigurationsdetails]
 ```yaml
 apiVersion: v1
-kind: Service
+kind: Secret
 metadata:
-  name: postgres
+  name: redmine-secret
   namespace: m347-redmine
-spec:
-  selector:
-    app: redmine-postgres
-  ports:
-  - protocol: TCP
-    port: 5432
-    targetPort: 5432
+type: Opaque
+data:
+  REDMINE_DB_PASSWORD: cmVkbWluZXBhc3M=  # redminepass (base64 codiert da Kubernetes verlangt dass Passwörter und Sensible Daten codiert abgelegt werden)
 ```
 
 ### Ingress / Externer Zugriff
