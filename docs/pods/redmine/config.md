@@ -32,7 +32,7 @@ Die folgenden YAML-Dateien definieren den Betrieb der zugehörigen Datenbank. Di
 | Konfiguration | - | Verwendet dieselbe ConfigMap & Secret wie die Anwendung |
 
 ## Files
-### Deployment
+## Deployment
 >Definiert das Deployment für die Anwendung: Container-Image, Umgebungsvariablen, Volumes und Replikation.
 
 ```yaml
@@ -70,7 +70,7 @@ spec:
           claimName: redmine-pvc
 ```
 
-## Erklärung der Konfiguration (Redmine Deployment)
+### Erklärung der Konfiguration (Redmine Deployment)
 
 - **replicas: 1**  
   Erstellt **einen Pod**, ausreichend für Entwicklungs- oder Testumgebungen.
@@ -92,7 +92,7 @@ spec:
 - **persistentVolumeClaim**  
   Verwendet einen PersistentVolumeClaim (`redmine-pvc`) zur dauerhaften Datenspeicherung, definiert in einer separaten PVC-YAML-Datei.
 
-### Service
+## Service
 >Stellt einen internen Kubernetes-Service zur Verfügung, über den die App im Cluster erreichbar ist.
 
 ```yaml
@@ -111,7 +111,7 @@ spec:
     targetPort: 3000
 ```
 
-## Erklärung der Konfiguration (Redmine Service)
+### Erklärung der Konfiguration (Redmine Service)
 
 - **kind: Service**  
   Erstellt einen internen Kubernetes-Service, der Redmine innerhalb des Clusters erreichbar macht.
@@ -127,7 +127,7 @@ spec:
   - **port: 80**: Der Port, auf dem der Service innerhalb des Clusters erreichbar ist.
   - **targetPort: 3000**: Der Port des Redmine-Containers, auf dem die Anwendung tatsächlich läuft.
 
-### Persistente Daten (PVC)
+## Persistente Daten (PVC)
 >Fordert persistenten Speicher im Cluster an, z. B. für Medien-Uploads oder Logs der Anwendung.
 
 ```yaml
@@ -144,7 +144,7 @@ spec:
       storage: 10Gi
 ```
 
-## Erklärung der Konfiguration (Redmine PersistentVolumeClaim)
+### Erklärung der Konfiguration (Redmine PersistentVolumeClaim)
 
 - **kind: PersistentVolumeClaim**  
   Fordert persistenten Speicherplatz zur dauerhaften Speicherung von Anwendungsdaten (z.B. Uploads oder Logfiles) an.
@@ -158,7 +158,7 @@ spec:
 - **storageClassName**  
   Nutzt die Standard-Storage-Class des Kubernetes-Clusters (implizit), die definiert, wie und wo der Speicher bereitgestellt wird.
 
-### Datenbank - Deployment
+## Datenbank - Deployment
 >Startet die zugehörige Datenbankinstanz inkl. Volume, Ports und Konfiguration.
 
 ```yaml
@@ -196,7 +196,7 @@ spec:
           claimName: redmine-postgres-pvc
 ```
 
-## Erklärung der Konfiguration (Redmine PostgreSQL Deployment)
+### Erklärung der Konfiguration (Redmine PostgreSQL Deployment)
 
 - **replicas: 1**  
   Erstellt **einen Pod**, ausreichend für Entwicklungs- und Testzwecke.
@@ -218,7 +218,7 @@ spec:
 - **persistentVolumeClaim**
   Nutzt ein PersistentVolumeClaim (`redmine-postgres-pvc`) für die langfristige Speicherung von Datenbankinhalten, definiert in einer separaten PVC-YAML.
 
-### Datenbank - Service
+## Datenbank - Service
 >Stellt einen internen Kubernetes-Service für die Datenbank bereit, der durch die App genutzt wird.
 
 ```yaml
@@ -235,7 +235,7 @@ spec:
     port: 5432
     targetPort: 5432
 ```
-## Erklärung der Konfiguration (Redmine PostgreSQL Service)
+### Erklärung der Konfiguration (Redmine PostgreSQL Service)
 
 - **kind: Service**  
   Erstellt einen Kubernetes-internen Service, der PostgreSQL im Cluster bereitstellt.
@@ -249,7 +249,7 @@ spec:
   - **targetPort: 5432**: Der Container-Port, auf dem PostgreSQL tatsächlich läuft.
 
 
-### Datenbank - Persistente Daten (PVC)
+## Datenbank - Persistente Daten (PVC)
 >Bindet ein Volume für die dauerhafte Speicherung von Datenbankdaten ein.
 
 
@@ -267,7 +267,7 @@ spec:
       storage: 5Gi
 ```
 
-## Erklärung der Konfiguration (Redmine PostgreSQL PersistentVolumeClaim)
+### Erklärung der Konfiguration (Redmine PostgreSQL PersistentVolumeClaim)
 
 - **kind: PersistentVolumeClaim**  
   Fordert persistenten Speicherplatz für die dauerhafte Speicherung von PostgreSQL-Datenbankdaten an.
@@ -284,7 +284,7 @@ spec:
 ### ConfigMap & Secret
 >Definiert zentrale Konfigurationswerte (ConfigMap) und vertrauliche Daten (Secret), die in App und DB referenziert werden.
 
-### ConfigMap
+## ConfigMap
 
 ```yaml
 apiVersion: v1
@@ -297,7 +297,7 @@ data:
   POSTGRES_USER: redmineuser
 ```
 
-## Erklärung der Konfiguration (Redmine PostgreSQL ConfigMap)
+### Erklärung der Konfiguration (Redmine PostgreSQL ConfigMap)
 
 - **kind: ConfigMap**  
   Definiert zentrale, nicht-vertrauliche Konfigurationswerte für PostgreSQL.
@@ -347,7 +347,7 @@ data:
   REDMINE_DB_PASSWORD: cmVkbWluZXBhc3M=  # redminepass (base64 codiert da Kubernetes verlangt dass Passwörter und Sensible Daten codiert abgelegt werden)
 ```
 
-## Erklärung der Konfiguration (Redmine Secret)
+### Erklärung der Konfiguration (Redmine Secret)
 
 - **kind: Secret**  
   Enthält vertrauliche Daten, wie z.B. Passwörter, in verschlüsselter Form.
@@ -373,7 +373,7 @@ data:
   POSTGRES_PASSWORD: cmVkbWluZXBhc3M=  # redminepass (base64 codiert da Kubernetes verlangt dass Passwörter und Sensible Daten codiert abgelegt werden)
 ```
 
-## Erklärung der Konfiguration (Redmine PostgreSQL Secret)
+### Erklärung der Konfiguration (Redmine PostgreSQL Secret)
 
 - **kind: Secret**  
   Enthält vertrauliche Daten, wie Passwörter, in verschlüsselter Form.
