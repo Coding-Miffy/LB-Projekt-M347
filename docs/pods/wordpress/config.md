@@ -249,4 +249,6 @@ Sie verweist auf den zentralen Ingress Controller und sorgt für die Weiterleitu
 Da das zugrundeliegende Ingress-System für alle Anwendungen identisch ist, wird die übergeordnete Konfiguration des Ingress Controllers inklusive Routingprinzipien und Klassendefinition zentral in der [Konfigurationsdatei des Ingress Controllers](../ingress/config.md) dokumentiert.
 
 ## Besonderheiten & Herausforderungen
-[Hier kommt ein Fazit zur Konfiguration und ggf. Herausforderungen]
+Bei der Umsetzung und Bereitstellung der WordPress-Anwendung im Kubernetes-Cluster zeigte sich deutlich, wie stark standardisiert und gleichzeitig eingeschränkt man in der Gestaltung der YAML-Konfigurationsdateien tatsächlich ist. Kubernetes gibt eine strikte Struktur und klare Anforderungen für Ressourcen wie Deployments, Services, PersistentVolumeClaims und Secrets vor, die zwingend eingehalten werden müssen. Dadurch bleibt wenig Raum für individuelle Anpassungen oder kreative Lösungen.
+Dies mag auf den ersten Blick einschränkend wirken, ist jedoch einer der zentralen Vorteile von Kubernetes: Die Standardisierung sorgt für einheitliche, zuverlässige und reproduzierbare Abläufe beim Bereitstellen und Verwalten von Anwendungen. Die Herausforderung bestand weniger darin, eigene kreative Lösungen zu entwickeln, als vielmehr darin, die bestehenden Vorgaben präzise umzusetzen.
+Es war überraschend und zugleich lehrreich, festzustellen, wie stark Kubernetes die konkrete Umsetzung beeinflusst und gleichzeitig vereinfacht – vorausgesetzt, man hält sich genau an die vorgegebenen Standards.
