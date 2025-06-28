@@ -25,12 +25,11 @@ kubectl apply -f redmine/secret.yaml
 kubectl apply -f redmine/db-configmap.yaml
 kubectl apply -f redmine/db-secret.yaml
 kubectl apply -f redmine/db-pvc.yaml
-kubectl apply -f redmine/redmine-pvc.yaml
+kubectl apply -f redmine/pvc.yaml
 kubectl apply -f redmine/db-deployment.yaml
-kubectl apply -f redmine/redmine-deployment.yaml
+kubectl apply -f redmine/deployment.yaml
 kubectl apply -f redmine/db-service.yaml
-kubectl apply -f redmine/redmine-service.yaml
-kubectl apply -f redmine/redmine-ingress.yaml
+kubectl apply -f redmine/service.yaml
 ```
 ## 3. Status der Pods prüfen
    
@@ -54,7 +53,7 @@ Sobald Ingress aktiviert und korrekt konfiguriert wurde, ist Redmine hier erreic
 
 ## 5. Login
 
-Die Zugangsdaten für den Admin-Account von Redmine lauten standardmäßig:
+Die Zugangsdaten für den Admin-Account von Redmine lauten standardmässig:
 
 ```powershell
 Username: admin
