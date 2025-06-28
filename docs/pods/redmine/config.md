@@ -335,7 +335,7 @@ data:
   - **POSTGRES_USER**  
     Definiert den Benutzernamen (`redmineuser`) zur Authentifizierung an der PostgreSQL-Datenbank.
 
-### Secret
+## Secret
 
 ```yaml
 apiVersion: v1
