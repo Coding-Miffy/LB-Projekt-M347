@@ -309,7 +309,33 @@ data:
   - **POSTGRES_USER: redmineuser**  
     Benutzername für den PostgreSQL-Datenbankzugriff.
 
-#### Secret
+## Datenbank - Configmap
+>Definiert zentrale Konfigurationswerte der PostgreSQL-Datenbankinstanz.
+
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: redmine-postgres-config
+  namespace: m347-redmine
+data:
+  POSTGRES_DB: redmine_db
+  POSTGRES_USER: redmineuser
+```
+
+### Erklärung der Konfiguration (Redmine PostgreSQL ConfigMap)
+
+- **kind: ConfigMap**  
+  Enthält zentrale, nicht-vertrauliche Konfigurationswerte für die PostgreSQL-Datenbankinstanz.
+
+- **data**
+  - **POSTGRES_DB**  
+    Legt den Namen (`redmine_db`) der PostgreSQL-Datenbank fest, die von Redmine verwendet wird.
+  
+  - **POSTGRES_USER**  
+    Definiert den Benutzernamen (`redmineuser`) zur Authentifizierung an der PostgreSQL-Datenbank.
+
+### Secret
 
 ```yaml
 apiVersion: v1
@@ -334,6 +360,21 @@ data:
   - **REDMINE_DB_PASSWORD**  
     Base64-kodiertes Passwort für den Redmine-Datenbankbenutzer.  
     (Kodierung erforderlich, da Kubernetes Passwörter ausschließlich verschlüsselt speichert.)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ### Ingress / Externer Zugriff
 >Regelt den externen Zugriff auf die Anwendung über Hostnamen mithilfe eines Ingress Controllers.
