@@ -18,7 +18,7 @@ Zuerst wird ein eigener Namespace für WordPress erstellt. Dies ermöglicht eine
 
 ```powershell
 kubectl create namespace m347-wordpress
-````
+```
 
 ## 2. Ressourcen Deployen
 
