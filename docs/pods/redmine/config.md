@@ -284,7 +284,7 @@ spec:
 ### ConfigMap & Secret
 >Definiert zentrale Konfigurationswerte (ConfigMap) und vertrauliche Daten (Secret), die in App und DB referenziert werden.
 
-#### ConfigMap
+### ConfigMap
 
 ```yaml
 apiVersion: v1
