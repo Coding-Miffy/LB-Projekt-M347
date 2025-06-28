@@ -31,7 +31,6 @@ Die folgenden YAML-Dateien definieren den Betrieb der zugehörigen Datenbank. Di
 
 ## Files
 ### Deployment
->Definiert das Deployment für die Anwendung: Container-Image, Umgebungsvariablen, Volumes und Replikation.
 
 [Hier kommen die Konfigurationsdetails]
 ```yaml
@@ -87,9 +86,19 @@ spec:
 ### Service
 >Stellt einen internen Kubernetes-Service zur Verfügung, über den die App im Cluster erreichbar ist.
 
-[Hier kommen die Konfigurationsdetails]
 ```yaml
-# service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: wordpress-service
+  namespace: m347-wordpress
+spec:
+  selector:
+    app: wordpress
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
 ```
 
 ### Persistente Daten (PVC)
