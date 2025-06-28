@@ -16,4 +16,60 @@ Zuerst wird ein eigener Namespace für WordPress erstellt. Dies ermöglicht eine
 
 ```powershell
 kubectl create namespace m347-wordpress
+````
+
+## 2. Ressourcen Deployen
+
+```powershell
+kubectl apply -f wordpress/configmap.yaml
+kubectl apply -f wordpress/secret.yaml
+kubectl apply -f wordpress/mariadb-pvc.yaml
+kubectl apply -f wordpress/pvc.yaml
+kubectl apply -f wordpress/mariadb-deployment.yaml
+kubectl apply -f wordpress/deployment.yaml
+kubectl apply -f wordpress/mariadb-service.yaml
+kubectl apply -f wordpress/service.yaml
+```
+## 3. Status der Pods prüfen
+
+```powershell
+kubectl get pods -n m347-wordpress
+```
+
+Die Spalte STATUS sollte nach kurzer Zeit bei beiden Pods auf Running stehen.
+Falls ContainerCreating angezeigt wird, bitte etwas Geduld – manche Images brauchen länger.
+
+## 4. WordPress starten
+
+```powershell
+minikube service wordpress-service -n m347-wordpress
+```
+
+Sobald Ingress aktiviert und korrekt konfiguriert wurde, ist WordPress hier erreichbar:
+
+- http://wordpress.m347.ch
+
+## 5. Erstmaliger Login
+Die initialen Zugangsdaten für den Admin-Account von WordPress lauten (siehe Secret):
+
+```powershell
+Benutzername: admin
+Passwort: password
+```
+
+Nach dem ersten Login wird empfohlen, das Passwort unmittelbar zu ändern.
+
+6. WordPress entfernen
+
+Um WordPress wieder vollständig zu entfernen, kann einfach der gesamte Namespace gelöscht werden:
+
+```powershell
+kubectl delete namespace m347-wordpress
+```
+
+
+
+
+
+
 
