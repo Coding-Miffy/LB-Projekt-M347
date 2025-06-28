@@ -185,22 +185,34 @@ spec:
 [Hier kommen die Konfigurationsdetails]
 ```yaml
 apiVersion: v1
-kind: PersistentVolumeClaim
+kind: Service
 metadata:
-  name: redmine-postgres-pvc
+  name: postgres
   namespace: m347-redmine
 spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 5Gi
+  selector:
+    app: redmine-postgres
+  ports:
+  - protocol: TCP
+    port: 5432
+    targetPort: 5432
 ```
 
 #### Secret
 [Hier kommen die Konfigurationsdetails]
 ```yaml
-# secret.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+  namespace: m347-redmine
+spec:
+  selector:
+    app: redmine-postgres
+  ports:
+  - protocol: TCP
+    port: 5432
+    targetPort: 5432
 ```
 
 ### Ingress / Externer Zugriff
