@@ -32,7 +32,7 @@ Die folgenden YAML-Dateien definieren den Betrieb der zugehörigen Datenbank. Di
 | Konfiguration | - | Verwendet dieselbe ConfigMap & Secret wie die Anwendung |
 
 ## Files
-### Deployment
+## Deployment
 >Definiert das Deployment für die Anwendung: Container-Image, Umgebungsvariablen, Volumes und Replikation.
 
 ```yaml
@@ -85,7 +85,7 @@ spec:
           claimName: wordpress-pvc
 ```
 
-## Erklärung der Konfiguration (WordPress Deployment)
+### Erklärung der Konfiguration (WordPress Deployment)
 
 - **replicas: 1**  
   Es wird **nur ein Pod** instanziert, ausreichend für Entwicklungs- oder Testumgebungen.
@@ -106,7 +106,7 @@ spec:
 - **persistentVolumeClaim**  
   Das Deployment nutzt ein PersistentVolumeClaim (`wordpress-pvc`), welches in einer separaten PVC-YAML definiert ist, zur dauerhaften Speicherung von Daten.
 
-### Service
+## Service
 >Stellt einen internen Kubernetes-Service zur Verfügung, über den die App im Cluster erreichbar ist.
 
 ```yaml
@@ -124,7 +124,7 @@ spec:
     targetPort: 80
 ```
 
-## Erklärung der Konfiguration (WordPress Service)
+### Erklärung der Konfiguration (WordPress Service)
 
 - **kind: Service**  
   Erstellt einen Kubernetes-internen Service, der WordPress im Cluster erreichbar macht.
@@ -137,7 +137,7 @@ spec:
   - **port: 80**: Port des Services innerhalb des Clusters.
   - **targetPort: 80**: Port des Containers, auf den der Traffic weitergeleitet wird. Dies entspricht dem Webport des WordPress-Containers.
 
-### Persistente Daten (PVC)
+## Persistente Daten (PVC)
 >Fordert persistenten Speicher im Cluster an, z. B. für Medien-Uploads oder Logs der Anwendung.
 
 ```yaml
@@ -155,7 +155,7 @@ spec:
   storageClassName: standard
 ```
 
-## Erklärung der Konfiguration (WordPress PersistentVolumeClaim)
+### Erklärung der Konfiguration (WordPress PersistentVolumeClaim)
 
 - **kind: PersistentVolumeClaim**  
   Fordert persistenten Speicherplatz an, um Daten dauerhaft im Cluster zu speichern.
@@ -169,7 +169,7 @@ spec:
 - **storageClassName: standard**  
   Verwendet die standardmäßig konfigurierte Storage-Class im Kubernetes-Cluster, welche bestimmt, wie und wo der Speicher bereitgestellt wird.
 
-### Datenbank - Deployment
+## Datenbank - Deployment
 >Startet die zugehörige Datenbankinstanz inkl. Volume, Ports und Konfiguration.
 
 ```yaml
@@ -225,7 +225,7 @@ spec:
           claimName: mariadb-pvc
 ```
 
-## Erklärung der Konfiguration (MariaDB Deployment)
+### Erklärung der Konfiguration (MariaDB Deployment)
 
 - **replicas: 1**  
   Instanziert **einen Pod**, ausreichend für Entwicklungs- und Testzwecke.
@@ -249,7 +249,7 @@ spec:
 - **persistentVolumeClaim**  
   Das Deployment verwendet ein PersistentVolumeClaim (`mariadb-pvc`), definiert in einer separaten PVC-YAML-Datei, zur dauerhaften Speicherung der Datenbankinhalte.
 
-### Datenbank - Service
+## Datenbank - Service
 >Stellt einen internen Kubernetes-Service für die Datenbank bereit, der durch die App genutzt wird.
 
 ```yaml
@@ -267,7 +267,7 @@ spec:
     targetPort: 3306
 ```
 
-## Erklärung der Konfiguration (MariaDB Service)
+### Erklärung der Konfiguration (MariaDB Service)
 
 - **kind: Service**  
   Erstellt einen Kubernetes-internen Service, der MariaDB im Cluster bereitstellt.
@@ -280,7 +280,7 @@ spec:
   - **port: 3306**: Der Port, über den der Service innerhalb des Clusters erreichbar ist.
   - **targetPort: 3306**: Der Port des MariaDB-Containers, auf den die Anfragen weitergeleitet werden.
 
-### Datenbank - Persistente Daten (PVC)
+## Datenbank - Persistente Daten (PVC)
 >Bindet ein Volume für die dauerhafte Speicherung von Datenbankdaten ein.
 
 ```yaml
@@ -298,7 +298,7 @@ spec:
   storageClassName: standard
 ```
 
-## Erklärung der Konfiguration (MariaDB PersistentVolumeClaim)
+### Erklärung der Konfiguration (MariaDB PersistentVolumeClaim)
 
 - **kind: PersistentVolumeClaim**  
   Fordert persistenten Speicherplatz zur dauerhaften Speicherung der MariaDB-Daten an.
@@ -315,7 +315,7 @@ spec:
 ### ConfigMap & Secret
 >Definiert zentrale Konfigurationswerte (ConfigMap) und vertrauliche Daten (Secret), die in App und DB referenziert werden.
 
-#### ConfigMap
+## ConfigMap
 
 ```yaml
 apiVersion: v1
@@ -327,7 +327,7 @@ data:
   database_name: wordpress
 ```
 
-## Erklärung der Konfiguration (ConfigMap)
+### Erklärung der Konfiguration (ConfigMap)
 
 - **kind: ConfigMap**  
   Dient zur Speicherung zentraler, nicht vertraulicher Konfigurationswerte.
@@ -336,7 +336,7 @@ data:
   - **database_name: wordpress**  
     Definiert den Namen der Datenbank, der von WordPress und MariaDB referenziert wird.
 
-#### Secret
+## Secret
 
 ```yaml
 apiVersion: v1
@@ -351,7 +351,7 @@ data:
   root_password: cm9vdF9wYXNzd29yZA== # root_password
 ```
 
-## Erklärung der Konfiguration (ConfigMap)
+### Erklärung der Konfiguration (ConfigMap)
 
 - **kind: ConfigMap**  
   Definiert zentrale, nicht-sensible Konfigurationswerte, die von Anwendungen und Datenbanken genutzt werden können.
