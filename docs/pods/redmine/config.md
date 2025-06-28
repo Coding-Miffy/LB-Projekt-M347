@@ -310,7 +310,6 @@ data:
     Benutzername für den PostgreSQL-Datenbankzugriff.
 
 ## Datenbank - Configmap
->Definiert zentrale Konfigurationswerte der PostgreSQL-Datenbankinstanz.
 
 ```yaml
 apiVersion: v1
@@ -362,7 +361,6 @@ data:
     (Kodierung erforderlich, da Kubernetes Passwörter ausschließlich verschlüsselt speichert.)
 
 ## Datenbank - Secret
-Definiert vertrauliche Daten für die PostgreSQL-Datenbankinstanz.
 
 ```yaml
 apiVersion: v1
