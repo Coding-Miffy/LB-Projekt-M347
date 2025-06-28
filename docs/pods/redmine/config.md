@@ -70,6 +70,28 @@ spec:
           claimName: redmine-pvc
 ```
 
+## Erklärung der Konfiguration (Redmine Deployment)
+
+- **replicas: 1**  
+  Erstellt **einen Pod**, ausreichend für Entwicklungs- oder Testumgebungen.
+
+- **image: redmine:latest**  
+  Verwendet das offizielle Docker-Image von Redmine in der neuesten Version.
+
+- **ports**
+  Der Container ist auf Port `3000` erreichbar, der Standard-Port von Redmine.
+
+- **envFrom**  
+  Umgebungsvariablen für Redmine werden über externe Konfigurationsressourcen geladen:
+  - **configMapRef**: Lädt Werte aus einer ConfigMap (`redmine-config`).
+  - **secretRef**: Lädt vertrauliche Werte aus einem Secret (`redmine-secret`).
+
+- **volumeMounts**  
+  Mountet persistenten Speicher in den Containerpfad `/usr/src/redmine/files`, um hochgeladene Dateien dauerhaft zu speichern.
+
+- **persistentVolumeClaim**  
+  Verwendet einen PersistentVolumeClaim (`redmine-pvc`) zur dauerhaften Datenspeicherung, definiert in einer separaten PVC-YAML-Datei.
+
 ### Service
 >Stellt einen internen Kubernetes-Service zur Verfügung, über den die App im Cluster erreichbar ist.
 
@@ -89,6 +111,22 @@ spec:
     targetPort: 3000
 ```
 
+## Erklärung der Konfiguration (Redmine Service)
+
+- **kind: Service**  
+  Erstellt einen internen Kubernetes-Service, der Redmine innerhalb des Clusters erreichbar macht.
+
+- **type: ClusterIP**  
+  Der Service ist ausschließlich innerhalb des Kubernetes-Clusters erreichbar und hat keine externe IP-Adresse.
+
+- **selector (app: redmine)**  
+  Wählt Pods mit dem Label `app: redmine`, um Anfragen an den korrekten Pod weiterzuleiten.
+
+- **ports**
+  - **protocol: TCP**: Der Service nutzt das TCP-Protokoll.
+  - **port: 80**: Der Port, auf dem der Service innerhalb des Clusters erreichbar ist.
+  - **targetPort: 3000**: Der Port des Redmine-Containers, auf dem die Anwendung tatsächlich läuft.
+
 ### Persistente Daten (PVC)
 >Fordert persistenten Speicher im Cluster an, z. B. für Medien-Uploads oder Logs der Anwendung.
 
@@ -105,6 +143,20 @@ spec:
     requests:
       storage: 10Gi
 ```
+
+## Erklärung der Konfiguration (Redmine PersistentVolumeClaim)
+
+- **kind: PersistentVolumeClaim**  
+  Fordert persistenten Speicherplatz zur dauerhaften Speicherung von Anwendungsdaten (z.B. Uploads oder Logfiles) an.
+
+- **accessModes: ReadWriteOnce**  
+  Der Speicherplatz ist für genau einen Pod gleichzeitig beschreibbar.
+
+- **resources.requests.storage: 10Gi**  
+  Fordert 10 Gigabyte Speicherplatz an, geeignet für Entwicklungs- und Testumgebungen.
+
+- **storageClassName**  
+  Nutzt die Standard-Storage-Class des Kubernetes-Clusters (implizit), die definiert, wie und wo der Speicher bereitgestellt wird.
 
 ### Datenbank - Deployment
 >Startet die zugehörige Datenbankinstanz inkl. Volume, Ports und Konfiguration.
@@ -144,6 +196,28 @@ spec:
           claimName: redmine-postgres-pvc
 ```
 
+## Erklärung der Konfiguration (Redmine PostgreSQL Deployment)
+
+- **replicas: 1**  
+  Erstellt **einen Pod**, ausreichend für Entwicklungs- und Testzwecke.
+
+- **image: postgres:15**  
+  Verwendet das offizielle Docker-Image von PostgreSQL in Version 15.
+
+- **ports**
+  Der Container stellt den Standard-Port `5432` für PostgreSQL bereit.
+
+- **envFrom**
+  Lädt Umgebungsvariablen aus externen Konfigurationsquellen:
+  - **configMapRef**: Werte werden aus der ConfigMap (`redmine-postgres-config`) geladen.
+  - **secretRef**: Vertrauliche Werte werden aus einem Secret (`redmine-postgres-secret`) bezogen.
+
+- **volumeMounts**
+  Persistenter Speicher wird in den Containerpfad `/var/lib/postgresql/data` eingebunden, um Datenbankdaten dauerhaft zu speichern.
+
+- **persistentVolumeClaim**
+  Nutzt ein PersistentVolumeClaim (`redmine-postgres-pvc`) für die langfristige Speicherung von Datenbankinhalten, definiert in einer separaten PVC-YAML.
+
 ### Datenbank - Service
 >Stellt einen internen Kubernetes-Service für die Datenbank bereit, der durch die App genutzt wird.
 
@@ -161,11 +235,24 @@ spec:
     port: 5432
     targetPort: 5432
 ```
+## Erklärung der Konfiguration (Redmine PostgreSQL Service)
+
+- **kind: Service**  
+  Erstellt einen Kubernetes-internen Service, der PostgreSQL im Cluster bereitstellt.
+
+- **selector (app: redmine-postgres)**  
+  Der Service wählt Pods mit dem Label `app: redmine-postgres` aus, um Datenbankanfragen korrekt weiterzuleiten.
+
+- **ports**
+  - **protocol: TCP**: Die Kommunikation erfolgt über TCP.
+  - **port: 5432**: Der Port, auf dem PostgreSQL innerhalb des Clusters erreichbar ist.
+  - **targetPort: 5432**: Der Container-Port, auf dem PostgreSQL tatsächlich läuft.
+
 
 ### Datenbank - Persistente Daten (PVC)
 >Bindet ein Volume für die dauerhafte Speicherung von Datenbankdaten ein.
 
-[Hier kommen die Konfigurationsdetails]
+
 ```yaml
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -180,11 +267,25 @@ spec:
       storage: 5Gi
 ```
 
+## Erklärung der Konfiguration (Redmine PostgreSQL PersistentVolumeClaim)
+
+- **kind: PersistentVolumeClaim**  
+  Fordert persistenten Speicherplatz für die dauerhafte Speicherung von PostgreSQL-Datenbankdaten an.
+
+- **accessModes: ReadWriteOnce**  
+  Der Speicherplatz kann gleichzeitig nur von einem Pod beschreibbar genutzt werden.
+
+- **resources.requests.storage: 5Gi**  
+  Fordert 5 Gigabyte Speicherplatz an, ausreichend für kleinere oder Test-Datenbanken.
+
+- **storageClassName**  
+  Nutzt die Standard-Storage-Class des Kubernetes-Clusters (implizit), welche festlegt, wie der Speicher bereitgestellt wird.
+
 ### ConfigMap & Secret
 >Definiert zentrale Konfigurationswerte (ConfigMap) und vertrauliche Daten (Secret), die in App und DB referenziert werden.
 
 #### ConfigMap
-[Hier kommen die Konfigurationsdetails]
+
 ```yaml
 apiVersion: v1
 kind: ConfigMap
@@ -196,8 +297,20 @@ data:
   POSTGRES_USER: redmineuser
 ```
 
+## Erklärung der Konfiguration (Redmine PostgreSQL ConfigMap)
+
+- **kind: ConfigMap**  
+  Definiert zentrale, nicht-vertrauliche Konfigurationswerte für PostgreSQL.
+
+- **data**
+  - **POSTGRES_DB: redmine_db**  
+    Name der PostgreSQL-Datenbank, welche von Redmine verwendet wird.
+  
+  - **POSTGRES_USER: redmineuser**  
+    Benutzername für den PostgreSQL-Datenbankzugriff.
+
 #### Secret
-[Hier kommen die Konfigurationsdetails]
+
 ```yaml
 apiVersion: v1
 kind: Secret
@@ -208,6 +321,19 @@ type: Opaque
 data:
   REDMINE_DB_PASSWORD: cmVkbWluZXBhc3M=  # redminepass (base64 codiert da Kubernetes verlangt dass Passwörter und Sensible Daten codiert abgelegt werden)
 ```
+
+## Erklärung der Konfiguration (Redmine Secret)
+
+- **kind: Secret**  
+  Enthält vertrauliche Daten, wie z.B. Passwörter, in verschlüsselter Form.
+
+- **type: Opaque**  
+  Ein generisches Kubernetes Secret, welches beliebige vertrauliche Daten speichert.
+
+- **data**
+  - **REDMINE_DB_PASSWORD**  
+    Base64-kodiertes Passwort für den Redmine-Datenbankbenutzer.  
+    (Kodierung erforderlich, da Kubernetes Passwörter ausschließlich verschlüsselt speichert.)
 
 ### Ingress / Externer Zugriff
 >Regelt den externen Zugriff auf die Anwendung über Hostnamen mithilfe eines Ingress Controllers.
