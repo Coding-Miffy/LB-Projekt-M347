@@ -217,7 +217,13 @@ spec:
 #### ConfigMap
 [Hier kommen die Konfigurationsdetails]
 ```yaml
-# configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: configmap
+  namespace: m347-wordpress
+data:
+  database_name: wordpress
 ```
 
 #### Secret
