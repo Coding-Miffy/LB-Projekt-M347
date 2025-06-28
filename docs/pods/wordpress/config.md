@@ -31,6 +31,7 @@ Die folgenden YAML-Dateien definieren den Betrieb der zugehörigen Datenbank. Di
 
 ## Files
 ### Deployment
+>Definiert das Deployment für die Anwendung: Container-Image, Umgebungsvariablen, Volumes und Replikation.
 
 ```yaml
 apiVersion: apps/v1
