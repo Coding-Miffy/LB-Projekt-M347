@@ -145,9 +145,19 @@ spec:
 ### Datenbank - Service
 >Stellt einen internen Kubernetes-Service für die Datenbank bereit, der durch die App genutzt wird.
 
-[Hier kommen die Konfigurationsdetails]
 ```yaml
-# db-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+  namespace: m347-redmine
+spec:
+  selector:
+    app: redmine-postgres
+  ports:
+  - protocol: TCP
+    port: 5432
+    targetPort: 5432
 ```
 
 ### Datenbank - Persistente Daten (PVC)
