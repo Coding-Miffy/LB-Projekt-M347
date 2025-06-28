@@ -85,6 +85,27 @@ spec:
           claimName: wordpress-pvc
 ```
 
+## Erklärung der Konfiguration (WordPress Deployment)
+
+- **replicas: 1**  
+  Es wird **nur ein Pod** instanziert, ausreichend für Entwicklungs- oder Testumgebungen.
+
+- **image: wordpress:latest**  
+  Verwendet das offizielle Docker-Image von WordPress in der aktuellsten Version.
+
+- **ports**  
+  Der Container ist auf Port `80` erreichbar. Dies ist der Standard-Webport von WordPress.
+
+- **env (Umgebungsvariablen)**  
+  WordPress erhält seine Konfigurationswerte über Umgebungsvariablen. Diese werden mithilfe von Secrets (`WORDPRESS_DB_USER`, `WORDPRESS_DB_PASSWORD`) und einer ConfigMap (`WORDPRESS_DB_NAME`) übergeben.  
+  Die Datenbankverbindung erfolgt über den Service `mariadb-service`.
+
+- **volumeMounts**  
+  Der Pfad `/var/www/html` innerhalb des Containers ist persistent gemountet. Dadurch bleiben Daten, wie Themes, Plugins und Medien, auch nach einem Neustart erhalten.
+
+- **persistentVolumeClaim**  
+  Das Deployment nutzt ein PersistentVolumeClaim (`wordpress-pvc`), welches in einer separaten PVC-YAML definiert ist, zur dauerhaften Speicherung von Daten.
+
 ### Service
 >Stellt einen internen Kubernetes-Service zur Verfügung, über den die App im Cluster erreichbar ist.
 
@@ -103,6 +124,19 @@ spec:
     targetPort: 80
 ```
 
+## Erklärung der Konfiguration (WordPress Service)
+
+- **kind: Service**  
+  Erstellt einen Kubernetes-internen Service, der WordPress im Cluster erreichbar macht.
+
+- **selector (app: wordpress)**  
+  Der Service wählt Pods aus, die mit dem Label `app: wordpress` gekennzeichnet sind.
+
+- **ports**  
+  - **protocol: TCP**: Der Service kommuniziert via TCP-Protokoll.
+  - **port: 80**: Port des Services innerhalb des Clusters.
+  - **targetPort: 80**: Port des Containers, auf den der Traffic weitergeleitet wird. Dies entspricht dem Webport des WordPress-Containers.
+
 ### Persistente Daten (PVC)
 >Fordert persistenten Speicher im Cluster an, z. B. für Medien-Uploads oder Logs der Anwendung.
 
@@ -120,6 +154,20 @@ spec:
       storage: 10Gi
   storageClassName: standard
 ```
+
+## Erklärung der Konfiguration (WordPress PersistentVolumeClaim)
+
+- **kind: PersistentVolumeClaim**  
+  Fordert persistenten Speicherplatz an, um Daten dauerhaft im Cluster zu speichern.
+
+- **accessModes: ReadWriteOnce**  
+  Der Speicher kann von genau einem Pod gleichzeitig im Schreibmodus verwendet werden.
+
+- **resources.requests.storage: 10Gi**  
+  Die angeforderte Speichergröße beträgt 10 Gigabyte. Hier werden beispielsweise Mediendateien, Themes oder Plugin-Daten gespeichert.
+
+- **storageClassName: standard**  
+  Verwendet die standardmäßig konfigurierte Storage-Class im Kubernetes-Cluster, welche bestimmt, wie und wo der Speicher bereitgestellt wird.
 
 ### Datenbank - Deployment
 >Startet die zugehörige Datenbankinstanz inkl. Volume, Ports und Konfiguration.
@@ -177,6 +225,30 @@ spec:
           claimName: mariadb-pvc
 ```
 
+## Erklärung der Konfiguration (MariaDB Deployment)
+
+- **replicas: 1**  
+  Instanziert **einen Pod**, ausreichend für Entwicklungs- und Testzwecke.
+
+- **image: mariadb:latest**  
+  Nutzt das offizielle Docker-Image von MariaDB in der aktuellsten Version.
+
+- **ports**  
+  MariaDB läuft standardmäßig auf Port `3306`, der hier für Datenbankzugriffe bereitgestellt wird.
+
+- **env (Umgebungsvariablen)**  
+  MariaDB erhält Konfigurationsparameter über Secrets und eine ConfigMap:
+  - **MYSQL_ROOT_PASSWORD**: Root-Passwort für die Datenbank (Secret).
+  - **MYSQL_DATABASE**: Name der initialen Datenbank (ConfigMap).
+  - **MYSQL_USER**: Benutzername für die WordPress-Datenbank (Secret).
+  - **MYSQL_PASSWORD**: Passwort für den Datenbankbenutzer (Secret).
+
+- **volumeMounts**  
+  Persistenter Speicher ist auf dem Containerpfad `/var/lib/mysql` eingebunden. So bleiben Datenbankinhalte bei Neustarts erhalten.
+
+- **persistentVolumeClaim**  
+  Das Deployment verwendet ein PersistentVolumeClaim (`mariadb-pvc`), definiert in einer separaten PVC-YAML-Datei, zur dauerhaften Speicherung der Datenbankinhalte.
+
 ### Datenbank - Service
 >Stellt einen internen Kubernetes-Service für die Datenbank bereit, der durch die App genutzt wird.
 
@@ -194,6 +266,19 @@ spec:
     port: 3306
     targetPort: 3306
 ```
+
+## Erklärung der Konfiguration (MariaDB Service)
+
+- **kind: Service**  
+  Erstellt einen Kubernetes-internen Service, der MariaDB im Cluster bereitstellt.
+
+- **selector (app: mariadb)**  
+  Der Service wählt die Pods mit dem Label `app: mariadb` aus, um Anfragen an die richtigen Pods weiterzuleiten.
+
+- **ports**
+  - **protocol: TCP**: Nutzt das TCP-Protokoll für die Kommunikation.
+  - **port: 3306**: Der Port, über den der Service innerhalb des Clusters erreichbar ist.
+  - **targetPort: 3306**: Der Port des MariaDB-Containers, auf den die Anfragen weitergeleitet werden.
 
 ### Datenbank - Persistente Daten (PVC)
 >Bindet ein Volume für die dauerhafte Speicherung von Datenbankdaten ein.
@@ -213,11 +298,25 @@ spec:
   storageClassName: standard
 ```
 
+## Erklärung der Konfiguration (MariaDB PersistentVolumeClaim)
+
+- **kind: PersistentVolumeClaim**  
+  Fordert persistenten Speicherplatz zur dauerhaften Speicherung der MariaDB-Daten an.
+
+- **accessModes: ReadWriteOnce**  
+  Der Speicher wird von genau einem Pod gleichzeitig im Schreibmodus genutzt.
+
+- **resources.requests.storage: 10Gi**  
+  Die Größe des angeforderten Speicherplatzes beträgt 10 Gigabyte, ausreichend für Entwicklungs- und Testdatenbanken.
+
+- **storageClassName: standard**  
+  Nutzt die Standard-StorageClass des Kubernetes-Clusters, welche definiert, wie und wo der Speicher bereitgestellt wird.
+
 ### ConfigMap & Secret
 >Definiert zentrale Konfigurationswerte (ConfigMap) und vertrauliche Daten (Secret), die in App und DB referenziert werden.
 
 #### ConfigMap
-[Hier kommen die Konfigurationsdetails]
+
 ```yaml
 apiVersion: v1
 kind: ConfigMap
@@ -228,8 +327,17 @@ data:
   database_name: wordpress
 ```
 
+## Erklärung der Konfiguration (ConfigMap)
+
+- **kind: ConfigMap**  
+  Dient zur Speicherung zentraler, nicht vertraulicher Konfigurationswerte.
+
+- **data**  
+  - **database_name: wordpress**  
+    Definiert den Namen der Datenbank, der von WordPress und MariaDB referenziert wird.
+
 #### Secret
-[Hier kommen die Konfigurationsdetails]
+
 ```yaml
 apiVersion: v1
 kind: Secret
@@ -242,6 +350,15 @@ data:
   password: cGFzc3dvcmQ= # password
   root_password: cm9vdF9wYXNzd29yZA== # root_password
 ```
+
+## Erklärung der Konfiguration (ConfigMap)
+
+- **kind: ConfigMap**  
+  Definiert zentrale, nicht-sensible Konfigurationswerte, die von Anwendungen und Datenbanken genutzt werden können.
+
+- **data**  
+  - **database_name: wordpress**:  
+    Setzt den Namen der MariaDB-Datenbank, welche von WordPress verwendet wird.
 
 ### Ingress / Externer Zugriff
 >Regelt den externen Zugriff auf die Anwendung über Hostnamen mithilfe eines Ingress Controllers.
