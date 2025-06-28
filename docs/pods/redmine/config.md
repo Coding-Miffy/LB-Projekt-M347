@@ -71,9 +71,20 @@ spec:
 ### Service
 >Stellt einen internen Kubernetes-Service zur Verfügung, über den die App im Cluster erreichbar ist.
 
-[Hier kommen die Konfigurationsdetails]
 ```yaml
-# service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: redmine-service
+  namespace: m347-redmine
+spec:
+  type: ClusterIP
+  selector:
+    app: redmine
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 3000
 ```
 
 ### Persistente Daten (PVC)
