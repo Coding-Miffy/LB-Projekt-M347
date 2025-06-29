@@ -40,7 +40,7 @@ spec:
       volumes:
         - name: grafana-storage
           persistentVolumeClaim:
-            claimName: grafana-storage
+            claimName: grafana-pvc
         - name: grafana-config
           configMap:
             name: grafana-config
