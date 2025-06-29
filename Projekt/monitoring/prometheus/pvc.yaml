@@ -5,7 +5,8 @@ metadata:
   namespace: m347-prometheus
 spec:
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteOnce                 #So kann nur ein Node gleichzeitig schreiben
   resources:
     requests:
-      storage: 5Gi
+      storage: 10Gi
+  storageClassName: standard
