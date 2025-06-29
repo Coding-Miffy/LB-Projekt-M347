@@ -6,8 +6,6 @@ metadata:
 data:                                       # Ab hier: Datenblock mit Schlüsselwertpaaren
   grafana.ini: |
     [server]
-    root_url = http://localhost:3000
-
-    [security]
-    admin_user = ${GF_SECURITY_ADMIN_USER}
-    admin_password = ${GF_SECURITY_ADMIN_PASSWORD}
+    domain = grafana.m347.ch
+    root_url = %(protocol)s://%(domain)s/
+    serve_from_sub_path = true
