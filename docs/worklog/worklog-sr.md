@@ -1,6 +1,6 @@
 # Arbeitsjournal
-**Autor:in**:  Sascha Ritter
-**Datum**:    
+**Autor:in**: Sascha Ritter   
+**Datum**: 29.06    
 **Version**:  1
 
 ## Arbeitsprotokoll
@@ -8,7 +8,7 @@
 | :-- | :-- | :-- |
 | 29.06.2025 | grafana erstellt |  |
 | 29.06.2025 | prometheus erstellt |  |
-|  |  |  |
+| 29.06.2025 | grafana korrigiert |  |
 
 ## Herausforderungen
 
