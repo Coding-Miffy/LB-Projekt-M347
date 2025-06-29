@@ -1,1 +1,13 @@
+apiVersion: v1                              # API-Version für ConfigMap
+kind: ConfigMap                             # Objekt-Typ: eine ConfigMap 
+metadata:
+  name: grafana-config                      # Interner Name der ConfigMap, über den sie im Deployment referenziert wird
+  namespace: m347-grafana                   # Namespace, in dem die ConfigMap gespeichert ist
+data:                                       # Ab hier: Datenblock mit Schlüsselwertpaaren
+  grafana.ini: |
+    [server]
+    root_url = http://localhost:3000
 
+    [security]
+    admin_user = ${GF_SECURITY_ADMIN_USER}
+    admin_password = ${GF_SECURITY_ADMIN_PASSWORD}
