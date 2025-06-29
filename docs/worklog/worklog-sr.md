@@ -1,7 +1,7 @@
 # Arbeitsjournal
-**Autor:in**:  
+**Autor:in**:  Sascha Ritterr
 **Datum**:    
-**Version**:  
+**Version**:  1
 
 ## Arbeitsprotokoll
 | Datum | Tätigkeit | Bemerkung |
