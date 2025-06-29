@@ -1,5 +1,5 @@
 # Arbeitsjournal
-**Autor:in**:  Sascha Ritterr
+**Autor:in**:  Sascha Ritter
 **Datum**:    
 **Version**:  1
 
