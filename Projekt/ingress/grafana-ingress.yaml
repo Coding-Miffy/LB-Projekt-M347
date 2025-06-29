@@ -2,7 +2,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: grafana-ingress                     # Name des Ingress-Objekts
-  namespace: m347-wordpress                   # Namespace, in dem der dieser Ingress gespeichert ist
+  namespace: m347-grafana                   # Namespace, in dem der dieser Ingress gespeichert ist
 spec:
   ingressClassName: nginx
   rules:
