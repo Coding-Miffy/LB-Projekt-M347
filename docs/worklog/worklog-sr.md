@@ -6,8 +6,8 @@
 ## Arbeitsprotokoll
 | Datum | Tätigkeit | Bemerkung |
 | :-- | :-- | :-- |
-| 01.01.1970 | Default | Default |
-|  |  |  |
+| 29.06.2025 | grafana erstellt |  |
+| 29.06.2025 | prometheus erstellt |  |
 |  |  |  |
 
 ## Herausforderungen
