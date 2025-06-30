@@ -55,29 +55,39 @@ spec:
     spec:
       containers:
       - name: wordpress
-        image: wordpress:latest
+        image: bitnami/wordpress:latest
         ports:
-        - containerPort: 80
+        - containerPort: 8080
         env:
-        - name: WORDPRESS_DB_HOST
+        - name: WORDPRESS_DATABASE_HOST
           value: mariadb-service
-        - name: WORDPRESS_DB_USER
+        - name: WORDPRESS_DATABASE_USER
           valueFrom:
             secretKeyRef:
               name: secret
               key: username
-        - name: WORDPRESS_DB_PASSWORD
+        - name: WORDPRESS_DATABASE_PASSWORD
           valueFrom:
             secretKeyRef:
               name: secret
               key: password
-        - name: WORDPRESS_DB_NAME
+        - name: WORDPRESS_DATABASE_NAME
           valueFrom:
             configMapKeyRef:
               name: configmap
               key: database_name
+        - name: WORDPRESS_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: secret
+              key: WORDPRESS_USERNAME
+        - name: WORDPRESS_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: secret
+              key: WORDPRESS_PASSWORD
         volumeMounts:
-        - mountPath: "/var/www/html"
+        - mountPath: /bitnami/wordpress
           name: wordpress-persistent-storage
       volumes:
       - name: wordpress-persistent-storage
@@ -121,7 +131,7 @@ spec:
   ports:
   - protocol: TCP
     port: 80
-    targetPort: 80
+    targetPort: 8080
 ```
 
 ### Erklärung der Konfiguration (WordPress Service)
@@ -345,10 +355,12 @@ metadata:
   name: secret
   namespace: m347-wordpress
 type: Opaque
-data:
+stringData:
   username: d29yZHByZXNz # wordpress
   password: cGFzc3dvcmQ= # password
   root_password: cm9vdF9wYXNzd29yZA== # root_password
+  WORDPRESS_PASSWORD:  einSicheresPasswort123
+  WORDPRESS_USERNAME: admin
 ```
 
 ### Erklärung der Konfiguration (ConfigMap)
