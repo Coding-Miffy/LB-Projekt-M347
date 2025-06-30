@@ -118,7 +118,7 @@ spec:
   Erstellt einen internen Kubernetes-Service, der Redmine innerhalb des Clusters erreichbar macht.
 
 - **type: ClusterIP**  
-  Der Service ist ausschließlich innerhalb des Kubernetes-Clusters erreichbar und hat keine externe IP-Adresse.
+  Der Service ist ausschliesslich innerhalb des Kubernetes-Clusters erreichbar und hat keine externe IP-Adresse.
 
 - **selector (app: redmine)**  
   Wählt Pods mit dem Label `app: redmine`, um Anfragen an den korrekten Pod weiterzuleiten.
