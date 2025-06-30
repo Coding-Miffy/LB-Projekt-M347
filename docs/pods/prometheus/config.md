@@ -63,7 +63,7 @@ Im Folgenden sind alle YAML-Dateien aufgeführt, die zur Bereitstellung und Konf
 ### Ingress / Externer Zugriff
 >Regelt den externen Zugriff auf Prometheus über den Hostnamen mithilfe eines Ingress Controllers.
 
-Die Datei `prometheus-ingress.yaml` definiert, unter welchem Hostnamen (`prometheus.local`) Prometheus von ausserhalb des Clusters erreichbar ist.  
+Die Datei `prometheus-ingress.yaml` definiert, unter welchem Hostnamen (`prometheus.m347.ch`) Prometheus von ausserhalb des Clusters erreichbar ist.  
 Sie verweist auf den zentralen Ingress Controller und sorgt für die Weiterleitung eingehender Anfragen an den zugehörigen Service von Prometheus.  
 Da das zugrundeliegende Ingress-System für alle Anwendungen identisch ist, wird die übergeordnete Konfiguration des Ingress Controllers inklusive Routingprinzipien und Klassendefinition zentral in der [Konfigurationsdatei des Ingress Controllers](../ingress/config.md) dokumentiert.
 
