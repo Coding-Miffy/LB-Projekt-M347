@@ -52,9 +52,6 @@ Im Folgenden sind alle YAML-Dateien aufgeführt, die zur Bereitstellung und Konf
 ```
 
 #### Secret
->[!NOTE]
->Wird nur benötigt, falls Prometheus Zugangsdaten für bestimmte Targets benötigt.
-
 [Hier kommen die Konfigurationsdetails]
 ```yaml
 # secret.yaml
