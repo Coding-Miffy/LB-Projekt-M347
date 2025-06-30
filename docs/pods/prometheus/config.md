@@ -15,10 +15,11 @@ Im Folgenden sind alle YAML-Dateien aufgeführt, die zur Bereitstellung und Konf
 | Persistent Volume Claim | `pvc.yaml` | Persistenz für Daten |
 | ConfigMap | `configmap.yaml` | Konfigurationsparameter |
 | Secret | `secret.yaml` | Zugangsdaten oder Tokens |
+| Blackbox Exporter | `blackbox-exporter-deployment.yaml` | Überwacht Services |
 | Ingress | `prometheus-ingress.yaml` | Zugriff via Hostname |
 
 ## Files
-### Deployment
+## Deployment
 >Definiert das Deployment für Prometheus inkl. Mount des Volumes, Pfad zur ConfigMap und Container-Ports.
 
 [deployment.yaml](../../../Projekt/monitoring/prometheus/deployment.yaml)
@@ -59,7 +60,27 @@ spec:
             claimName: prometheus-pvc
 ```
 
-### Service
+### Erklärung der Konfiguration 
+- **replicas: 1**  
+  Startet einen einzelnen Prometheus-Pod.
+
+- **image: prom/prometheus**  
+  Nutzt das offizielle Prometheus-Image.
+
+- **ports: 9090**  
+  Stellt den Prometheus-Web-UI und die API auf Port 9090 bereit.
+
+- **volumeMounts**
+  Sagt wo im Container das Volume eingebunden wird. Nutzt den Namen aus `volumes` und gibt einen Pfad an.
+  - **prometheus-config:** Bindet die Konfigurationsdatei aus der ConfigMap.
+  - **prometheus-storage:** Bindet den persistenten Speicher für Zeitreihendaten.
+
+- **volumes**  
+  Definiert welche Volumes im Pod verfügbar sind. Es beschreibt die Quelle des Volumes, also woher die Daten kommen.
+  - **ConfigMap:** Stellt die prometheus.yml im Container bereit.
+  - **PersistentVolumeClaim:** Speichert Prometheus-Daten dauerhaft über `prometheus-pvc`.
+
+## Service
 >Stellt einen internen Kubernetes-Service zur Verfügung, damit z. B. Grafana Prometheus als Datenquelle erreichen kann.
 
 [service.yaml](../../../Projekt/monitoring/prometheus/service.yaml)
@@ -72,13 +93,20 @@ metadata:
 spec:
   type: ClusterIP
   ports:
-    - port: 80                        # Ingress ruft Port 80 auf
-      targetPort: 9090                # Container hört auf 9090
+    - port: 80              
+      targetPort: 9090 
   selector:
     app: prometheus
 ```
 
-### Persistente Daten (PVC)
+### Erklärung der Konfiguration  
+- **type: ClusterIP**  
+  Erstellt einen internen Service, der nur im Kubernetes-Cluster erreichbar ist.
+
+- **selector: app: prometheus**  
+  Verbindet den Service mit dem Prometheus-Pod anhand des Labels `app: prometheus`.
+
+## Persistente Daten (PVC)
 >Stellt ein Persistent Volume bereit, in dem Prometheus seine Zeitreihendaten speichert.
 
 [pvc.yaml](../../../Projekt/monitoring/prometheus/pvc.yaml)
@@ -90,15 +118,24 @@ metadata:
   namespace: m347-prometheus
 spec:
   accessModes:
-    - ReadWriteOnce                 #So kann nur ein Node gleichzeitig schreiben
+    - ReadWriteOnce                 
   resources:
     requests:
       storage: 10Gi
   storageClassName: standard
 ```
 
-### Blackbox-exporter-deployment   
+### Erklärung der Konfiguration 
+- **accessModes: ReadWriteOnce**  
+  Der Speicher darf von genau einem Node gleichzeitig gelesen und beschrieben werden.
 
+- **resources.requests.storage: 10Gi**  
+  Fordert 10 Gigabyte Speicherplatz an.
+
+- **storageClassName: standard**  
+  Verwendet die Standard-StorageClass des Clusters
+
+## Blackbox-exporter-deployment   
    
 [blackbox-exporter-deployment .yaml](../../../Projekt/monitoring/prometheus/blackbox-exporter-deployment.yaml)
 ```yaml
@@ -136,10 +173,28 @@ spec:
       port: 9115
       targetPort: 9115
 ```
-### ConfigMap & Secret
+### Erklärung der Konfiguration
+Hier befinden sich zwei yaml-Files in einem. Zum einen wieder ein Deployment (oben) und ein Service (unten).
+
+#### Deployment
+- **replicas: 1**  
+  Erstellt einen Pod, ausreichend für Entwicklungs- oder Testumgebungen.
+  
+- **image: prom/blackbox-exporter:latest**   
+  Nutzt das offizielle Docker-Image des Blackbox Exporters in der neuesten Version.
+  
+- **containerPort: 9115**   
+  Öffnet Port 9115 im Container, den der Blackbox Exporter standardmäßig für HTTP-/TCP-/ICMP-Checks verwendet.
+
+#### Service
+- **port: 9115 & targetPort: 9115**   
+  Der Service leitet Anfragen auf Port 9115 direkt an den Container-Port weiter. So kann Prometheus den Blackbox Exporter unter `blackbox-exporter:9115` im Cluster erreichen.
+
+
+## ConfigMap & Secret
 >Enthält die zentrale Prometheus-Konfiguration (z. B. scrape-Intervalle, Targets) sowie optionale vertrauliche Informationen.
 
-#### ConfigMap
+### ConfigMap
 [configmap.yaml](../../../Projekt/monitoring/prometheus/configmap.yaml)
 ```yaml
 apiVersion: v1
@@ -206,8 +261,24 @@ data:
           - target_label: __address__
             replacement: blackbox-exporter.m347-prometheus.svc.cluster.local:9115
 ```
+### Erklärung der Konfiguration
+- **scrape_interval: 15s**  
+  Alle 15 Sekunden werden Targets abgefragt.
 
-#### Secret
+- **Job: prometheus**  
+  Überwacht Prometheus selbst auf `localhost:9090`.
+
+- **Job: grafana**  
+  Fragt Grafana direkt über den Cluster-Service `grafana-service` ab.
+
+- **Jobs: wordpress-http, redmine-http, mediawiki-http**  
+  HTTP-Checks auf WordPress, Redmine und MediaWiki über den Blackbox Exporter.
+
+- **metrics_path: /probe & module: http_2xx**  
+  Nutzen den Blackbox Exporter für HTTP-Checks; Erfolg nur bei HTTP-Status 2xx.
+
+
+### Secret
 [secret.yaml](../../../Projekt/monitoring/prometheus/secret.yaml)
 ```yaml
 apiVersion: v1
@@ -216,11 +287,18 @@ metadata:
   name: prometheus-secret
   namespace: m347-prometheus
 type: Opaque
-stringData:                     #Hier können Klartexte eingegeben werden, da automatisch in Base64 kodiert (intern)
+stringData:                     
   admin-user: admin         
   admin-password: password   
-
 ```
+
+### Erklärung der Konfiguration
+- **Kind: Secret**  
+  Speichert sensible Daten wie Benutzernamen und Passwörter.
+
+- **stringData**  
+  Akzeptiert Klartext, muss also nicht Base64-kodiert sein. Es wird dann intern umkodiert.
+
 
 ### Ingress / Externer Zugriff
 >Regelt den externen Zugriff auf Prometheus über den Hostnamen mithilfe eines Ingress Controllers.
