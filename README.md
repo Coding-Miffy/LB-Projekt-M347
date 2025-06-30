@@ -10,7 +10,7 @@
 # Projektdokumentation
 
 **Modul**: 347 - Dienst mit Container anwenden  
-**Projektname**:  
+**Projektname**:  LB M347
 **Autor:innen**: Blumer, Natascha; Ebbinghaus, Max; Ritter, Sascha;  
 **Datum**:  
 **Version**:  
@@ -64,6 +64,9 @@ Ziel ist eine übersichtliche, modulare und nachvollziehbare Darstellung der jew
 - [Ingress - Zur Konfiguration](/docs/pods/ingress/config.md)
 
 ## Automatisierte Installation
+> [!NOTE]
+> Für den Betrieb der Umgebung müssen Docker Desktop, Minikube und Helm bereits installiert sein.
+
 [Hier kommt die Anleitung zur automatisierten Installation]
 
 ### Automatisierte Deinstallation
