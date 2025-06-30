@@ -21,40 +21,166 @@ Im Folgenden sind alle YAML-Dateien aufgeführt, die zur Bereitstellung und Konf
 ### Deployment
 >Definiert das Deployment für Prometheus inkl. Mount des Volumes, Pfad zur ConfigMap und Container-Ports.
 
-[Hier kommen die Konfigurationsdetails]
+[deployment.yaml](../../../Projekt/monitoring/prometheus/deployment.yaml)
 ```yaml
-# deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prometheus
+  namespace: m347-prometheus
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: prometheus
+  template:
+    metadata:
+      labels:
+        app: prometheus
+    spec:
+      containers:
+        - name: prometheus
+          image: prom/prometheus
+          args:
+            - "--config.file=/etc/prometheus/prometheus.yml"
+          ports:
+            - containerPort: 9090
+          volumeMounts:
+            - name: prometheus-config
+              mountPath: /etc/prometheus
+            - name: prometheus-storage
+              mountPath: /prometheus
+      volumes:
+        - name: prometheus-config
+          configMap:
+            name: prometheus-config
+        - name: prometheus-storage
+          persistentVolumeClaim:
+            claimName: prometheus-pvc
 ```
 
 ### Service
 >Stellt einen internen Kubernetes-Service zur Verfügung, damit z. B. Grafana Prometheus als Datenquelle erreichen kann.
 
-[Hier kommen die Konfigurationsdetails]
+[service.yaml](../../../Projekt/monitoring/prometheus/service.yaml)
 ```yaml
-# service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: prometheus-service
+  namespace: m347-prometheus
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80                        # Ingress ruft Port 80 auf
+      targetPort: 9090                # Container hört auf 9090
+  selector:
+    app: prometheus
 ```
 
 ### Persistente Daten (PVC)
 >Stellt ein Persistent Volume bereit, in dem Prometheus seine Zeitreihendaten speichert.
 
-[Hier kommen die Konfigurationsdetails]
+[pvc.yaml](../../../Projekt/monitoring/prometheus/pvc.yaml)
 ```yaml
-# pvc.yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: prometheus-pvc
+  namespace: m347-prometheus
+spec:
+  accessModes:
+    - ReadWriteOnce                 #So kann nur ein Node gleichzeitig schreiben
+  resources:
+    requests:
+      storage: 10Gi
+  storageClassName: standard
 ```
 
 ### ConfigMap & Secret
 >Enthält die zentrale Prometheus-Konfiguration (z. B. scrape-Intervalle, Targets) sowie optionale vertrauliche Informationen.
 
 #### ConfigMap
-[Hier kommen die Konfigurationsdetails]
+[configmap.yaml](../../../Projekt/monitoring/prometheus/configmap.yaml)
 ```yaml
-# configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prometheus-config
+  namespace: m347-prometheus
+data:
+  prometheus.yml: |
+    global:
+      scrape_interval: 15s
+    scrape_configs:
+      - job_name: prometheus
+        static_configs:
+          - targets: ['localhost:9090']
+
+      - job_name: grafana
+        static_configs:
+          - targets: 
+              - grafana-service.m347-grafana.svc.cluster.local:80
+
+      - job_name: wordpress-http
+        metrics_path: /probe
+        params:
+          module: [http_2xx]
+        static_configs:
+          - targets:
+              - wordpress-service.m347-wordpress.svc.cluster.local
+        relabel_configs:
+          - source_labels: [__address__]
+            target_label: __param_target
+          - source_labels: [__param_target]
+            target_label: instance
+          - target_label: __address__
+            replacement: blackbox-exporter.m347-prometheus.svc.cluster.local:9115
+
+      - job_name: redmine-http
+        metrics_path: /probe
+        params:
+          module: [http_2xx]
+        static_configs:
+          - targets:
+              - redmine-service.m347-redmine.svc.cluster.local
+        relabel_configs:
+          - source_labels: [__address__]
+            target_label: __param_target
+          - source_labels: [__param_target]
+            target_label: instance
+          - target_label: __address__
+            replacement: blackbox-exporter.m347-prometheus.svc.cluster.local:9115
+
+      - job_name: mediawiki-http
+        metrics_path: /probe
+        params:
+          module: [http_2xx]
+        static_configs:
+          - targets:
+              - mediawiki-service.m347-mediawiki.svc.cluster.local
+        relabel_configs:
+          - source_labels: [__address__]
+            target_label: __param_target
+          - source_labels: [__param_target]
+            target_label: instance
+          - target_label: __address__
+            replacement: blackbox-exporter.m347-prometheus.svc.cluster.local:9115
 ```
 
 #### Secret
-[Hier kommen die Konfigurationsdetails]
+[secret.yaml](../../../Projekt/monitoring/prometheus/secret.yaml)
 ```yaml
-# secret.yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: prometheus-secret
+  namespace: m347-prometheus
+type: Opaque
+stringData:                     #Hier können Klartexte eingegeben werden, da automatisch in Base64 kodiert (intern)
+  admin-user: admin         
+  admin-password: password   
+
 ```
 
 ### Ingress / Externer Zugriff
