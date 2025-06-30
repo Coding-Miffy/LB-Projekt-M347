@@ -1,9 +1,11 @@
 # Konfiguration - Prometheus
-[Einleitung]
 
-- **Verwendung**:
-- **Einsatzgrund**:
-- **Rolle im System**:
+- **Verwendung**:  
+  Prometheus wird als Monitoring-Lösung innerhalb des Kubernetes-Clusters betrieben. Die Konfiguration erfolgt über eigenständige YAML-Dateien, die das Deployment, den Netzwerkzugriff, die Speicherung von Metriken und die Integration mit Exportern (z. B. Blackbox Exporter) definieren.
+- **Einsatzgrund**:  
+  Prometheus ist ein etabliertes Open-Source-Monitoring- und Alerting-System, das besonders für die Überwachung von Cloud-nativen Umgebungen entwickelt wurde. Es ermöglicht die kontinuierliche Sammlung von Zeitreihenmetriken, bietet leistungsfähige Abfragemöglichkeiten und eine hohe Flexibilität durch modulare Konfiguration.
+- **Rolle im System**:  
+  Prometheus übernimmt die Aufgabe der Überwachung und stellt Metriken für Anwendungen wie Grafana bereit. Es überwacht sowohl sich selbst als auch die Dienste Redmine, WordPress und MediaWiki über HTTP-Checks mit dem Blackbox Exporter. Die Anwendung speichert alle gesammelten Metriken dauerhaft und ist über Ingress erreichbar.
 
 ## Ressourcen - Anwendung
 Im Folgenden sind alle YAML-Dateien aufgeführt, die zur Bereitstellung und Konfiguration der Anwendung benötigt werden. Sie decken u. a. Container-Deployment, Netzwerkzugriff, Speicheranbindung sowie Konfigurations- und Zugriffsdaten ab.
@@ -263,7 +265,7 @@ data:
 ```
 ### Erklärung der Konfiguration
 - **scrape_interval: 15s**  
-  Alle 15 Sekunden werden Targets abgefragt.
+  Alle 15 Sekunden werden Targets abgefragt. Kleinere Zeitintervalle ergeben besseres Monitoring, dafür grössere Serverbelastung. Umgekehrt könnte man bei einem grösseres Zeitintervall kleinere Ausfälle übersehen.
 
 - **Job: prometheus**  
   Überwacht Prometheus selbst auf `localhost:9090`.
