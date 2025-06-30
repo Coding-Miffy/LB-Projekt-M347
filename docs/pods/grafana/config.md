@@ -1,9 +1,11 @@
 # Konfiguration - Grafana
-[Einleitung]
 
 - **Verwendung**:
+  Grafana wird als Dashboard- und Visualisierungslösung innerhalb des Kubernetes-Clusters betrieben. Die Konfiguration erfolgt über eigenständige YAML-Dateien, die das Deployment, Netzwerkzugriff, persistente Speicherung und Provisioning von Dashboards und Datenquellen definieren.
 - **Einsatzgrund**:
+  Grafana ist eine weit verbreitete Open-Source-Plattform für die Visualisierung von Zeitreihenmetriken. Es ermöglicht die flexible Erstellung von Dashboards, die Darstellung von Messwerten aus Prometheus und anderen Datenquellen und bietet leistungsstarke Funktionen zur Analyse und Darstellung von Monitoring-Daten.
 - **Rolle im System**:
+  Grafana dient als Frontend zur Darstellung und Auswertung der von Prometheus gesammelten Metriken. Es bietet Dashboards zur Überwachung der Anwendungslandschaft (z. B. WordPress, Redmine, MediaWiki) und ermöglicht eine schnelle Diagnose von Problemen. Die Anwendung ist über Ingress extern erreichbar und speichert Dashboards und Konfigurationen persistent.
 
 ## Ressourcen - Anwendung
 Im Folgenden sind alle YAML-Dateien aufgeführt, die zur Bereitstellung und Konfiguration von **Grafana** benötigt werden. Sie definieren unter anderem das Deployment, Netzwerkzugang, persistente Datenspeicherung und die automatische Anbindung an **Prometheus**.
@@ -19,7 +21,7 @@ Im Folgenden sind alle YAML-Dateien aufgeführt, die zur Bereitstellung und Konf
 | Ingress | `grafana-ingress.yaml` | Zugriff via Hostname |
 
 ## Files
-### Deployment
+## Deployment
 >Startet den Grafana-Pod mit allen nötigen Konfigurationen, Volumes und Umgebungsvariablen. Verlinkt u. a. PVC, ConfigMap und Secret.
 
 [deployment.yaml](../../../Projekt/monitoring/grafana/deployment.yaml)
@@ -70,7 +72,27 @@ spec:
 
 ```
 
-### Service
+### Erklärung der Konfiguration 
+
+- **image: grafana/grafana:latest**  
+  Verwendet das offizielle Grafana-Image in der neuesten Version.
+
+- **volumeMounts**  
+  Sagt wo im Container das Volume eingebunden wird. Nutzt den Namen aus `volumes` und gibt einen Pfad an.
+  - **grafana-storage:** Bindet den persistenten Speicher unter `/var/lib/grafana`, z.B. für Dashboards oder User-Daten.
+  - **grafana-datasource:** Bindet die Datenquellen-Konfiguration aus der ConfigMap unter `/etc/grafana/provisioning/datasources`.
+
+- **env**
+  - **GF_SECURITY_ADMIN_USER & GF_SECURITY_ADMIN_PASSWORD:**  
+    Lesen Admin-Benutzername und Passwort aus dem Secret `grafana-secret` und setzen sie als Umgebungsvariablen für Grafana.
+
+- **volumes**  
+   Definiert welche Volumes im Pod verfügbar sind. Es beschreibt die Quelle des Volumes, also woher die Daten kommen.
+  - **PersistentVolumeClaim:** Speichert Grafana-Daten dauerhaft.
+  - **ConfigMap:** Enthält Konfigurationen für automatisch provisionierte Datenquellen.
+
+
+## Service
 >Stellt einen internen Kubernetes-Service zur Verfügung, über den Grafana im Cluster erreichbar ist.
 
 [service.yaml](../../../Projekt/monitoring/grafana/service.yaml)
@@ -88,8 +110,16 @@ spec:
   selector:
     app: grafana
 ```
+### Erklärung der Konfiguration
 
-### Persistente Daten (PVC)
+- **type: ClusterIP**  
+  Erstellt einen internen Service, der nur innerhalb des Kubernetes-Clusters erreichbar ist.
+
+- **selector: app: grafana**  
+  Verbindet den Service mit dem Grafana-Pod über das Label `app: grafana`.
+
+
+## Persistente Daten (PVC)
 >Verknüpft Grafana mit einem Persistent Volume, um Daten wie gespeicherte Dashboards und User-Einstellungen dauerhaft zu sichern.
 
 [pvc.yaml](../../../Projekt/monitoring/grafana/pvc.yaml)
@@ -106,19 +136,26 @@ spec:
     requests:
       storage: 10Gi
 ```
+### Erklärung der Konfiguration
 
-### ConfigMap & Secret
+- **accessModes: ReadWriteOnce**  
+  Der Speicher darf von genau einem Node gleichzeitig gelesen und beschrieben werden.
+
+- **resources.requests.storage: 10Gi**  
+  Fordert 10 Gigabyte Speicherplatz für die dauerhafte Speicherung von Grafana-Daten an.
+
+## ConfigMap & Secret
 >Stellt Konfigurationswerte und Zugangsdaten bereit, auf die Grafana beim Start zugreift.
 
-#### ConfigMap
+### ConfigMap
 [configmap.yaml](../../../Projekt/monitoring/grafana/configmap.yaml)
 ```yaml
-apiVersion: v1                              # API-Version für ConfigMap
-kind: ConfigMap                             # Objekt-Typ: eine ConfigMap 
+apiVersion: v1        
+kind: ConfigMap    
 metadata:
-  name: grafana-config                      # Interner Name der ConfigMap, über den sie im Deployment referenziert wird
-  namespace: m347-grafana                   # Namespace, in dem die ConfigMap gespeichert ist
-data:                                       # Ab hier: Datenblock mit Schlüsselwertpaaren
+  name: grafana-config     
+  namespace: m347-grafana                  
+data:                                       
   grafana.ini: |
     [server]
     root_url = http://localhost:3000
@@ -126,8 +163,18 @@ data:                                       # Ab hier: Datenblock mit Schlüssel
     admin_user = ${GF_SECURITY_ADMIN_USER}
     admin_password = ${GF_SECURITY_ADMIN_PASSWORD}
 ```
+### Erklärung der Konfiguration
 
-#### Secret
+- **kind: ConfigMap**  
+  Enthält Konfigurationsdateien für Grafana, hier speziell die `grafana.ini`.
+
+- **grafana.ini**
+  - **[server] root_url:**  
+    Legt die Basis-URL fest, unter der Grafana erreichbar ist (hier lokal auf Port 3000).
+  - **[security] admin_user & admin_password:**  
+    Verwenden Umgebungsvariablen (`GF_SECURITY_ADMIN_USER`, `GF_SECURITY_ADMIN_PASSWORD`) für den Admin-Login.
+
+### Secret
 [secret.yaml](../../../Projekt/monitoring/grafana/secret.yaml)
 ```yaml
 apiVersion: v1
@@ -136,13 +183,22 @@ metadata:
   name: grafana-secret
   namespace: m347-grafana
 type: Opaque
-stringData:                     #Hier können Klartexte eingegeben werden, da automatisch in Base64 kodiert (intern)
+stringData:         
   GF_SECURITY_ADMIN_USER: admin         
   GF_SECURITY_ADMIN_PASSWORD: password   
-
 ```
+### Erklärung der Konfiguration
 
-### Data Provisioning
+- **kind: Secret**  
+  Speichert sensible Daten wie den Admin-Benutzernamen und das Passwort für Grafana.
+
+- **stringData**
+  Akzeptiert Klartext, muss also nicht Base64-kodiert sein. Es wird dann intern umkodiert.
+  - **GF_SECURITY_ADMIN_USER:** Benutzername für den Admin-Login (hier „admin“).
+  - **GF_SECURITY_ADMIN_PASSWORD:** Passwort für den Admin-Login (hier „password“).
+
+
+## Data Provisioning
 >Definiert in YAML die automatische Anbindung von Prometheus als Datenquelle. Wird beim Start von Grafana erkannt und geladen.
 
 [data-provisioning.yaml](../../../Projekt/monitoring/grafana/data-provisioning.yaml)
@@ -164,8 +220,18 @@ data:
         access: proxy
         isDefault: true
 ```
+### Erklärung der Konfiguration
 
-### Ingress / Externer Zugriff
+- **labels: grafana_datasource: "1"**  
+  Markiert die ConfigMap als Datenquellen-Provisionierung für Grafana.
+
+- **datasource.yaml**
+  - **name: Prometheus:** Legt „Prometheus“ als Datenquelle fest.
+  - **type: prometheus:** Datenquelle ist vom Typ Prometheus.
+  - **isDefault: true:** Macht diese Datenquelle zur Standardquelle in Grafana.
+
+
+## Ingress / Externer Zugriff
 >Regelt den externen Zugriff auf Grafama über den Hostnamen mithilfe eines Ingress Controllers.
 
 Die Datei `grafana-ingress.yaml` definiert, unter welchem Hostnamen (`grafana.m347.ch`) Grafana von ausserhalb des Clusters erreichbar ist.  
