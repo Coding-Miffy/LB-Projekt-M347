@@ -1,6 +1,7 @@
 > [!IMPORTANT]
 > Infrastruktur Anpassungen TBD (Natascha):
-> - Redmine: PostgreSQL anstatt MariaDB
+> - Redmine: PostgreSQL anstatt MariaDB / WordPress MariaDB anstatt MySQL
+> - Erreichbarkeit Domain
 
 # Infrastruktur
 ![Diagramm der Infrastruktur](/docs/images/infrastructure.png)
