@@ -17,19 +17,30 @@ Im Testprotokoll werden die ausgeführten Testfälle mit Beschreibung, Ergebnis 
 | Nr. | Testfall                   | Beschreibung                                 | Erwartetes Ergebnis              | Status |
 |:---:|:---------------------------|:---------------------------------------------|:---------------------------------|:------:|
 | R-01| Zugriff via Ingress        | Redmine über `redmine.m347.ch` aufrufen      | Startseite lädt korrekt          |   ✅   |
-| R-02| Admin-Login                | Login: User `admin`, PW `admin123`           | Login erfolgreich                |   ✅   |
+| R-02| Admin-Login                | Login: User `admin`, PW `admin`           | Login erfolgreich                |   ✅   |
 | R-03| Ticket & Pod Neustart      | Ticket erstellen, Pod löschen, neu abrufen   | Ticket bleibt erhalten           |   ✅   |
 | R-04| DB-Verbindung              | Redmine-Start, Log-Check auf DB-Fehler       | Start ohne DB-Fehler             |   ✅   |
 | R-05| Startseite bearbeiten      | Startseite ändern und speichern              | Änderung sichtbar                |   ✅   |
 
-## R-01: Name
-**Testdatum**:  
-**Tester:in**:  
-**Beschreibung**:  
-**Erwartetes Verhalten**:  
-**Tatsächliches Verhalten**:  
-**Status**: Symbol oder leer  
-**Bemerkung**:  
+### Testfall R-01: Zugriff via Ingress
+
+**Testbeschreibung:**  
+Aufrufen der Redmine-Webseite über die definierte Ingress-URL.
+
+**Testschritte:**  
+1. Browser öffnen.
+2. URL `http://redmine.m347.ch` eingeben.
+
+**Erwartetes Ergebnis:**  
+Die Redmine-Startseite wird korrekt geladen und ohne Fehler angezeigt.
+
+**Tatsächliches Ergebnis:**  
+Die Redmine-Startseite wurde problemlos geladen und fehlerfrei angezeigt.
+
+| Datum       | Tester  | Status |
+|-------------|---------|--------|
+| 30.06.2025  | Max     | ✅ OK  |
+  
 
 ## R-02: Name
 **Testdatum**:  
