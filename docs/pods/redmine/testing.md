@@ -41,15 +41,29 @@ Die Redmine-Startseite wurde problemlos geladen und fehlerfrei angezeigt.
 |-------------|---------|--------|
 | 30.06.2025  | Max     | ✅ OK  |
   
+### Testfall R-02: Admin-Login testen
 
-## R-02: Name
-**Testdatum**:  
-**Tester:in**:  
-**Beschreibung**:  
-**Erwartetes Verhalten**:  
-**Tatsächliches Verhalten**:  
-**Status**: Symbol oder leer  
-**Bemerkung**:  
+**Testbeschreibung:**  
+Prüfen, ob der Admin-Login bei Redmine funktioniert.
+
+**Testschritte:**  
+1. Browser öffnen und URL `http://redmine.m347.ch` eingeben.
+2. Auf den Button **Anmelden** klicken.
+3. Folgende Zugangsdaten eingeben:
+   - Benutzername: `admin`
+   - Passwort: `admin`
+4. Auf den Button **Anmelden** klicken.
+
+**Erwartetes Ergebnis:**  
+Das Admin-Dashboard wird erfolgreich angezeigt.
+
+**Tatsächliches Ergebnis:**  
+Das Admin-Dashboard wurde erfolgreich geladen und angezeigt.
+
+| Datum       | Tester  | Status |
+|-------------|---------|--------|
+| 30.06.2025  | Max     | ✅ OK  |
+
 
 ## Legende - Statuswerte
 Die folgende Legende dient zur Bewertung und schnellen Einschätzung der Testergebnisse:
