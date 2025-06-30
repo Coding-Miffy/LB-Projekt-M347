@@ -203,6 +203,8 @@ Während der Bearbeitung des Projekts haben wir verschiedene Formen der Unterst�
 - Unterstützung bei der Fehlersuche, beim Debugging und bei der Lösungsfindung
 - Beratend bei Fragen und Unklarheiten zur Materie
 - Unterstützung beim Erstellen der Projektstruktur
+- Unterstützung beim Erstellen der Batchfiles
+- Testen der Installation und Gegenlesen
 
 ### ChatGPT
 - Rechtschreibekorrektur und Formulierungshilfe beim Verfassen der Dokumentation
@@ -210,6 +212,8 @@ Während der Bearbeitung des Projekts haben wir verschiedene Formen der Unterst�
 - Fehlersuche
 - Inspirationsgebend bei den Testfällen
 - Unterstützung beim Aufsetzen von Prometheus und Grafana
+- Unterstützung beim Aufsetzen von Redmine und WordPress
+- Hilfreich beim Nachschlagen von Konventionen
 
 ### Weitere Quellen
 - [https://kubernetes.io/docs/concepts/services-networking/service/](https://kubernetes.io/docs/concepts/services-networking/service/)
