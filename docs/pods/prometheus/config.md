@@ -72,7 +72,7 @@ spec:
 - **ports: 9090**  
   Stellt den Prometheus-Web-UI und die API auf Port 9090 bereit.
 
-- **volumeMounts**
+- **volumeMounts**  
   Sagt wo im Container das Volume eingebunden wird. Nutzt den Namen aus `volumes` und gibt einen Pfad an.
   - **prometheus-config:** Bindet die Konfigurationsdatei aus der ConfigMap.
   - **prometheus-storage:** Bindet den persistenten Speicher für Zeitreihendaten.
@@ -310,5 +310,5 @@ Sie verweist auf den zentralen Ingress Controller und sorgt für die Weiterleitu
 Da das zugrundeliegende Ingress-System für alle Anwendungen identisch ist, wird die übergeordnete Konfiguration des Ingress Controllers inklusive Routingprinzipien und Klassendefinition zentral in der [Konfigurationsdatei des Ingress Controllers](../ingress/config.md) dokumentiert.
 
 ## Besonderheiten & Herausforderungen
-[Hier kommt ein Fazit zur Konfiguration und ggf. Herausforderungen]
+Die Implementierung von Prometheus als Monitoring-Lösung im Kubernetes-Cluster erforderte eine präzise Konfiguration der Scrape-Jobs, um sowohl interne Metriken als auch End-to-End-Checks über den Blackbox Exporter abzudecken. Eine Herausforderung war dabei die zuverlässige Integration des Blackbox Exporters und die exakte Definition der relabel_configs, damit Prometheus korrekt auf externe Services zugreifen konnte. Darüber hinaus musste die persistente Speicherung der Metriken sichergestellt werden, um Langzeitdaten auch bei Neustarts zu erhalten und eine kontinuierliche Überwachung zu gewährleisten.
 
