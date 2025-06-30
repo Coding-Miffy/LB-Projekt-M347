@@ -22,6 +22,7 @@ Die YAML-Dateien werden nun in sinnvoller Reihenfolge an den Cluster übergeben.
 ```powershell
 kubectl apply -f monitoring/grafana/pvc.yaml
 kubectl apply -f monitoring/grafana/configmap.yaml
+kubectl apply -f monitoring/grafana/data-provisioning.yaml
 kubectl apply -f monitoring/grafana/secret.yaml
 kubectl apply -f monitoring/grafana/deployment.yaml
 kubectl apply -f monitoring/grafana/service.yaml
