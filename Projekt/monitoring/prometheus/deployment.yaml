@@ -23,7 +23,7 @@ spec:
           volumeMounts:
             - name: prometheus-config
               mountPath: /etc/prometheus
-            - name: prometheus-persistent-storage
+            - name: prometheus-storage
               mountPath: /prometheus
       volumes:
         - name: prometheus-config

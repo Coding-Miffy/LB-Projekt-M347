@@ -11,6 +11,6 @@ data:
     datasources:
       - name: Prometheus
         type: prometheus
-        url: http://prometheus.m347.ch
+        url: http://prometheus-service.m347-prometheus.svc.cluster.local:80
         access: proxy
         isDefault: true

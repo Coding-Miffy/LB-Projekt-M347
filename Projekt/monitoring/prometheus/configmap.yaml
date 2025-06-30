@@ -14,4 +14,50 @@ data:
 
       - job_name: grafana
         static_configs:
-          - targets: ['grafana.m347.ch']
+          - targets: 
+              - grafana-service.m347-grafana.svc.cluster.local:80
+
+      - job_name: wordpress-http
+        metrics_path: /probe
+        params:
+          module: [http_2xx]
+        static_configs:
+          - targets:
+              - wordpress-service.m347-wordpress.svc.cluster.local
+        relabel_configs:
+          - source_labels: [__address__]
+            target_label: __param_target
+          - source_labels: [__param_target]
+            target_label: instance
+          - target_label: __address__
+            replacement: blackbox-exporter.m347-prometheus.svc.cluster.local:9115
+
+      - job_name: redmine-http
+        metrics_path: /probe
+        params:
+          module: [http_2xx]
+        static_configs:
+          - targets:
+              - redmine-service.m347-redmine.svc.cluster.local
+        relabel_configs:
+          - source_labels: [__address__]
+            target_label: __param_target
+          - source_labels: [__param_target]
+            target_label: instance
+          - target_label: __address__
+            replacement: blackbox-exporter.m347-prometheus.svc.cluster.local:9115
+
+      - job_name: mediawiki-http
+        metrics_path: /probe
+        params:
+          module: [http_2xx]
+        static_configs:
+          - targets:
+              - mediawiki-service.m347-mediawiki.svc.cluster.local
+        relabel_configs:
+          - source_labels: [__address__]
+            target_label: __param_target
+          - source_labels: [__param_target]
+            target_label: instance
+          - target_label: __address__
+            replacement: blackbox-exporter.m347-prometheus.svc.cluster.local:9115
