@@ -97,6 +97,45 @@ spec:
   storageClassName: standard
 ```
 
+### Blackbox-exporter-deployment   
+
+   
+[blackbox-exporter-deployment .yaml](../../../Projekt/monitoring/prometheus/blackbox-exporter-deployment.yaml)
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: blackbox-exporter
+  namespace: m347-prometheus
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: blackbox-exporter
+  template:
+    metadata:
+      labels: 
+        app: blackbox-exporter
+    spec:
+      containers:
+        - name: blackbox-exporter
+          image: prom/blackbox-exporter:latest
+          ports:
+            - containerPort: 9115
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: blackbox-exporter
+  namespace: m347-prometheus
+spec:
+  selector:
+    app: blackbox-exporter
+  ports:
+    - protocol: TCP
+      port: 9115
+      targetPort: 9115
+```
 ### ConfigMap & Secret
 >Enthält die zentrale Prometheus-Konfiguration (z. B. scrape-Intervalle, Targets) sowie optionale vertrauliche Informationen.
 
