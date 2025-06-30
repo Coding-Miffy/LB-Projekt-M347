@@ -140,6 +140,9 @@ Die folgenden Seiten beschreiben die Installation jeder Komponente im Detail:
 - [Grafana - Zur Installationsanleitung](/docs/pods/grafana/installation.md)
 - [Ingress - Zur Installationsanleitung](/docs/pods/ingress/installation.md)
 
+## Automatisierte Installation
+[Hier kommt die Anleitung zur automatisierten Installation]
+
 ## Testplan & Testergebnisse
 Zur Qualitätssicherung und Funktionsüberprüfung unserer Kubernetes-Infrastruktur wurden gezielte Tests für jede zentrale Systemkomponente durchgeführt. Dabei lag der Fokus auf folgenden Aspekten:
 - **Korrekte Netzwerkverbindungen** (z. B. über ClusterIP oder Ingress),
