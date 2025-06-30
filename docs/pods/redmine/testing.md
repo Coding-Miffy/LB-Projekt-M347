@@ -97,6 +97,36 @@ Prüfen, ob Redmine nach Pod-Neustart weiterhin auf die Datenbank zugreifen kann
 |-------------|---------|--------|
 | 30.06.2025  | Max     | ✅ OK  |
 
+### Testfall R-05: Startseite bearbeiten
+
+**Testbeschreibung:**  
+Prüfen, ob der Begrüßungstext der Redmine-Startseite erfolgreich geändert werden kann.
+
+**Testschritte:**
+
+1. Redmine als Admin öffnen:
+   ```
+   http://redmine.m347.ch
+   ```
+
+2. Navigation zu:
+   ```
+   Administration → Einstellungen → Allgemein
+   ```
+
+3. Feld **„Begrüßungstext“** ändern und speichern.
+
+4. Startseite neu laden und prüfen, ob die Änderung sichtbar ist.
+
+**Erwartetes Ergebnis:**  
+Die Änderung am Begrüßungstext wird gespeichert und dauerhaft angezeigt.
+
+**Tatsächliches Ergebnis:**  
+Änderung wurde gespeichert und korrekt angezeigt.
+
+| Datum       | Tester  | Status |
+|-------------|---------|--------|
+| 30.06.2025  | Max     | ✅ OK  |
 
 ## Legende - Statuswerte
 Die folgende Legende dient zur Bewertung und schnellen Einschätzung der Testergebnisse:
