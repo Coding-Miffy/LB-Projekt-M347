@@ -196,19 +196,24 @@ Die folgenden Links führen direkt zu den jeweiligen Arbeitsjournalen:
 Während der Bearbeitung des Projekts haben wir verschiedene Formen der Unterstützung in Anspruch genommen – fachlich, methodisch und sprachlich. Der folgende Abschnitt dokumentiert, welche **externen Hilfestellungen** zum Einsatz kamen und in welcher Form sie das Projekt beeinflusst haben.
 
 ### Yves Kaufmann (Dozent M347)
-- Laufende Unterstützung bei der Konstruktion des Infrastrukturdiagramms
+- Unterstützung bei der Konstruktion des Infrastrukturdiagramms
 
 ### Thomas Kägi (Ausbildner, NB)
-- [Ustü]
+- Unterstützung bei der Informationssammlung und beim Brainstorming
+- Unterstützung bei der Fehlersuche, beim Debugging und bei der Lösungsfindung
+- Beratend bei Fragen und Unklarheiten zur Materie
+- Unterstützung beim Erstellen der Projektstruktur
 
 ### ChatGPT
 - Rechtschreibekorrektur und Formulierungshilfe beim Verfassen der Dokumentation
 - Unterstützung bei der Installation von Helm
 - Fehlersuche
 - Inspirationsgebend bei den Testfällen
+- Unterstützung beim Aufsetzen von Prometheus und Grafana
 
 ### Weitere Quellen
 - [https://kubernetes.io/docs/concepts/services-networking/service/](https://kubernetes.io/docs/concepts/services-networking/service/)
 - [https://hub.docker.com/r/bitnami/wordpress](https://hub.docker.com/r/bitnami/wordpress)
 - [https://hub.docker.com/r/prom/prometheus](https://hub.docker.com/r/prom/prometheus)
 - [https://hub.docker.com/r/grafana/grafana](https://hub.docker.com/r/grafana/grafana)
+- [https://codebeautify.org/yaml-validator](https://codebeautify.org/yaml-validator)
