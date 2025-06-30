@@ -24,14 +24,21 @@ kubectl apply -f mediawiki/db-deployment.yaml
 kubectl apply -f mediawiki/deployment.yaml
 kubectl apply -f mediawiki/db-service.yaml
 kubectl apply -f mediawiki/service.yaml
-:: LocalSettings.php?
+
+echo Warte auf MediaWiki-Datenbank...
+timeout /t 5 >nul
+
+FOR /F "tokens=1" %%i IN ('kubectl get pods -n m347-mediawiki --no-headers ^| findstr /V db') DO (
+    echo Running MediaWiki install in pod %%i
+    kubectl exec -n m347-mediawiki -it %%i -- /bin/bash -c "php maintenance/run.php install --dbname=mediawiki --dbserver=\"mediawiki-db-service\" --installdbuser=mwuser --installdbpass=mwpass123 --dbuser=mwuser --dbpass=mwpass123 --server=\"http://mediawiki.m347.ch\" --scriptpath= --lang=de --pass=Adminpassword \"Intranet\" \"Admin\""
+)
 
 echo WordPress installieren
 kubectl create namespace m347-wordpress
 kubectl apply -f wordpress/configmap.yaml
 kubectl apply -f wordpress/secret.yaml
 kubectl apply -f wordpress/db-pvc.yaml
-kubectl apply -f wordpress/pvc.yaml
+kubectl apply -f wordpress/pvc.yamlube
 kubectl apply -f wordpress/db-deployment.yaml
 kubectl apply -f wordpress/deployment.yaml
 kubectl apply -f wordpress/db-service.yaml
@@ -61,12 +68,19 @@ helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
 helm repo update
 kubectl create namespace ingress-nginx
 helm install ingress-nginx ingress-nginx/ingress-nginx --namespace ingress-nginx
+
+echo Warte auf Ingress Controller...
+timeout /t 5 >nul
+
 kubectl apply -f ../ingress/ingress-class.yaml
 kubectl apply -f ../ingress/redmine-ingress.yaml
 kubectl apply -f ../ingress/mediawiki-ingress.yaml
 kubectl apply -f ../ingress/wordpress-ingress.yaml
 kubectl apply -f ../ingress/prometheus-ingress.yaml
 kubectl apply -f ../ingress/grafana-ingress.yaml
+
+echo Netzwerkzugriff ermoeglichen
+minikube tunnel
 
 pause
 
