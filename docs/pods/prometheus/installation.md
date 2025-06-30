@@ -25,11 +25,8 @@ kubectl apply -f monitoring/prometheus/configmap.yaml
 kubectl apply -f monitoring/prometheus/secret.yaml
 kubectl apply -f monitoring/prometheus/deployment.yaml
 kubectl apply -f monitoring/prometheus/service.yaml
+kubectl apply -f monitoring/prometheus/blackbox-exporter-deployment.yaml
 ```
-> [!NOTE]
-> Frage:   
-> muss `blackbox-exporter-deployment.yaml`auch so deployt werden? funktionert ja auch ohne
-
 
 ## 3. Status der Pods prüfen
    
