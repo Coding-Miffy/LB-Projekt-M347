@@ -22,48 +22,147 @@ Im Folgenden sind alle YAML-Dateien aufgeführt, die zur Bereitstellung und Konf
 ### Deployment
 >Startet den Grafana-Pod mit allen nötigen Konfigurationen, Volumes und Umgebungsvariablen. Verlinkt u. a. PVC, ConfigMap und Secret.
 
-[Hier kommen die Konfigurationsdetails]
+[deployment.yaml](../../../Projekt/monitoring/grafana/deployment.yaml)
 ```yaml
-# deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grafana
+  namespace: m347-grafana
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: grafana
+  template:
+    metadata:
+      labels:
+        app: grafana
+    spec:
+      containers:
+        - name: grafana
+          image: grafana/grafana:latest
+          ports:
+            - containerPort: 3000
+          volumeMounts:
+            - name: grafana-storage
+              mountPath: /var/lib/grafana
+            - name: grafana-datasource
+              mountPath: /etc/grafana/provisioning/datasources
+          env:
+            - name: GF_SECURITY_ADMIN_USER
+              valueFrom:
+                secretKeyRef:
+                  name: grafana-secret
+                  key: GF_SECURITY_ADMIN_USER
+            - name: GF_SECURITY_ADMIN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: grafana-secret
+                  key: GF_SECURITY_ADMIN_PASSWORD
+      volumes:
+        - name: grafana-storage
+          persistentVolumeClaim:
+            claimName: grafana-pvc
+        - name: grafana-datasource
+          configMap:
+            name: grafana-config
+
 ```
 
 ### Service
 >Stellt einen internen Kubernetes-Service zur Verfügung, über den Grafana im Cluster erreichbar ist.
 
-[Hier kommen die Konfigurationsdetails]
+[service.yaml](../../../Projekt/monitoring/grafana/service.yaml)
 ```yaml
-# service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: grafana-service
+  namespace: m347-grafana
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: 3000
+  selector:
+    app: grafana
 ```
 
 ### Persistente Daten (PVC)
 >Verknüpft Grafana mit einem Persistent Volume, um Daten wie gespeicherte Dashboards und User-Einstellungen dauerhaft zu sichern.
 
-[Hier kommen die Konfigurationsdetails]
+[pvc.yaml](../../../Projekt/monitoring/grafana/pvc.yaml)
 ```yaml
-# pvc.yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: grafana-pvc
+  namespace: m347-grafana
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
 ```
 
 ### ConfigMap & Secret
 >Stellt Konfigurationswerte und Zugangsdaten bereit, auf die Grafana beim Start zugreift.
 
 #### ConfigMap
-[Hier kommen die Konfigurationsdetails]
+[configmap.yaml](../../../Projekt/monitoring/grafana/configmap.yaml)
 ```yaml
-# configmap.yaml
+apiVersion: v1                              # API-Version für ConfigMap
+kind: ConfigMap                             # Objekt-Typ: eine ConfigMap 
+metadata:
+  name: grafana-config                      # Interner Name der ConfigMap, über den sie im Deployment referenziert wird
+  namespace: m347-grafana                   # Namespace, in dem die ConfigMap gespeichert ist
+data:                                       # Ab hier: Datenblock mit Schlüsselwertpaaren
+  grafana.ini: |
+    [server]
+    root_url = http://localhost:3000
+    [security]
+    admin_user = ${GF_SECURITY_ADMIN_USER}
+    admin_password = ${GF_SECURITY_ADMIN_PASSWORD}
 ```
 
 #### Secret
-[Hier kommen die Konfigurationsdetails]
+[secret.yaml](../../../Projekt/monitoring/grafana/secret.yaml)
 ```yaml
-# secret.yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: grafana-secret
+  namespace: m347-grafana
+type: Opaque
+stringData:                     #Hier können Klartexte eingegeben werden, da automatisch in Base64 kodiert (intern)
+  GF_SECURITY_ADMIN_USER: admin         
+  GF_SECURITY_ADMIN_PASSWORD: password   
+
 ```
 
 ### Data Provisioning
 >Definiert in YAML die automatische Anbindung von Prometheus als Datenquelle. Wird beim Start von Grafana erkannt und geladen.
 
-[Hier kommen die Konfigurationsdetails]
+[data-provisioning.yaml](../../../Projekt/monitoring/grafana/data-provisioning.yaml)
 ```yaml
-# data-provisioning.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grafana-datasource
+  namespace: m347-grafana
+  labels:
+    grafana_datasource: "1"
+data:
+  datasource.yaml: |
+    apiVersion: 1
+    datasources:
+      - name: Prometheus
+        type: prometheus
+        url: http://prometheus-service.m347-prometheus.svc.cluster.local:80
+        access: proxy
+        isDefault: true
 ```
 
 ### Ingress / Externer Zugriff
