@@ -20,9 +20,9 @@ Im Testprotokoll werden die ausgeführten Testfälle mit Beschreibung, Ergebnis 
 | I﻿-01 | Zugriff auf MediaWiki | `http://mediawiki.m347.ch` im Browser aufrufen | Startseite von MediaWiki wird angezeigt | ✅ |
 | I﻿-02 | Zugriff auf WordPress | `http://wordpress.m347.ch` im Browser aufrufen | Startseite von WordPress wird angezeigt | ✅ |
 | I﻿-03 | Zugriff auf Redmine | `http://redmine.m347.ch` im Browser aufrufen | Startseite von Redmine wird angezeigt | ✅ |
-| I﻿-04 | Zugriff auf Prometheus | `http://prometheus.m347.ch` im Browser aufrufen | Startseite von Prometheus wird angezeigt |  |
-| I﻿-05 | Zugriff auf Grafana | `http://grafana.m347.ch` im Browser aufrufen | Startseite von Grafana wird angezeigt |  |
-| I﻿-06 | `minikube tunnel` erforderlich | `minikube tunnel` stoppen und Browser aktualisieren | Alle Services sind nicht mehr erreichbar |  |
+| I﻿-04 | Zugriff auf Prometheus | `http://prometheus.m347.ch` im Browser aufrufen | Startseite von Prometheus wird angezeigt |  ✅ |
+| I﻿-05 | Zugriff auf Grafana | `http://grafana.m347.ch` im Browser aufrufen | Startseite von Grafana wird angezeigt | ✅ |
+| I﻿-06 | `minikube tunnel` erforderlich | `minikube tunnel` stoppen und Browser aktualisieren | Alle Services sind nicht mehr erreichbar | ✅ |
 | I﻿-07 | Falscher Hostname | `http://foobar.m347.ch` im Browser aufrufen | Fehlerseite oder leere Antwort (kein Routing erfolgt) | ✅ |
 
 ## I-01: Zugriff auf MediaWiki
@@ -74,8 +74,8 @@ Im Testprotokoll werden die ausgeführten Testfälle mit Beschreibung, Ergebnis 
 **Bemerkung**: *Keine*  
 
 ## I-04: Zugriff auf Prometheus
-**Testdatum**:  
-**Tester:in**:  
+**Testdatum**: 30.06.2025  
+**Tester:in**: Natascha Blumer  
 **Beschreibung**:  
 1. Sicherstellen, dass `minikube tunnel` aktiv ist
 2. Im Browser `http://prometheus.m347.ch` aufrufen
@@ -84,12 +84,14 @@ Im Testprotokoll werden die ausgeführten Testfälle mit Beschreibung, Ergebnis 
 - Die Prometheus-Startseite erscheint ohne Fehlermeldung.
 
 **Tatsächliches Verhalten**:  
-**Status**:   
-**Bemerkung**:  
+- Die Prometheus-Startseite erscheint ohne Fehlermeldung.
+
+**Status**: ✅  
+**Bemerkung**: *Keine*  
 
 ## I-05: Zugriff auf Grafana
-**Testdatum**:  
-**Tester:in**:  
+**Testdatum**: 30.06.2025  
+**Tester:in**: Natascha Blumer  
 **Beschreibung**:  
 1. Sicherstellen, dass `minikube tunnel` aktiv ist
 2. Im Browser `http://grafana.m347.ch` aufrufen
@@ -98,12 +100,14 @@ Im Testprotokoll werden die ausgeführten Testfälle mit Beschreibung, Ergebnis 
 - Die Grafana-Startseite erscheint ohne Fehlermeldung.
 
 **Tatsächliches Verhalten**:  
-**Status**:   
-**Bemerkung**:  
+- Die Grafana-Startseite erscheint ohne Fehlermeldung.
+
+**Status**: ✅  
+**Bemerkung**: *Keine*  
 
 ## I-06: `minikube tunnel` erforderlich
-**Testdatum**:  
-**Tester:in**:  
+**Testdatum**: 30.06.2025  
+**Tester:in**: Natascha Blumer  
 **Beschreibung**:  
 1. Sicherstellen, dass `minikube tunnel` **nicht** aktiv ist
 2. Im Browser die verschiedenen Dienste aufrufen
@@ -112,8 +116,14 @@ Im Testprotokoll werden die ausgeführten Testfälle mit Beschreibung, Ergebnis 
 - Keiner der Dienste ist verfügbar.
 
 **Tatsächliches Verhalten**:  
-**Status**:   
-**Bemerkung**:  
+- `http://redmine.m347.ch`ist nicht erreichbar.
+- `http://mediawiki.m347.ch`ist nicht erreichbar.
+- `http://wordpress.m347.ch`ist nicht erreichbar.
+- `http://prometheus.m347.ch`ist nicht erreichbar.
+- `http://grafana.m347.ch`ist nicht erreichbar.
+
+**Status**: ✅  
+**Bemerkung**: *Keine*  
 
 ## I-07: Falscher Hostname
 **Testdatum**: 28.06.2025  
