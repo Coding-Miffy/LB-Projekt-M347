@@ -1,8 +1,3 @@
-> [!IMPORTANT]
-> Infrastruktur Anpassungen TBD (Natascha):
-> - Redmine: PostgreSQL anstatt MariaDB / WordPress MariaDB anstatt MySQL
-> - Erreichbarkeit Domain
-
 # Infrastruktur
 ![Diagramm der Infrastruktur](/docs/images/infrastructure.png)
 
@@ -19,8 +14,8 @@ Alle Anwendungspods sind über einen **ClusterIP-Service** verfügbar und werden
 Zusätzlich verwendet jeder dieser Pods einen **eigenen PVC**, um Daten wie Uploads (z. B. Bilder bei WordPress), Medieninhalte oder Dashboard-Einstellungen (z. B. bei Grafana) persistent zu speichern.
 
 ### Datenbankpods
-- **Pod 2**: MariaDB (für Redmine)
-- **Pod 4**: MySQL (für WordPress)
+- **Pod 2**: PostgreSQL (für Redmine)
+- **Pod 4**: MariaDB (für WordPress)
 - **Pod 6**: MariaDB (für MediaWiki)
 - **Pod 8**: Prometheus (zur Speicherung von Metriken)
 
@@ -28,25 +23,27 @@ Jede Datenbank wird über einen eigenen **ClusterIP-Service** angesprochen und n
 
 ### Infrastrukturpods
 - **Pod 9: Ingress Controller (nginx)**  
-  Der Ingress Controller übernimmt die zentrale Exponierung aller Anwendungen nach aussen. Die Weiterleitung erfolgt anhand definierter Hostnamen wie `redmine.local` oder `mediawiki.local`.
+  Der Ingress Controller übernimmt die zentrale Exponierung aller Anwendungen nach aussen. Die Weiterleitung erfolgt anhand definierter Hostnamen wie `redmine.m347.ch` oder `mediawiki.m347.ch`.
 
 ## Konfiguration: ConfigMaps & Secrets
 Für Konfigurationswerte und sensible Daten (z. B. Zugangsdaten oder Umgebungsvariablen) haben wir **pro Anwendungspod** eine **eigene ConfigMap** und ein **eigenes Secret** definiert.  
 Dieses Vorgehen unterstützt eine **wiederverwendbare, modulare und sichere Konfiguration** einzelner Komponenten – z. B. Datenbank-URLs, Passwörter oder Metriken-Konfigurationen.  
 
 ## Erreichbarkeit
-Alle Applikationen sind **nicht** über Pfade wie `http://localhost/mediawiki`, sondern über **eigene Hostnamen** erreichbar:
-- `http://redmine.local`
-- `http://wordpress.local`
-- `http://mediawiki.local`
-- `http://grafana.local`
+Alle Applikationen sind nicht über Pfade wie `http://localhost/mediawiki`, sondern über **eigene Subdomains** erreichbar:
 
-### Warum Hostnames statt Pfade?
-Viele Webapplikationen – darunter WordPress und MediaWiki – sind **nicht dafür ausgelegt, in Unterverzeichnissen zu laufen**. Ohne dedizierte Hostnamen können z. B. Stylesheets (CSS), Weiterleitungen oder Plugins fehlerhaft geladen werden.
-Dank dedizierten Hostnamen funktionieren alle Anwendungen zuverlässig und erwartungskonform.
+- `http://redmine.m347.ch`
+- `http://mediawiki.m347.ch`
+- `http://wordpress.m347.ch`
+- `http://prometheus.m347.ch`
+- `http://grafana.m347.ch`
 
->[!NOTE]
->Damit diese Hostnamen lokal funktionieren, muss die Datei `C:\Windows\System32\drivers\etc\hosts` um entsprechende Einträge ergänzt werden (z. B. `127.0.0.1 wordpress.local`).
+### Warum Subdomains statt Pfade?
+Viele Webapplikationen, insbesondere WordPress und MediaWiki, sind **nicht dafür ausgelegt, in Unterverzeichnissen zu laufen**. Ohne dedizierte Subdomains können z. B. Stylesheets (CSS), Weiterleitungen oder Plugins fehlerhaft funktionieren.
+
+Wir haben uns deshalb bewusst für die Verwendung von Subdomains (z. B. `wordpress.m347.ch`) entschieden, um eine saubere und zuverlässige Erreichbarkeit zu gewährleisten **und gleichzeitig lokale Anpassungen der Hosts-Datei zu vermeiden**.
+
+Die Weiterleitung und Erreichbarkeit werden dabei zentral über den Ingress-Controller gesteuert.
 
 ## Eingesetzte Services
 Alle Services wurden auf den Typ `ClusterIP` gesetzt. Das bedeutet, sie sind nur intern im Cluster erreichbar. Der externe Zugriff erfolgt ausschliesslich über den **Ingress Controller**.
@@ -54,10 +51,11 @@ Alle Services wurden auf den Typ `ClusterIP` gesetzt. Das bedeutet, sie sind nur
 **Vorteile dieses Ansatzes**:
 - **Zentrale Steuerung der Exponierung**: Nur der Ingress Controller ist von aussen erreichbar, was die Sicherheit erhöht.
 - **Klarer Aufbau**: App-Pods sprechen Datenbank-Pods über interne ClusterIP-Services an.
-- **Standardisierte Adressierung**: Dank dedizierter Hostnamen erfolgt der Zugriff über Klartext-URLs wie `http://redmine.local`.
+- **Standardisierte Adressierung**: Dank eigener Subdomains erfolgt der Zugriff über Klartext-URLs wie `http://redmine.m347.ch`.
 
 ## Umgang mit Replikation
 Alle Deployments in unserem Projekt verwenden aktuell:
+
 ```yaml
 replicas: 1
 ```
@@ -82,9 +80,9 @@ Wir haben uns bewusst für **acht separate PVCs** entschieden, einen für jede d
 | PVC | Zugehöriger Pod | Zweck |
 | :--- | :--- | :--- |
 | App-Daten Redmine | **Pod 1** - Redmine | Speichert Anhänge und Konfigurationen |
-| Claim für Redmine-DB | **Pod 2** – MariaDB | Speichert Redmine-Daten |
+| Claim für Redmine-DB | **Pod 2** – PostgreSQL | Speichert Redmine-Daten |
 | App-Daten WordPress | **Pod 3** - WordPress | Speichert Uploads, Plugins, Themes |
-| Claim für Wordpress-DB | **Pod 4** – MySQL | Speichert WordPress-Daten |
+| Claim für WordPress-DB | **Pod 4** – MariaDB | Speichert WordPress-Daten |
 | App-Daten MediaWiki | **Pod 5** - MediaWiki | Speichert Bilder, Erweiterungen |
 | Claim für MediaWiki-DB | **Pod 6** – MariaDB | Speichert MediaWiki-Daten |
 | App-Daten Grafana | **Pod 7** - Grafana | Speichert Dashboards und Einstellungen |
@@ -98,7 +96,7 @@ Wir haben uns bewusst für **acht separate PVCs** entschieden, einen für jede d
 ## Fazit
 Unsere Infrastruktur ist klar strukturiert, modular aufgebaut und folgt den Best Practices für Kubernetes:
 - Trennung von Anwendungen, Datenhaltung und Infrastruktur
-- Sichere & zentrale Exponierung über Ingress und dedizierte Hostnamen
+- Sichere & zentrale Exponierung über Ingress und eigene Subdomains
 - Datenpersistenz durch dedizierte PVCs
 - Konfigurationsverwaltung durch ConfigMap & Secret
 - Skalierbarkeit durch `replicas`-Definition pro Pod
