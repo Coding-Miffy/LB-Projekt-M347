@@ -7,11 +7,6 @@ Nach der abgeschlossenen Konfiguration der YAML-Files kann WordPress gemeinsam m
 - Alle notwendigen Ressourcen befinden sich im Verzeichnis `Projekt/wordpress`.
 - Minikube läuft, und der Cluster ist gestartet.
 
-> [!NOTE]  
-> Die WordPress-Konfiguration (`wp-config.php`) wird beim ersten Zugriff im Browser automatisch erstellt.  
-> Alle nötigen Werte zur Datenbankverbindung werden dabei aus den Umgebungsvariablen übernommen, die über die YAML-Dateien gesetzt wurden.  
-> Ein kurzer manueller Setup-Schritt im Browser ist daher **erforderlich**.
-
 ## 1. Namespace erstellen
 
 Zuerst wird ein eigener Namespace für WordPress erstellt. Dies ermöglicht eine saubere Trennung zu anderen Anwendungen im Cluster.
@@ -68,10 +63,4 @@ Um WordPress wieder vollständig zu entfernen, kann einfach der gesamte Namespac
 ```powershell
 kubectl delete namespace m347-wordpress
 ```
-
-
-
-
-
-
 
