@@ -385,7 +385,7 @@ data:
 - **data**
   - **POSTGRES_PASSWORD**  
     Base64-kodiertes Passwort (`redminepass`) für den PostgreSQL-Datenbankbenutzer.  
-    (Kodierung erforderlich, da Kubernetes Passwörter ausschließlich verschlüsselt speichert.)
+    (Kodierung erforderlich, da Kubernetes Passwörter ausschliesslich verschlüsselt speichert.)
 
 ### Ingress / Externer Zugriff
 >Regelt den externen Zugriff auf die Anwendung über Hostnamen mithilfe eines Ingress Controllers.
