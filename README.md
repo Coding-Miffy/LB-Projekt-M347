@@ -63,7 +63,13 @@ Ziel ist eine übersichtliche, modulare und nachvollziehbare Darstellung der jew
 - [Grafana - Zur Konfiguration](/docs/pods/grafana/config.md)
 - [Ingress - Zur Konfiguration](/docs/pods/ingress/config.md)
 
-## Installationsanleitung
+## Automatisierte Installation
+[Hier kommt die Anleitung zur automatisierten Installation]
+
+### Automatisierte Deinstallation
+[Hier kommt die Anleitung zur automatisierten Deinstallation]
+
+## Anleitung zur manuellen Installation
 > [!NOTE]
 > Für den Betrieb der Umgebung müssen Docker Desktop, Minikube und Helm bereits installiert sein.
 
@@ -97,7 +103,7 @@ Dieser Befehl leitet Netzwerkzugriffe vom lokalen System in den Cluster weiter. 
 > [!TIP]
 > Am besten wird `minikube tunnel` **in einem separaten Terminal-Fenster** ausgeführt, damit der Tunnel während der gesamten Laufzeit bestehen bleibt.
 
-## Installation der einzelnen Komponenten
+## Manuelle Installation der einzelnen Komponenten
 Für den Betrieb der Umgebung werden alle Anwendungen und Dienste in **eigenständigen Namespaces** betrieben. Dies ermöglicht eine strukturierte Trennung, eine gezielte Ressourcenzuweisung und erleichtert die Verwaltung der Konfiguration pro Komponente.
 
 Der Ingress-Controller selbst wird **namespace-unabhängig** bereitgestellt und verwendet denselben zentralen Zugriffspunkt für alle Anwendungen.
@@ -140,8 +146,8 @@ Die folgenden Seiten beschreiben die Installation jeder Komponente im Detail:
 - [Grafana - Zur Installationsanleitung](/docs/pods/grafana/installation.md)
 - [Ingress - Zur Installationsanleitung](/docs/pods/ingress/installation.md)
 
-## Automatisierte Installation
-[Hier kommt die Anleitung zur automatisierten Installation]
+### Manuelle Deinstallation
+[Hier kommt die Anleitung zur manuellen Deinstallation]
 
 ## Testplan & Testergebnisse
 Zur Qualitätssicherung und Funktionsüberprüfung unserer Kubernetes-Infrastruktur wurden gezielte Tests für jede zentrale Systemkomponente durchgeführt. Dabei lag der Fokus auf folgenden Aspekten:
