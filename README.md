@@ -10,7 +10,7 @@
 # Projektdokumentation
 
 **Modul**: 347 - Dienst mit Container anwenden  
-**Projektname**:  LB M347
+**Projektname**:  LB M347  
 **Autor:innen**: Blumer, Natascha; Ebbinghaus, Max; Ritter, Sascha;  
 **Datum**:  
 **Version**:  
@@ -67,10 +67,18 @@ Ziel ist eine übersichtliche, modulare und nachvollziehbare Darstellung der jew
 > [!NOTE]
 > Für den Betrieb der Umgebung müssen Docker Desktop, Minikube und Helm bereits installiert sein.
 
-[Hier kommt die Anleitung zur automatisierten Installation]
+Um die Umgebung schnell und komfortabel bereitzustellen, haben wir ein **Batch-Skript** für die automatisierte Installation erstellt. Dieses übernimmt alle notwendigen Schritte und deployt das gesamte Projekt in einem Durchlauf.
+
+- [Automatisierte Installation - Zum Batchfile](/Projekt/install_project.bat)
+
+Alternativ kann die Installation auch **manuell** Schritt für Schritt durchgeführt werden (siehe weiter unten).
 
 ### Automatisierte Deinstallation
-[Hier kommt die Anleitung zur automatisierten Deinstallation]
+Analog dazu steht ein separates **Batch-Skript** für die vollständige und saubere Deinstallation des Projekts zur Verfügung.
+
+- [Automatisierte Deinstallation - Zum Batchfile](/Projekt/uninstall_project.bat)
+
+Auch die Deinstallation kann wahlweise **manuell** erfolgen (siehe weiter unten).
 
 ## Anleitung zur manuellen Installation
 > [!NOTE]
@@ -150,7 +158,16 @@ Die folgenden Seiten beschreiben die Installation jeder Komponente im Detail:
 - [Ingress - Zur Installationsanleitung](/docs/pods/ingress/installation.md)
 
 ### Manuelle Deinstallation
-[Hier kommt die Anleitung zur manuellen Deinstallation]
+Um das Projekt **manuell zu entfernen**, reicht es aus, die erstellten Namespaces zu löschen. Damit werden alle enthaltenen Ressourcen (Deployments, Services, PVCs etc.) automatisch mit entfernt.
+
+```powershell
+kubectl delete namespace ingress-nginx
+kubectl delete namespace m347-grafana
+kubectl delete namespace m347-prometheus
+kubectl delete namespace m347-wordpress
+kubectl delete namespace m347-mediawiki
+kubectl delete namespace m347-redmine
+```
 
 ## Testplan & Testergebnisse
 Zur Qualitätssicherung und Funktionsüberprüfung unserer Kubernetes-Infrastruktur wurden gezielte Tests für jede zentrale Systemkomponente durchgeführt. Dabei lag der Fokus auf folgenden Aspekten:
