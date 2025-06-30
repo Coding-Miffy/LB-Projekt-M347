@@ -22,6 +22,121 @@ Im Testprotokoll werden die ausgeführten Testfälle mit Beschreibung, Ergebnis 
 | W-04| Verbindung zur Datenbank   | WP starten, Logs auf Fehler prüfen          | Keine DB-Fehler beim Start   |   ✅   |
 | W-05| Startseite bearbeiten      | Text ergänzen und speichern                 | Änderungen sichtbar          |   ✅   |
 
+### Testfall W-01: Zugriff via Ingress
+
+**Testbeschreibung:**  
+Prüfen, ob WordPress via Ingress erreichbar ist.
+
+**Testschritte:**  
+1. WordPress-Seite im Browser aufrufen:
+   ```
+   http://wordpress.m347.ch
+   ```
+
+**Erwartetes Ergebnis:**  
+Die WordPress-Startseite wird geladen und fehlerfrei angezeigt.
+
+**Tatsächliches Ergebnis:**  
+Die Startseite wurde erfolgreich geladen und angezeigt.  
+
+| Datum       | Tester  | Status |
+|-------------|---------|--------|
+| 30.06.2025  | Max     | ✅ OK  |
+
+### Testfall W-02: Login mit Admin-Account
+
+**Testbeschreibung:**  
+Es wird geprüft, ob der Admin-Login in WordPress korrekt funktioniert.
+
+**Testschritte:**  
+1. Admin-Loginseite im Browser öffnen:
+   ```
+   http://wordpress.m347.ch/wp-admin
+   ```
+2. Admin-Zugangsdaten eingeben und anmelden.
+
+**Erwartetes Ergebnis:**  
+WordPress-Admin-Dashboard erscheint nach erfolgreichem Login.
+
+**Tatsächliches Ergebnis:**  
+Admin-Login erfolgreich, Dashboard wurde angezeigt.
+
+| Datum       | Tester | Status |
+|-------------|--------|--------|
+| 30.06.2025  | Max    | ✅ OK  |
+
+### Testfall W-03: Beitrag erstellen und Pod-Neustart
+
+**Testbeschreibung:**  
+Prüfen, ob in WordPress erstellte Beiträge nach einem Pod-Neustart erhalten bleiben (Persistenztest).
+
+**Testschritte:**  
+
+1. Neuen Beitrag im WordPress-Dashboard erstellen und veröffentlichen.
+2. Beitragstitel bzw. URL notieren.
+3. Pod löschen, um Neustart zu erzwingen:
+   ```powershell
+   kubectl delete pod -l app=wordpress -n m347-wordpress
+   kubectl get pods -n m347-wordpress
+   ```
+4. Webseite neu laden und prüfen, ob der Beitrag noch vorhanden ist.
+
+**Erwartetes Ergebnis:**  
+Der Beitrag bleibt nach Pod-Neustart unverändert bestehen.
+
+**Tatsächliches Ergebnis:**  
+Beitrag blieb nach Neustart unverändert erhalten.
+
+| Datum       | Tester | Status |
+|-------------|--------|--------|
+| 30.06.2025  | Max    | ✅ OK  |
+
+### Testfall W-04: Verbindung zur Datenbank prüfen
+
+**Testbeschreibung:**  
+Prüfen, ob WordPress nach einem Pod-Neustart weiterhin problemlos auf die MariaDB-Datenbank zugreift.
+
+**Testschritte:**  
+
+1. WordPress-Pod löschen, um Neustart zu erzwingen:
+   ```powershell
+   kubectl delete pod -l app=wordpress -n m347-wordpress
+   ```
+2. Logs prüfen auf Datenbank-Verbindungsfehler:
+   ```powershell
+   kubectl logs -l app=wordpress -n m347-wordpress
+   ```
+
+**Erwartetes Ergebnis:**  
+Keine Datenbank-Verbindungsfehler, WordPress startet ohne Probleme.
+
+**Tatsächliches Ergebnis:**  
+WordPress startete problemlos ohne Datenbankfehler.
+
+| Datum       | Tester | Status |
+|-------------|--------|--------|
+| 30.06.2025  | Max    | ✅ OK  |
+
+### Testfall W-05: Startseite bearbeiten
+
+**Testbeschreibung:**  
+Es wird geprüft, ob Änderungen an der WordPress-Startseite korrekt gespeichert werden.
+
+**Testschritte:**  
+
+1. Im WordPress-Admin anmelden (`http://wordpress.m347.ch/wp-admin`).
+2. Startseite bearbeiten (Titel oder Inhalt ändern).
+3. Änderungen speichern und die Webseite neu laden.
+
+**Erwartetes Ergebnis:**  
+Änderungen werden dauerhaft gespeichert und korrekt angezeigt.
+
+**Tatsächliches Ergebnis:**  
+Änderungen wurden erfolgreich gespeichert und korrekt angezeigt.
+
+| Datum       | Tester | Status |
+|-------------|--------|--------|
+| 30.06.2025  | Max    | ✅ OK  |
 
 
 ## W-01: Name
