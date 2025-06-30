@@ -1,3 +1,4 @@
+@echo off
 echo Minikube starten
 minikube start
 
@@ -25,8 +26,16 @@ kubectl apply -f mediawiki/deployment.yaml
 kubectl apply -f mediawiki/db-service.yaml
 kubectl apply -f mediawiki/service.yaml
 
-echo Warte auf MediaWiki-Datenbank...
-timeout /t 5 >nul
+echo Warte auf MediaWiki-App Pod...
+kubectl wait --namespace m347-mediawiki --for=condition=Ready pod --selector=app=mediawiki --timeout=120s
+
+echo Warte auf MediaWiki-DB Pod...
+kubectl wait --namespace m347-mediawiki --for=condition=Ready pod --selector=app=mariadb --timeout=120s
+
+echo Warte bis alle Pods definitiv da sind.
+timeout /t 15 >nul
+
+echo Erstelle Datenbank und localsettings.php für MediaWiki...
 
 FOR /F "tokens=1" %%i IN ('kubectl get pods -n m347-mediawiki --no-headers ^| findstr /V db') DO (
     echo Running MediaWiki install in pod %%i
@@ -38,7 +47,7 @@ kubectl create namespace m347-wordpress
 kubectl apply -f wordpress/configmap.yaml
 kubectl apply -f wordpress/secret.yaml
 kubectl apply -f wordpress/db-pvc.yaml
-kubectl apply -f wordpress/pvc.yamlube
+kubectl apply -f wordpress/pvc.yaml
 kubectl apply -f wordpress/db-deployment.yaml
 kubectl apply -f wordpress/deployment.yaml
 kubectl apply -f wordpress/db-service.yaml
@@ -70,7 +79,8 @@ kubectl create namespace ingress-nginx
 helm install ingress-nginx ingress-nginx/ingress-nginx --namespace ingress-nginx
 
 echo Warte auf Ingress Controller...
-timeout /t 5 >nul
+kubectl wait --namespace ingress-nginx --for=condition=Ready pod --selector=app.kubernetes.io/component=controller --timeout=120s
+timeout /t 15 >nul
 
 kubectl apply -f ../ingress/ingress-class.yaml
 kubectl apply -f ../ingress/redmine-ingress.yaml
@@ -81,8 +91,3 @@ kubectl apply -f ../ingress/grafana-ingress.yaml
 
 echo Netzwerkzugriff ermoeglichen
 minikube tunnel
-
-pause
-
-
-
