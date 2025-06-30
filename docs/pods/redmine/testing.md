@@ -64,6 +64,26 @@ Das Admin-Dashboard wurde erfolgreich geladen und angezeigt.
 |-------------|---------|--------|
 | 30.06.2025  | Max     | ✅ OK  |
 
+### Testfall R-03: Ticket erstellen und Pod-Neustart
+
+**Testbeschreibung:**  
+Prüfen, ob Redmine erstellte Tickets auch nach einem Neustart des Pods korrekt speichert und erhält.
+
+**Testschritte:**
+
+1. Im Projekt „Test“ neues Ticket erstellen:
+   - Tracker: **Fehler**
+   - Titel: **Leck eier**
+   - Beschreibung: *(Beispieltext)*
+   - Priorität: **hoch**
+   - Status: **Erledigt**
+   - Notierte Ticket-ID: **#1**
+
+2. Pod löschen und Neustart durchführen:
+   ```powershell
+   kubectl delete pod -l app=redmine -n m347-redmine
+   kubectl get pods -n m347-redmine
+
 
 ## Legende - Statuswerte
 Die folgende Legende dient zur Bewertung und schnellen Einschätzung der Testergebnisse:
