@@ -389,7 +389,7 @@ data:
 ### Ingress / Externer Zugriff
 >Regelt den externen Zugriff auf die Anwendung über Hostnamen mithilfe eines Ingress Controllers.
 
-Die Datei `redmine-ingress.yaml` definiert, unter welchem Hostnamen (`redmine.local`) die Redmine-Applikation von ausserhalb des Clusters erreichbar ist.  
+Die Datei `redmine-ingress.yaml` definiert, unter welchem Hostnamen (`redmine.m347.ch`) die Redmine-Applikation von ausserhalb des Clusters erreichbar ist.  
 Sie verweist auf den zentralen Ingress Controller und sorgt für die Weiterleitung eingehender Anfragen an den zugehörigen Service der Redmine-Anwendung.  
 Da das zugrundeliegende Ingress-System für alle Anwendungen identisch ist, wird die übergeordnete Konfiguration des Ingress Controllers inklusive Routingprinzipien und Klassendefinition zentral in der [Konfigurationsdatei des Ingress Controllers](../ingress/config.md) dokumentiert.
 
