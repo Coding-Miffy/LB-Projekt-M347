@@ -39,4 +39,17 @@ Trotz der anfänglichen Schwierigkeiten konnte ich durch intensives Testen, wied
 
 ## Reflexion
 
-# Persönliches Fazit
+Neben den technischen Aspekten war das Projekt insbesondere in Bezug auf die Dokumentation eine grosse Lernerfahrung für mich.
+
+Vor dem Projekt hatte ich noch wenig Erfahrung mit Git und der strukturierten Dokumentation mittels Markdown. Anfangs war es herausfordernd, sich in diese neuen Werkzeuge einzuarbeiten und sie effektiv einzusetzen. Im Laufe des Projekts konnte ich jedoch meine Kenntnisse in Git deutlich erweitern.
+
+Besonders begeistert hat mich dabei die Verwendung von Markdown zur Dokumentation. Die einfache, klare Syntax und die Möglichkeit, Inhalte schnell übersichtlich darzustellen, haben mir sehr gefallen. Ich empfand es als grosse Bereicherung, Projektfortschritte strukturiert festzuhalten und Änderungen nachvollziehbar zu dokumentieren.
+
+Insgesamt hat das Projekt mein Verständnis für strukturierte und nachvollziehbare Dokumentation deutlich verbessert und meine Motivation gesteigert, auch zukünftige Projekte mithilfe von Markdown übersichtlich und effektiv zu dokumentieren.
+
+## Persönliches Fazit
+
+Rückblickend betrachtet war das Projekt für mich eine besonders wertvolle Erfahrung. Trotz des anfänglich gigantisch wirkenden Umfangs und der vielen neuen Herausforderungen konnte ich enorm viel lernen und über mich hinauswachsen.
+
+Mit jedem gemeisterten Problem und jeder erfolgreichen Aufgabe wuchs meine Motivation, und letztendlich entwickelte ich sogar echten Spass an der Arbeit und den Herausforderungen des Projekts. Das Gefühl, am Ende ein umfangreiches und anspruchsvolles Projekt erfolgreich abschliessen zu können, war sehr bereichernd und motivierend für meine weitere Entwicklung.
+
