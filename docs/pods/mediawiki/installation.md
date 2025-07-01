@@ -66,8 +66,8 @@ Sobald Ingress aktiviert und korrekt konfiguriert wurde, ist MediaWiki hier erre
 ## 6. Login
 Die Zugangsdaten für den Admin-Account von MediaWiki lauten:
 ```txt
-Username: mwuser
-Password: supergeheim
+Username: Admin
+Password: Adminpassword
 ```
 
 ## 7. MediaWiki entfernen
