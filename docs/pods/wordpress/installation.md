@@ -51,7 +51,7 @@ Die initialen Zugangsdaten für den Admin-Account von WordPress lauten (siehe `S
 
 ```powershell
 Benutzername: admin
-Passwort: password
+Passwort: einSicheresPasswort123
 ```
 
 Nach dem ersten Login wird empfohlen, das Passwort unmittelbar zu ändern.
