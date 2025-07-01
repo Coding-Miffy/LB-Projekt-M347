@@ -158,10 +158,11 @@ Die folgenden Seiten beschreiben die Installation jeder Komponente im Detail:
 - [Ingress - Zur Installationsanleitung](/docs/pods/ingress/installation.md)
 
 ### Manuelle Deinstallation
-Um das Projekt **manuell zu entfernen**, reicht es aus, die erstellten Namespaces zu löschen. Damit werden alle enthaltenen Ressourcen (Deployments, Services, PVCs etc.) automatisch mit entfernt.
+Um das Projekt **manuell zu entfernen**, reicht es aus, die erstellten Namespaces und die Ingress-Klasse zu löschen. Damit werden alle enthaltenen Ressourcen (Deployments, Services, PVCs etc.) automatisch mit entfernt.
 
 ```powershell
 kubectl delete namespace ingress-nginx
+kubectl delete ingressclass nginx
 kubectl delete namespace m347-grafana
 kubectl delete namespace m347-prometheus
 kubectl delete namespace m347-wordpress
