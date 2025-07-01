@@ -6,6 +6,7 @@
 ## Arbeitsprotokoll
 | Datum | Tätigkeit | Bemerkung |
 | :-- | :-- | :-- |
+| 26.06.2025 | Recherche über Grafana & Prometheus | :-- |
 | 29.06.2025 | Erstellung der YAML-Files für Prometheus | ConfigMap, PVC, Deployment, Service, Secret |
 | 29.06.2025 | Erstellung der YAML-Files für Grafana | ConfigMaps, PVC, Deployment, Service, Secret |
 | 29.06.2025 | Konfiguration von Prometheus-Scrape-Jobs |  |
