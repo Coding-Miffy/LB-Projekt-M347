@@ -100,7 +100,7 @@ spec:
 - `replicas: 1`  
   Es wird **nur ein Pod** instanziert, ausreichend für Entwicklungs- oder Testumgebungen.
 
-- `image: wordpress:latest`  
+- `image: bitnami/wordpress:latest`  
   Verwendet ein vorgefertigtes, sicheres Image mit vorkonfiguriertem WordPress.
 
 - `containerPort: 8080`  
