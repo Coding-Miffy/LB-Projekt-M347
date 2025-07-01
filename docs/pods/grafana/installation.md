@@ -60,7 +60,7 @@ Password: password
 
 ## 6. Datenquelle hinzufügen
 
-Da die Datenquelle "Prometheus" nicht automatisch erkannt wird, muss diese manuell hinzugefügt werden.  
+Falls die Datenquelle "Prometheus" nicht automatisch erkannt wird, muss diese manuell hinzugefügt werden. Im Folgenden ist eine kurze Anleitung;   
 **Voraussetzung:** Prometheus läuft und eingeloggt als Admin in Grafana.  
 - Unter "Connection" -> "Data Source"
 - Dann zu "Settings"
