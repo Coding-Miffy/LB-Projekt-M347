@@ -29,7 +29,8 @@ Die Prometheus-Web-UI wird geladen und zeigt keine Fehler.
 **Tatsächliches Verhalten**:  
 Die UI wurde korrekt angezeigt.  
 **Status**: ✅  
-**Bemerkung**: 
+**Bemerkung**:  
+*Keine*
 
 ## P-02: Blackbox-Check auf Services
 **Testdatum**: 30.06.2025  
@@ -42,6 +43,7 @@ Alle konfigurierten Blackbox-Targets sind erreichbar und zeigen „up“.
 Alle Targets waren „up“.  
 **Status**: ✅  
 **Bemerkung**:  
+*Keine*
 
 ## P-03: PromQL-Abfrage
 **Testdatum**: 30.06.2025  
@@ -53,7 +55,8 @@ Prometheus liefert korrekte Ergebnisse mit allen aktiven Targets.
 **Tatsächliches Verhalten**:  
 Abfrage lieferte erwartete Ergebnisse.  
 **Status**: ✅  
-**Bemerkung**:
+**Bemerkung**:  
+*Keine*
 
 ## Legende - Statuswerte
 Die folgende Legende dient zur Bewertung und schnellen Einschätzung der Testergebnisse:
