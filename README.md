@@ -1,33 +1,28 @@
->[!IMPORTANT]
->Hoi zäme!
->### Überblick
->1. Unter `/Projekt` habe ich für jeden geplanten Pod einen Ordner erstellt. Darin befinden sich alle benötigten Yaml-Files (aktuell noch leer).
->
->2. Unter `/docs/pods` habe ich für jeden geplanten Pod einen Ordner erstellt. Darin befinden sich alle benötigten md-Files für die Doku: `config.md`, `installation.md` und `testing.md`. Für das Testing und die Konfiguration habe ich bereits je ein Template erstellt. Für die Installation versuche ich auch noch ein Template anzufertigen.
->
->3. Unter `/docs/worklogs` habe ich für jeden von uns ein md-File fürs Arbeitsjournal / Fazit mit Template vorbereitet.
-
 # Projektdokumentation
 
 **Modul**: 347 - Dienst mit Container anwenden  
 **Projektname**:  LB M347  
 **Autor:innen**: Blumer, Natascha; Ebbinghaus, Max; Ritter, Sascha;  
-**Datum**:  
-**Version**:  
+**Datum**: 01.07.2025  
+**Version**: 1.0  
 
 ## Einleitung
-[Hier kommt die Einleitung hin]
+Dieses Dokument bildet die offizielle **Lern- und Leistungsdokumentation der LB für das Modul 347 – Dienst mit Container anwenden**.  
+Ziel des Projekts war es, eine vollständige, containerisierte Infrastruktur aufzubauen, die mehrere zentrale Applikationen vereint und dabei die wichtigsten Konzepte von Kubernetes, Container-Orchestrierung und automatisiertem Deployment praktisch umsetzt.
 
-## Ausgangslage
-Die **M347 GmbH** plant den Aufbau einer internen IT-Umgebung, die mehrere zentrale Anforderungen zuverlässig und modular abdeckt:
-- **WordPress** dient als Firmenblog, um aktuelle Themen, Mitteilungen und Veranstaltungen zu kommunizieren.
-- **MediaWiki** wird als internes Intranet und Wissensdatenbank genutzt. Mitarbeitende können darin Prozesse, Anleitungen und Projektdokumentationen erfassen und pflegen.
-- **Redmine** kommt als Projektmanagement- und Ticketsystem zum Einsatz, um Aufgaben, Zeitaufwände und Teamkommunikation effizient zu steuern.
-- **Prometheus** übernimmt das systemweite Monitoring. Es sammelt Metriken der eingesetzten Komponenten und Dienste.
-- **Grafana** stellt diese Metriken in Form von übersichtlichen Dashboards grafisch dar. Es wird direkt mit Prometheus als Datenquelle verbunden.
+### Ausgangslage
+Die **M347 GmbH** fungierte dabei als fiktives Unternehmen, das eine modulare, skalierbare und lokal betriebene IT-Umgebung benötigt.   
+Im Fokus standen dabei folgende Kernkomponenten:
 
-Die gesamte Umgebung wird vollständig **containerisiert** betrieben und mit **Kubernetes** orchestriert.
-Ein **zentraler Ingress-Controller** ermöglicht den Zugriff auf alle Komponenten über dedizierte Hostnamen. Durch die Aufteilung in separate Namespaces, den gezielten Einsatz von **Persistent Volumes**, individuellen **ConfigMaps** und **Secrets** sowie die klare Strukturierung der Deployments wird eine skalierbare, wartbare und sichere Infrastruktur gewährleistet.
+- **Redmine** als Projekt- und Aufgabenmanagementsystem
+- **MediaWiki** als zentrale Wissens- und Dokumentationsplattform
+- **WordPress** als Firmenblog für News und interne Mitteilungen
+- **Prometheus** zur Erfassung und Überwachung von Metriken
+- **Grafana** zur grafischen Visualisierung dieser Metriken
+
+Alle Services wurden containerisiert, mit **Kubernetes** orchestriert und über einen zentralen **Ingress-Controller** zugänglich gemacht. Besonderer Wert wurde auf eine saubere Trennung der Komponenten (Namespaces), die Verwendung von **Persistent Volumes** für Datenhaltbarkeit, sowie den Einsatz von **ConfigMaps** und **Secrets** für eine sichere und flexible Konfiguration gelegt.
+
+Diese Dokumentation beschreibt sowohl die technische Umsetzung der einzelnen Komponenten als auch die getroffenen Architekturentscheidungen, Herausforderungen während der Umsetzung und die abschliessende Qualitätssicherung in Form von Testplänen und Arbeitsjournalen.
 
 ## Infrastruktur
 Für den Betrieb unserer containerisierten Anwendung haben wir eine klar strukturierte Infrastruktur in Kubernetes aufgebaut.  
