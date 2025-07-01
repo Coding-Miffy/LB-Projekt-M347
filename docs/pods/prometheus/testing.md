@@ -8,7 +8,6 @@ In diesem Abschnitt werden die geplanten Testfälle für **Prometheus** dokument
 | P-02 | Prometheus | Blackbox-Check auf Services | Überprüfen, dass die konfigurierten Blackbox-Checks erfolgreich durchgeführt werden |
 | P-03 | Prometheus | PromQL-Abfrage | Testen, ob Prometheus auf Abfragen im Web-UI korrekt reagiert |
 
-
 # Testprotokoll
 Im Testprotokoll werden die ausgeführten Testfälle mit Beschreibung, Ergebnis und Bewertung festgehalten.
 
@@ -18,46 +17,55 @@ Im Testprotokoll werden die ausgeführten Testfälle mit Beschreibung, Ergebnis 
 | P-02 | Blackbox-Check auf Services | Blackbox-Targets in der Prometheus-UI aufrufen und prüfen | Alle Targets sind „up“ | ✅ |
 | P-03 | PromQL-Abfrage | Beispielabfrage „up“ im Prometheus-UI durchführen | Ergebnisse werden korrekt angezeigt | ✅ |
 
-
-## P-01: Zugriff auf Prometheus-Web-UI
+## P-01: Zugriff auf Web-UI
 **Testdatum**: 30.06.2025  
 **Tester:in**: Sascha  
+**Ausgangslage**: Minikube läuft und der Cluster ist gestartet.  
 **Beschreibung**:  
-Browser öffnen und URL `http://prometheus.m347.ch` aufrufen.  
-**Erwartetes Verhalten**:  
-Die Prometheus-Web-UI wird geladen und zeigt keine Fehler.  
-**Tatsächliches Verhalten**:  
-Die UI wurde korrekt angezeigt.  
-**Status**: ✅  
-**Bemerkung**:  
-*Keine*
+- Browser öffnen und URL `http://prometheus.m347.ch` aufrufen.
 
-## P-02: Blackbox-Check auf Services
+**Erwartetes Verhalten**:  
+- Die Web-Oberfläche von Prometheus wird geladen und zeigt keine Fehlermeldung.
+
+**Tatsächliches Verhalten**:  
+- UI wurde erfolgreich angezeigt.
+
+**Status**: ✅  
+**Bemerkung**: *Keine*
+
+## P-02: Blackbox-Checks prüfen
 **Testdatum**: 30.06.2025  
 **Tester:in**: Sascha  
+**Ausgangslage**: Minikube läuft und der Cluster ist gestartet.  
 **Beschreibung**:  
-In der Prometheus-UI unter „Graph“ nachsehen, ob die Blackbox-Checks für z.B. wordpress-service und redmine-service den Status „up“ haben.  
-`probe_success` wurde in der Suchleiste eingegeben.  
+- In der Prometheus-UI die Abfrage `probe_success` eingeben und ausführen.
+- Ergebnisse der überwachten Blackbox-Targets prüfen.
+
 **Erwartetes Verhalten**:  
-Alle konfigurierten Blackbox-Targets sind erreichbar und zeigen „up“.  
+- Alle konfigurierten Services zeigen im Graphen den Statuswert `1`, was „up“ bedeutet.
+
 **Tatsächliches Verhalten**:  
-Alle Targets waren „up“.  
+- Alle Targets waren „up“.
+
 **Status**: ✅  
-**Bemerkung**:  
-*Keine*
+**Bemerkung**: *Keine*
 
 ## P-03: PromQL-Abfrage
 **Testdatum**: 30.06.2025  
 **Tester:in**: Sascha  
+**Ausgangslage**: Minikube läuft und der Cluster ist gestartet.  
 **Beschreibung**:  
-Im Prometheus-UI eine PromQL-Abfrage wie `up` ausführen.  
+- Im Prometheus-UI die PromQL-Abfrage `up` ausführen.
+- Ergebnisse kontrollieren.
+
 **Erwartetes Verhalten**:  
-Prometheus liefert korrekte Ergebnisse mit allen aktiven Targets.  
+- Die Abfrage liefert die erwarteten Ergebnisse mit allen aktiven Targets und deren Status.
+
 **Tatsächliches Verhalten**:  
-Abfrage lieferte erwartete Ergebnisse.  
+- Abfrage lieferte die korrekten Ergebnisse.
+
 **Status**: ✅  
-**Bemerkung**:  
-*Keine*
+**Bemerkung**: *Keine*
 
 ## Legende - Statuswerte
 Die folgende Legende dient zur Bewertung und schnellen Einschätzung der Testergebnisse:
