@@ -142,7 +142,7 @@ spec:
   Der Speicher darf von genau einem Node gleichzeitig gelesen und beschrieben werden.
 
 - **resources.requests.storage: 10Gi**  
-  Fordert 10 Gigabyte Speicherplatz für die dauerhafte Speicherung von Grafana-Daten an.
+  Fordert 10 Gibibyte Speicherplatz für die dauerhafte Speicherung von Grafana-Daten an. Kubernetes benötigt die Form GibiByte (Gi) anstelle von Gigabyte (GiB) um zu funktionieren.
 
 ## ConfigMap & Secret
 >Stellt Konfigurationswerte und Zugangsdaten bereit, auf die Grafana beim Start zugreift.
