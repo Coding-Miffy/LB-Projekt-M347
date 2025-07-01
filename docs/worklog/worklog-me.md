@@ -7,6 +7,7 @@
 
 | Datum       | Tätigkeit                                              | Bemerkung |
 |-------------|---------------------------------------------------------|-----------|
+| 18.06.2025 | Entwerfen des Infrastrukturdiagramms |  |
 | 24.06.2025  | Planung Redmine/WordPress           | Ersteindruck gewinnen |
 | 25.06.2025  | Aufbau Redmine              | Erste Versuche |
 | 25.06.2025  | Aufbau Redmine            | |
