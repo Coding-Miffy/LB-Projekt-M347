@@ -132,7 +132,7 @@ spec:
   Der Speicher darf von genau einem Node gleichzeitig gelesen und beschrieben werden.
 
 - **resources.requests.storage: 10Gi**  
-  Fordert 10 Gigabyte Speicherplatz an.
+  Fordert 10 Gibibyte Speicherplatz an.
 
 - **storageClassName: standard**  
   Verwendet die Standard-StorageClass des Clusters
