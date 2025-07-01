@@ -16,7 +16,7 @@ Im Testprotokoll werden die ausgeführten Testfälle mit Beschreibung, Ergebnis 
 | :-: | :-- | :-- | :-- | :-: |
 | G-01 | Zugriff via Ingress | Grafana im Browser über Hostnamen `grafana.m347.ch` aufrufen | Loginseite wird angezeigt | ✅ |
 | G-02 | Login mit Admin-Account | Mit Benutzer `admin` und Passwort `password` einloggen | Login erfolgreich, Grafana-Dashboard erscheint | ✅ |
-| G-03 | Dashboard anlegen | Neues Dashboard erstellen und Panel hinzufügen | Dashboard wird gespeichert und angezeigt | ✅ |
+| G-03 | Dashboard anlegen | Neues Dashboard erstellen und Panel hinzufügen | Dashboard wird gespeichert und angezeigt | ⚠️ |
 | G-04 | Datenquelle überprüfen | Prometheus-Datenquelle in den Einstellungen aufrufen | Datenquelle ist verbunden und funktionsfähig | ✅ |
 
 
@@ -68,15 +68,16 @@ Im Testprotokoll werden die ausgeführten Testfälle mit Beschreibung, Ergebnis 
 **Tatsächliches Verhalten**:  
 - Dashboard wurde erfolgreich erstellt und gespeichert.
 
-**Status**: ✅  
-**Bemerkung**: *Keine*
+**Status**: ⚠️  
+**Bemerkung**:  
+Es musste zuerst die Verbindung zu Prometheus als Datenquelle manuell erstellt werden. Dies geschah über "Connection" -> "Data Source", dann unter "Settings" -> "Connection" `http://prometheus-service.m347-prometheus.svc.cluster.local:80` 
 
 ## G-04: Datenquelle überprüfen
 **Testdatum**: 30.06.2025  
 **Tester:in**: Sascha  
 **Ausgangslage**: Minikube läuft und der Cluster ist gestartet. Benutzer ist in Grafana eingeloggt.  
 **Beschreibung**:  
-1. In Grafana auf „Configuration“ → „Data Sources“ gehen.
+1. In Grafana auf „Connection“ → „Data Sources“ gehen.
 2. Die automatisch provisionierte Prometheus-Datenquelle öffnen.
 
 **Erwartetes Verhalten**:  
@@ -86,7 +87,8 @@ Im Testprotokoll werden die ausgeführten Testfälle mit Beschreibung, Ergebnis 
 - Prometheus-Datenquelle war verbunden.
 
 **Status**: ✅  
-**Bemerkung**: *Keine*
+**Bemerkung**:  
+Wurde in G-03 manuell gemacht.
 
 ## Legende - Statuswerte
 Die folgende Legende dient zur Bewertung und schnellen Einschätzung der Testergebnisse:
