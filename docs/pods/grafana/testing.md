@@ -68,8 +68,8 @@ Im Testprotokoll werden die ausgeführten Testfälle mit Beschreibung, Ergebnis 
 **Tatsächliches Verhalten**:  
 - Dashboard wurde erfolgreich erstellt und gespeichert.
 
-**Status**: ⚠️  
-**Bemerkung**: *Keine
+**Status**: ✅  
+**Bemerkung**: *Keine*
 
 ## G-04: Datenquelle überprüfen
 **Testdatum**: 30.06.2025  
