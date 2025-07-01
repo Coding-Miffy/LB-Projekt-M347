@@ -268,7 +268,7 @@ data:
   Alle 15 Sekunden werden Targets abgefragt. Kleinere Zeitintervalle ergeben besseres Monitoring, dafür grössere Serverbelastung. Umgekehrt könnte man bei einem grösseres Zeitintervall kleinere Ausfälle übersehen.
 
 - **Job: prometheus**  
-  Überwacht Prometheus selbst auf `localhost:9090`.
+  Überwacht Prometheus selbst auf `localhost:9090`. Dies ist nicht unbedingt notwendig, da falls Prometheus nicht erreichbar ist man dies gar nicht nachschauen kann über Prometheus selbst und falls er "down" ist, keine Daten sammeln kann. es ist aber eine Default-Einstellung und wurde so beibehalten.
 
 - **Job: grafana**  
   Fragt Grafana direkt über den Cluster-Service `grafana-service` ab.
