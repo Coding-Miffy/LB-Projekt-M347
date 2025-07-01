@@ -175,7 +175,7 @@ spec:
   Der Speicher kann von genau einem Pod gleichzeitig im Schreibmodus verwendet werden.
 
 - `resources.requests.storage: 10Gi`  
-  Die angeforderte Speichergrösse beträgt 10 GiB. Hier werden beispielsweise Mediendateien, Themes oder Plugin-Daten gespeichert.
+  Die angeforderte Speichergrösse beträgt 10 Gibibyte. Hier werden beispielsweise Mediendateien, Themes oder Plugin-Daten gespeichert.
 
 - `storageClassName: standard`  
   Verwendet die standardmässig konfigurierte Storage-Class im Kubernetes-Cluster, welche bestimmt, wie und wo der Speicher bereitgestellt wird.
@@ -321,7 +321,7 @@ spec:
   Der Speicher wird von genau einem Pod gleichzeitig im Schreibmodus genutzt.
 
 - `resources.requests.storage: 10Gi`  
-  Die Grösse des angeforderten Speicherplatzes beträgt 10 GiB, ausreichend für Entwicklungs- und Testdatenbanken.
+  Die Grösse des angeforderten Speicherplatzes beträgt 10 Gibibyte, ausreichend für Entwicklungs- und Testdatenbanken.
 
 - `storageClassName: standard`  
   Nutzt die Standard-StorageClass des Kubernetes-Clusters, welche definiert, wie und wo der Speicher bereitgestellt wird.
