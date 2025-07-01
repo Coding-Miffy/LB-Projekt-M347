@@ -359,7 +359,7 @@ data:
 - **data**
   - **REDMINE_DB_PASSWORD**  
     Base64-kodiertes Passwort für den Redmine-Datenbankbenutzer.  
-    (Kodierung erforderlich, da Kubernetes Passwörter ausschließlich verschlüsselt speichert.)
+    (Kodierung erforderlich, da Kubernetes Passwörter ausschliesslich verschlüsselt speichert.)
 
 ## Datenbank - Secret
 
