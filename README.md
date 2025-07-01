@@ -210,6 +210,7 @@ Während der Bearbeitung des Projekts haben wir verschiedene Formen der Unterst�
 - Unterstützung beim Aufsetzen von Prometheus und Grafana
 - Unterstützung beim Aufsetzen von Redmine und WordPress
 - Hilfreich beim Nachschlagen von Konventionen
+- Unterstützung beim Einrichten des Dashboards in Grafana
 
 ### Weitere Quellen
 - [https://kubernetes.io/docs/concepts/services-networking/service/](https://kubernetes.io/docs/concepts/services-networking/service/)
