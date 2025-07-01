@@ -1,7 +1,7 @@
 # Arbeitsjournal
 **Autor:in**: Natascha Blumer  
 **Datum**: 01.07.2025    
-**Version**: 1.0  
+**Version**: 1.8  
 
 ## Arbeitsprotokoll
 | Datum | Tätigkeit | Bemerkung |
