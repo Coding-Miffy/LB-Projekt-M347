@@ -36,7 +36,8 @@ Die UI wurde korrekt angezeigt.
 **Testdatum**: 30.06.2025  
 **Tester:in**: Sascha  
 **Beschreibung**:  
-In der Prometheus-UI unter „Targets“ nachsehen, ob die Blackbox-Checks für z.B. wordpress-service und redmine-service den Status „up“ haben.  
+In der Prometheus-UI unter „Graph“ nachsehen, ob die Blackbox-Checks für z.B. wordpress-service und redmine-service den Status „up“ haben.  
+`probe_success` wurde in der Suchleiste eingegeben.
 **Erwartetes Verhalten**:  
 Alle konfigurierten Blackbox-Targets sind erreichbar und zeigen „up“.  
 **Tatsächliches Verhalten**:  
