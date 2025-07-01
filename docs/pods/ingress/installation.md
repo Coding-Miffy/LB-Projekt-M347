@@ -30,7 +30,7 @@ kubectl get pods -n ingress-nginx
 Der Pod sollte nach kurzer Zeit den Status `Running` erreichen.
 
 ## Ingress-Class anwenden
-Nun wird die zentrale Ingress-Klasse deployed, auf die sich alle Ingress-Routen bezieht:
+Nun wird die zentrale Ingress-Klasse deployt, auf die sich alle Ingress-Routen bezieht:
 
 ```powershell
 kubectl apply -f ingress/ingress-class.yaml
@@ -38,7 +38,7 @@ kubectl apply -f ingress/ingress-class.yaml
 
 ## Ingress-Routen für Applikationen anwenden
 Für jede Applikation wurde eine eigene Ingress-Datei erstellt, basierend auf dem offiziellen Beispiel.  
-Diese werden nun nacheinander deployed:
+Diese werden nun nacheinander deployt:
 
 ```powershell
 kubectl apply -f ingress/redmine-ingress.yaml
