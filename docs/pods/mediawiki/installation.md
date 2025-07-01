@@ -39,23 +39,20 @@ Die Spalte `STATUS` sollte nach kurzer Zeit bei beiden Pods auf `Running` stehen
 Falls `ContainerCreating` angezeigt wird, bitte etwas Geduld – manche Images brauchen länger.
 
 ## 4. `LocalSettings.php` in den Pod kopieren
-Damit MediaWiki korrekt funktioniert, muss die Konfigurationsdatei `LocalSettings.php` an zwei Stellen im Container vorhanden sein:
-1. Im **persistenten** Verzeichnis `/bitnami/mediawiki`
-2. Im **nicht-persistenten** Webroot `/var/www/html/`
+Damit MediaWiki korrekt funktioniert, muss die Konfigurationsdatei `LocalSettings.php` im **Webroot-Verzeichnis** `/var/www/html/` des Containers vorhanden sein.
 
 Zuerst den Namen des MediaWiki-Pods ermitteln:
 ```powershell
 kubectl get pods -n m347-mediawiki
 ```
 
-Dann die Datei an beide Orte kopieren:
+Dann die Datei in den Pod kopieren:
 ```powershell
-kubectl cp mediawiki/LocalSettings.php m347-mediawiki/<POD_NAME>:/bitnami/mediawiki/LocalSettings.php
 kubectl cp mediawiki/LocalSettings.php m347-mediawiki/<POD_NAME>:/var/www/html/
 ```
 
 > [!WARNING]
-> Der Ordner `/var/www/html/` ist **nicht persistent**.  
+> Das Verzeichnis `/var/www/html/` ist **nicht persistent**.  
 > Wenn der Pod neu gestartet oder ersetzt wird, **muss dieser Schritt wiederholt werden**.
 
 ## 5. MediaWiki starten
