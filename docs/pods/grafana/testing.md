@@ -16,7 +16,7 @@ Im Testprotokoll werden die ausgeführten Testfälle mit Beschreibung, Ergebnis 
 | :-: | :-- | :-- | :-- | :-: |
 | G-01 | Zugriff via Ingress | Grafana im Browser über Hostnamen `grafana.m347.ch` aufrufen | Loginseite wird angezeigt | ✅ |
 | G-02 | Login mit Admin-Account | Mit Benutzer `admin` und Passwort `password` einloggen | Login erfolgreich, Grafana-Dashboard erscheint | ✅ |
-| G-03 | Dashboard anlegen | Neues Dashboard erstellen und Panel hinzufügen | Dashboard wird gespeichert und angezeigt | ⚠️ |
+| G-03 | Dashboard anlegen | Neues Dashboard erstellen und Panel hinzufügen | Dashboard wird gespeichert und angezeigt | ✅ |
 | G-04 | Datenquelle überprüfen | Prometheus-Datenquelle in den Einstellungen aufrufen | Datenquelle ist verbunden und funktionsfähig | ✅ |
 
 
@@ -69,8 +69,7 @@ Im Testprotokoll werden die ausgeführten Testfälle mit Beschreibung, Ergebnis 
 - Dashboard wurde erfolgreich erstellt und gespeichert.
 
 **Status**: ⚠️  
-**Bemerkung**:  
-Es musste zuerst die Verbindung zu Prometheus als Datenquelle manuell erstellt werden. Dies geschah über "Connection" -> "Data Source", dann unter "Settings" -> "Connection" `http://prometheus-service.m347-prometheus.svc.cluster.local:80` 
+**Bemerkung**: *Keine
 
 ## G-04: Datenquelle überprüfen
 **Testdatum**: 30.06.2025  
@@ -87,8 +86,7 @@ Es musste zuerst die Verbindung zu Prometheus als Datenquelle manuell erstellt w
 - Prometheus-Datenquelle war verbunden.
 
 **Status**: ✅  
-**Bemerkung**:  
-Wurde in G-03 manuell gemacht.
+**Bemerkung**: *Keine
 
 ## Legende - Statuswerte
 Die folgende Legende dient zur Bewertung und schnellen Einschätzung der Testergebnisse:
