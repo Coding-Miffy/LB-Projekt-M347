@@ -1,7 +1,7 @@
 # Arbeitsjournal
 **Autor:in**: Sascha Ritter   
 **Datum**: 01.07.2025    
-**Version**:  4
+**Version**:  1.6
 
 ## Arbeitsprotokoll
 | Datum | Tätigkeit | Bemerkung |
