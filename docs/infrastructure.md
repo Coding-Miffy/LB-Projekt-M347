@@ -10,7 +10,7 @@ Für unser Projekt haben wir eine vollständig containerisierte Infrastruktur in
 - **Pod 5**: MediaWiki
 - **Pod 7**: Grafana
 
-Alle Anwendungspods sind über einen **ClusterIP-Service** verfügbar und werden durch den Ingress Controller angesprochen. Jeder Pod läuft in einem eigenen Deployment mit `replicas: 1` und nutzt jeweils eine **eigene ConfigMap** und ein **eigenes Secret**, um eine modulare und sichere Konfiguration zu ermöglichen.  
+Alle Anwendungspods sind über einen **ClusterIP-Service** verfügbar und werden durch den Ingress Controller angesprochen. Jeder Anwendungspod läuft in einem eigenen Deployment mit `replicas: 1` und nutzt gemeinsam mit seinem zugehörigen Datenbankpod **eine ConfigMap** und **ein Secret**, um eine konsistente, modulare und sichere Konfiguration zu ermöglichen.  
 Zusätzlich verwendet jeder dieser Pods einen **eigenen PVC**, um Daten wie Uploads (z. B. Bilder bei WordPress), Medieninhalte oder Dashboard-Einstellungen (z. B. bei Grafana) persistent zu speichern.
 
 ### Datenbankpods
@@ -30,7 +30,7 @@ Für Konfigurationswerte und sensible Daten (z. B. Zugangsdaten oder Umgebungs
 Dieses Vorgehen unterstützt eine **wiederverwendbare, modulare und sichere Konfiguration** einzelner Komponenten – z. B. Datenbank-URLs, Passwörter oder Metriken-Konfigurationen.  
 
 ## Erreichbarkeit
-Alle Applikationen sind nicht über Pfade wie `http://localhost/mediawiki`, sondern über **eigene Subdomains** erreichbar:
+Alle Applikationen sind nicht über Pfade wie `http://localhost/mediawiki`, sondern über **eigene Hostnamen** erreichbar:
 
 - `http://redmine.m347.ch`
 - `http://mediawiki.m347.ch`
@@ -38,10 +38,10 @@ Alle Applikationen sind nicht über Pfade wie `http://localhost/mediawiki`, sond
 - `http://prometheus.m347.ch`
 - `http://grafana.m347.ch`
 
-### Warum Subdomains statt Pfade?
-Viele Webapplikationen, insbesondere WordPress und MediaWiki, sind **nicht dafür ausgelegt, in Unterverzeichnissen zu laufen**. Ohne dedizierte Subdomains können z. B. Stylesheets (CSS), Weiterleitungen oder Plugins fehlerhaft funktionieren.
+### Warum Hostnamen statt Pfade?
+Viele Webapplikationen, insbesondere WordPress und MediaWiki, sind **nicht dafür ausgelegt, in Unterverzeichnissen zu laufen**. Ohne dedizierte Hostnamen können z. B. Stylesheets (CSS), Weiterleitungen oder Plugins fehlerhaft funktionieren.
 
-Wir haben uns deshalb bewusst für die Verwendung von Subdomains (z. B. `wordpress.m347.ch`) entschieden, um eine saubere und zuverlässige Erreichbarkeit zu gewährleisten **und gleichzeitig lokale Anpassungen der Hosts-Datei zu vermeiden**.
+Wir haben uns deshalb bewusst für die Verwendung von eigenen Hostnamen (z. B. `wordpress.m347.ch`) entschieden, um eine saubere und zuverlässige Erreichbarkeit zu gewährleisten. Durch die Nutzung eines **externen DNS-Dienstes** entfällt zudem die Notwendigkeit, die lokale Hosts-Datei manuell anzupassen.
 
 Die Weiterleitung und Erreichbarkeit werden dabei zentral über den Ingress-Controller gesteuert.
 
@@ -51,7 +51,7 @@ Alle Services wurden auf den Typ `ClusterIP` gesetzt. Das bedeutet, sie sind nur
 **Vorteile dieses Ansatzes**:
 - **Zentrale Steuerung der Exponierung**: Nur der Ingress Controller ist von aussen erreichbar, was die Sicherheit erhöht.
 - **Klarer Aufbau**: App-Pods sprechen Datenbank-Pods über interne ClusterIP-Services an.
-- **Standardisierte Adressierung**: Dank eigener Subdomains erfolgt der Zugriff über Klartext-URLs wie `http://redmine.m347.ch`.
+- **Standardisierte Adressierung**: Dank eigener Hostnamen erfolgt der Zugriff über Klartext-URLs wie `http://redmine.m347.ch`.
 
 ## Umgang mit Replikation
 Alle Deployments in unserem Projekt verwenden aktuell:
@@ -96,7 +96,7 @@ Wir haben uns bewusst für **acht separate PVCs** entschieden, einen für jede d
 ## Fazit
 Unsere Infrastruktur ist klar strukturiert, modular aufgebaut und folgt den Best Practices für Kubernetes:
 - Trennung von Anwendungen, Datenhaltung und Infrastruktur
-- Sichere & zentrale Exponierung über Ingress und eigene Subdomains
+- Sichere & zentrale Exponierung über Ingress und eigene Hostnamen
 - Datenpersistenz durch dedizierte PVCs
 - Konfigurationsverwaltung durch ConfigMap & Secret
 - Skalierbarkeit durch `replicas`-Definition pro Pod
