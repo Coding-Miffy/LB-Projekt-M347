@@ -58,7 +58,18 @@ Username: admin
 Password: password
 ```
 
-## 6. Grafana entfernen
+## 6. Datenquelle hinzufügen
+
+Da die Datenquelle "Prometheus" nicht automatisch erkannt wird, muss diese manuell hinzugefügt werden.  
+**Voraussetzung:** Prometheus läuft und eingeloggt als Admin in Grafana.  
+- Unter "Connection" -> "Data Source"
+- Dann zu "Settings"
+- Runterscrollen zu "Connection" und URL ersetzen mit: `http://prometheus-service.m347-prometheus.svc.cluster.local:80`
+- Zu unterst auf "Save & test" drücken
+
+Falls keine Settings angezeigt werden, muss sichergestellt werden, dass der Prometheus-Pod einwandfrei funktioniert. Dann `grafana.m347.ch` neu laden.
+
+## 7. Grafana entfernen
 
 Um Grafana wieder vollständig zu entfernen, kann einfach der gesamte Namespace gelöscht werden:
 
