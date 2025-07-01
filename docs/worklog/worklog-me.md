@@ -1,6 +1,6 @@
 # Arbeitsjournal
-**Autor:in**:  
-**Datum**:    
+**Autor:in**:Max.Ebbinghaus  
+**Datum**:01.07.2025    
 **Version**:  
 
 # Arbeitsprotokoll 
