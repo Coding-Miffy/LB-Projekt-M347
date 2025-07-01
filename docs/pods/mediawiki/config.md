@@ -179,7 +179,7 @@ spec:
   Dies ist der gängigste Modus für Anwendungen, die auf einem einzelnen Pod laufen.
 
 - `resources.requests.storage: 10Gi`  
-  Reserviert 10 GiB Speicherplatz.  
+  Reserviert 10 Gibibyte Speicherplatz.  
   Die gewählte Grösse basiert auf der Annahme, dass MediaWiki über längere Zeit Medien, Inhalte und Erweiterungen speichern wird.
 
 - `storageClassName: standard`  
@@ -308,7 +308,7 @@ spec:
   Das Volume kann nur von einem Pod gleichzeitig beschrieben werden – ideal für Einzel-Instanzen.
 
 - `resources.requests.storage: 1Gi`  
-  Reserviert 1 GiB Speicherplatz. Für Testszenarien und kleinere Wikis ist dies ausreichend.
+  Reserviert 1 Gibibyte Speicherplatz. Für Testszenarien und kleinere Wikis ist dies ausreichend.
 
 - `namespace: m347-mediawiki`  
   Der PVC ist im gleichen Namespace wie das Deployment (`mediawiki-db`), was zwingend notwendig ist, damit die Zuordnung funktioniert.
