@@ -1,7 +1,7 @@
 # Arbeitsjournal
-**Autor:in**:Max.Ebbinghaus  
-**Datum**:01.07.2025    
-**Version**:  
+**Autor:in**: Max.Ebbinghaus  
+**Datum**: 01.07.2025    
+**Version**: 1.7  
 
 # Arbeitsprotokoll 
 
