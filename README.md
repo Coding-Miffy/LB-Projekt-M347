@@ -43,7 +43,7 @@ Für den Aufbau und Betrieb der Infrastruktur wurden folgende Kerntechnologien e
 - **Helm**  
   Wird als Paketmanager für Kubernetes genutzt, um den Ingress Controller schnell und standardisiert bereitzustellen. Helm vereinfacht das Verwalten, Updaten und Rollbacken von Kubernetes-Ressourcen erheblich.
 
-- **`kubectl`**  
+- **Kubectl**  
   Das zentrale Kommandozeilenwerkzeug zur Steuerung des Kubernetes-Clusters. Mit `kubectl` werden Deployments durchgeführt, Pods überwacht, Logs gelesen und die gesamte Clusterverwaltung gesteuert.
 
 ## Konfiguration
@@ -98,16 +98,6 @@ Nach erfolgreichem Start lässt sich der Status des Clusters wie folgt prüfen:
 kubectl get nodes
 ```
 Wenn ein Node mit dem Status `Ready` erscheint, ist der Cluster betriebsbereit.
-
-### 3. Netzwerkzugriffe ermöglichen
-Damit Dienste über Ingress korrekt erreichbar sind, muss zusätzlich ein Tunnel geöffnet werden:
-```powershell
-minikube tunnel
-```
-Dieser Befehl leitet Netzwerkzugriffe vom lokalen System in den Cluster weiter. Das Terminalfenster bleibt dabei offen und aktiv.
-
-> [!TIP]
-> Am besten wird `minikube tunnel` **in einem separaten Terminal-Fenster** ausgeführt, damit der Tunnel während der gesamten Laufzeit bestehen bleibt.
 
 ## Manuelle Installation der einzelnen Komponenten
 Für den Betrieb der Umgebung werden alle Anwendungen und Dienste in **eigenständigen Namespaces** betrieben. Dies ermöglicht eine strukturierte Trennung, eine gezielte Ressourcenzuweisung und erleichtert die Verwaltung der Konfiguration pro Komponente.
