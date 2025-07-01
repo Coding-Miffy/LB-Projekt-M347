@@ -40,4 +40,4 @@ spec:
             claimName: grafana-pvc
         - name: grafana-datasource
           configMap:
-            name: grafana-config
+            name: grafana-datasource
