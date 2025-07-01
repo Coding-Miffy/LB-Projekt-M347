@@ -1,7 +1,7 @@
 # Arbeitsjournal
 **Autor:in**: Sascha Ritter   
 **Datum**: 01.07.2025    
-**Version**:  1.6
+**Version**:  1.7
 
 ## Arbeitsprotokoll
 | Datum | Tätigkeit | Bemerkung |
@@ -23,7 +23,7 @@
 ## Herausforderungen
 Der Einstieg in die Konfiguration von Prometheus und Grafana stellte zunächst eine grosse Herausforderung dar, da mir viele Details zu den einzelnen Ressourcen wie ConfigMaps, PVCs und den komplexen Relabel-Konfigurationen für Blackbox-Checks neu waren. Besonders die genaue Abstimmung zwischen Prometheus, dem Blackbox Exporter und den Services der anderen Anwendungen erforderte ein intensives Einarbeiten und mehrfaches Testen, um die korrekten Verbindungen sicherzustellen.  
   
-Auch die automatische Provisionierung der Prometheus-Datenquelle in Grafana war anspruchsvoll. Dabei traten immer wieder Probleme auf, etwa dass Grafana die Datenquelle nicht korrekt erkannte oder die Verbindung als „unreachable“ anzeigte. Diese Fehler zu analysieren und zu beheben, erforderte ein präzises Verständnis des Zusammenspiels der Komponenten im Kubernetes-Cluster.  
+Auch die automatische Provisionierung der Prometheus-Datenquelle in Grafana war anspruchsvoll. Dabei traten immer wieder Probleme auf, etwa dass Grafana die Datenquelle nicht korrekt erkannte oder die Verbindung als „unreachable“ und Prometheus als "Not supported" anzeigte. Diese Fehler zu analysieren und zu beheben, erforderte ein präzises Verständnis des Zusammenspiels der Komponenten im Kubernetes-Cluster.  
   
 Insgesamt war die Arbeit mit den Monitoring-Werkzeugen und deren korrekte Einbindung ins Cluster-Setup deutlich komplexer als anfangs erwartet, half mir aber, ein grösseres Verständnis für die technischen Zusammenhänge und Abhängigkeiten in Kubernetes zu entwickeln.
 
