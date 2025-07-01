@@ -17,7 +17,7 @@
 | 30.06.2025 | Erstellung der Testkonzepte für Grafana | Testfälle und Testprotokolle ausgearbeitet |
 | 30.06.2025 | Durchführung der Tests für Prometheus  | Tests ausgeführt und Ergebnisse dokumentiert |
 | 01.07.2025 | Durchführung der Tests für Grafana | Tests ausgeführt und Ergebnisse dokumentiert |
-| 01.07.2025 | Anpassen der Installationsdokumentation | Erkenntnisse der Tests berücksichtigt |
+| 01.07.2025 | Anpassen der Installationsdokumentation von Grafana | Erkenntnisse der Tests berücksichtigt |
 | 01.07.2025 | Unterstützung bei der finalen Demo-Vorbereitung | Abstimmung im Team, letzte Tests |
 
 ## Herausforderungen
