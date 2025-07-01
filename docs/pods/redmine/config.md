@@ -154,7 +154,7 @@ spec:
   Der Speicherplatz ist für genau einen Pod gleichzeitig beschreibbar.
 
 - **resources.requests.storage: 10Gi**  
-  Fordert 10 Gigabyte Speicherplatz an, geeignet für Entwicklungs- und Testumgebungen.
+  Fordert 10 Gibibyte Speicherplatz an, geeignet für Entwicklungs- und Testumgebungen.
 
 - **storageClassName**  
   Nutzt die Standard-Storage-Class des Kubernetes-Clusters (implizit), die definiert, wie und wo der Speicher bereitgestellt wird.
@@ -277,7 +277,7 @@ spec:
   Der Speicherplatz kann gleichzeitig nur von einem Pod beschreibbar genutzt werden.
 
 - **resources.requests.storage: 5Gi**  
-  Fordert 5 Gigabyte Speicherplatz an, ausreichend für kleinere oder Test-Datenbanken.
+  Fordert 5 Gibibyte Speicherplatz an, ausreichend für kleinere oder Test-Datenbanken.
 
 - **storageClassName**  
   Nutzt die Standard-Storage-Class des Kubernetes-Clusters (implizit), welche festlegt, wie der Speicher bereitgestellt wird.
