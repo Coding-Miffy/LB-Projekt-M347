@@ -27,13 +27,13 @@
 
 ## Herausforderungen
 
-Zu Beginn des Projekts war die groesste Herausforderung für mich, dass sowohl Redmine als auch WordPress mir völlig unbekannte Anwendungen waren. Die Komplexitaet der beiden Tools und die Tatsache, dass ich keinerlei Vorkenntnisse zu ihrer Einrichtung und Verwaltung hatte, fuehrten zu einer anfaenglichen èberforderung. Besonders schwierig war, dass ich zusaetzlich noch wenig Erfahrung im Umgang mit Kubernetes und Docker mitbrachte.
+Zu Beginn des Projekts war die grösste Herausforderung für mich, dass sowohl Redmine als auch WordPress mir völlig unbekannte Anwendungen waren. Die Komplexitaet der beiden Tools und die Tatsache, dass ich keinerlei Vorkenntnisse zu ihrer Einrichtung und Verwaltung hatte, führten zu einer anfänglichen Überforderung. Besonders schwierig war, dass ich zusätzlich noch wenig Erfahrung im Umgang mit Kubernetes und Docker mitbrachte.
 
 Die ersten Tage waren geprägt von intensivem Brainstorming und einer gründlichen Einarbeitung in die verschiedenen Komponenten. Ich musste zunächst ein grundlegendes Verständnis für die Funktionsweise und Interaktion der Anwendungen im Zusammenspiel mit Kubernetes-Clustern, Pods, Services und Persistent Volumes aufbauen. Vor allem die Unterscheidung der jeweils erforderlichen Konfigurationen und das korrekte Setup der Container erwiesen sich dabei als anspruchsvoll.
 
-Ein weiteres Problem war die notwendige persistente Speicherung der Daten beider Applikationen. Es galt sicherzustellen, dass Nutzerdaten und Konfigurationen bei einem Neustart oder einer Skalierung der Pods nicht verloren gehen. Die Einrichtung der Persistent Volumes (PVCs) erforderte genaue Recherchen und mehrfaches Testen, bis schliesslich eine zuverlaessige Lösung gefunden war.
+Ein weiteres Problem war die notwendige persistente Speicherung der Daten beider Applikationen. Es galt sicherzustellen, dass Nutzerdaten und Konfigurationen bei einem Neustart oder einer Skalierung der Pods nicht verloren gehen. Die Einrichtung der Persistent Volumes (PVCs) erforderte genaue Recherchen und mehrfaches Testen, bis schliesslich eine zuverlässige Lösung gefunden war.
 
-Auch die Verwendung von ConfigMaps und Secrets zur sicheren und flexiblen Konfiguration der Anwendungen brachte zusätzliche Herausforderungen mit sich. Insbesondere die korrekte èbergabe und Nutzung von Umgebungsvariablen in beiden Applikationen benötigte einige Versuche und Anpassungen.
+Auch die Verwendung von ConfigMaps und Secrets zur sicheren und flexiblen Konfiguration der Anwendungen brachte zusätzliche Herausforderungen mit sich. Insbesondere die korrekte Übergabe und Nutzung von Umgebungsvariablen in beiden Applikationen benötigte einige Versuche und Anpassungen.
 
 Trotz der anfänglichen Schwierigkeiten konnte ich durch intensives Testen, wiederholte Fehleranalyse und stetiges Experimentieren schrittweise mein Wissen erweitern.
 
