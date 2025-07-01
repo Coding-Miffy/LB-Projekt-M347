@@ -186,7 +186,7 @@ Hier befinden sich zwei yaml-Files in einem. Zum einen wieder ein Deployment (ob
   Nutzt das offizielle Docker-Image des Blackbox Exporters in der neuesten Version.
   
 - **containerPort: 9115**   
-  Öffnet Port 9115 im Container, den der Blackbox Exporter standardmäßig für HTTP-/TCP-/ICMP-Checks verwendet.
+  Öffnet Port 9115 im Container, den der Blackbox Exporter standardmässig für HTTP-/TCP-/ICMP-Checks verwendet.
 
 #### Service
 - **port: 9115 & targetPort: 9115**   
