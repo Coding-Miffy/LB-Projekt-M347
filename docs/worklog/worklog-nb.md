@@ -51,7 +51,7 @@ Ich neige grundsätzlich dazu, Arbeiten lieber selbst zu erledigen, um volle Kon
 
 Darüber hinaus konnte ich meine Fähigkeit, komplexe Sachverhalte verständlich zu dokumentieren, stark verbessern. Das Projekt erforderte eine umfassende und präzise Dokumentation, was meine Skills im technischen Schreiben deutlich erweitert hat.
 
-Besonders motivierend war, dass ich mein Wissen im Laufe des Projekts an meine Teamkollegen und an Mütschüler:innen weitergeben konnte. Das hat nicht nur mein eigenes Verständnis gefestigt, sondern auch meine Freude an der Arbeit mit komplexen IT-Systemen gesteigert.
+Besonders motivierend war, dass ich mein Wissen im Laufe des Projekts an meine Teamkollegen und an Mitschüler:innen weitergeben konnte. Das hat nicht nur mein eigenes Verständnis gefestigt, sondern auch meine Freude an der Arbeit mit komplexen IT-Systemen gesteigert.
 
 # Persönliches Fazit
 Das Projekt war für mich eine intensive, fordernde und gleichzeitig unglaublich bereichernde Erfahrung.
