@@ -1,6 +1,3 @@
-> [!IMPORTANT]
-> In Erwägung ziehen: LocalSettings.php
-
 # Konfiguration - MediaWiki
 
 - **Verwendung**:  
