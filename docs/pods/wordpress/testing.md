@@ -18,7 +18,7 @@ Im Testprotokoll werden die ausgeführten Testfälle mit Beschreibung, Ergebnis 
 |:---:|:---------------------------|:--------------------------------------------|:-----------------------------|:------:|
 | W-01| Zugriff via Ingress        | WP über `wordpress.m347.ch` aufrufen        | Startseite lädt erfolgreich  |   ✅   |
 | W-02| Login mit Admin-Account    | Einloggen mit bekannten Zugangsdaten        | Dashboard erscheint korrekt  |   ✅   |
-| W-03| Beitrag erstellen, Pod neu starten | Beitrag erstellen, Pod löschen, neu abrufen | Beitrag bleibt erhalten |   ⚠️   |
+| W-03| Beitrag erstellen, Pod neu starten | Beitrag erstellen, Pod löschen, neu abrufen | Beitrag bleibt erhalten |   ✅   |
 | W-04| Verbindung zur Datenbank   | WP starten, Logs auf Fehler prüfen          | Keine DB-Fehler beim Start   |   ✅   |
 | W-05| Startseite bearbeiten      | Text ergänzen und speichern                 | Änderungen sichtbar          |   ✅   |
 
